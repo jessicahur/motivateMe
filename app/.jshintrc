@@ -1,0 +1,13 @@
+{
+    "globals": {
+        "angular": true,
+        "document": true,
+        "window": true,
+        "$": false,
+        "localStorage": false
+    },
+    "node": true,
+    "undef": true,
+    "maxerr": 20,
+    "esnext": true
+}
