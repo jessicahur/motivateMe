@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+External*
+node
+node*
+.DS_Store
+.idea*
+.idea/workspace.xml
+npm-debug.log
+.env
+
+
+  mongodb://motivatemeUser:helpmeaccomplishmygoals@ds023458.mlab.com:23458/motivateme
