@@ -49,6 +49,8 @@ router.post('/signup', (req, res) => {
  */
 
 router.post('/login', (req, res) => {
+  res.send('hey')
+  console.log(req);
     User.findOne({
         email: req.body.email
     }, '+password', (err, user) => {
