@@ -1,17 +1,20 @@
+//Mongoose
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
-
+const User    = require('../models/User');
+//Other middlewares
 const express       = require('express');
 const methodOverride = require('method-override');
 const path          = require('path');
 const bodyParser    = require('body-parser');
 const logger        = require('morgan');
-
+//For Satellizer
 const moment = require( 'moment' );
 const jwt = require( 'jwt-simple');
-
+//App and routers
 const app           = express();
 const router        = require('./router');
+const userRouter    = require('./user-router');
 const public        = path.join( __dirname + '/public');
 //const auth = require( './auth.js' ); //un-comment once we have auth router in place
 
@@ -29,7 +32,10 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
-app.use('/', router);
+
+restify.serve(userRouter, User);
+
+app.use(userRouter);
 
 app.use(express.static(public, {redirect : false}));
 module.exports = app;
