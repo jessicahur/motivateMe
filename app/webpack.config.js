@@ -26,6 +26,13 @@ module.exports = {
             test: /\.css$/,
             loader: 'style!css'
         }, {
+            test: /\.scss$/,
+            exclude: /node_modules/,
+            loader: 'style!css!resolve-url!sass?sourceMap'
+        }, {
+            test: /\.(png|jpg)$/,
+            loader: 'file-loader?limit=8192'
+        }, {
             test: /\.html$/,
             loader: 'html'
         }]
@@ -37,4 +44,8 @@ module.exports = {
             jQuery: 'jquery'
         }),
     ]
+},
+sassLoader: {
+    includePaths: [ path.resolve(__dirname, './scss') ] //, './src/scss/colors'
+  }
 };
