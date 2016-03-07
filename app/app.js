@@ -6,7 +6,7 @@ import components   from './components';
 
 // import filters   from './filters';
 // import services  from './services';
-// import configs   from './config';
+import configs   from './config';
 //import toastr     from 'angular-toastr';
 
 const app = angular.module('myApp', [router, resource]);
@@ -15,9 +15,10 @@ const app = angular.module('myApp', [router, resource]);
 //const API_ENDPOINTS = 'api/motivate/:id';
 
 components(app);
+configs(app);
 
 // filters(app);
-// configs(app);
+
 
 // app.config(['MainProvider', function(MainProvider) {
 //   MaibProvider.url(API_URL);
