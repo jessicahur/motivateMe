@@ -1,7 +1,7 @@
 //Mongoose
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
-const User    = require('../models/User');
+//const User    = require('../models/User');
 const Comment = require('../models/Comment');
 const Project = require('../models/Project');
 //Other middlewares
@@ -16,6 +16,7 @@ const jwt = require( 'jwt-simple');
 //App and routers
 const app           = express();
 const userRouter    = express.Router();
+const userAuthRouter = require('./user-router');
 const commentRouter = express.Router();
 const projectRouter = express.Router();
 const public        = path.join( __dirname + '/public');
@@ -24,7 +25,7 @@ const public        = path.join( __dirname + '/public');
 app.use(bodyParser.json());
 app.use( bodyParser.urlencoded({ extended: false }) );
 
-app.use(methodOverride());
+//app.use(methodOverride());
 
 app.use(logger('dev'));
 
@@ -36,11 +37,12 @@ app.use((req, res, next) => {
   next();
 });
 
-restify.serve(userRouter, User);
+//restify.serve(userRouter, User);
 restify.serve(commentRouter, Comment);
 restify.serve(projectRouter, Project);
 
-app.use(userRouter);
+//app.use(userRouter);
+app.use('/auth', userAuthRouter);
 app.use(commentRouter);
 app.use(projectRouter);
 
@@ -75,4 +77,3 @@ function ensureAuthenticated(req, res, next) {
   req.user = payload.sub;
   next();
 }
-

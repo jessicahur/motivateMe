@@ -44,8 +44,9 @@ module.exports = {
             jQuery: 'jquery'
         }),
     ]
-},
-sassLoader: {
-    includePaths: [ path.resolve(__dirname, './scss') ] //, './src/scss/colors'
   }
-};
+// },
+// sassLoader: {
+//     includePaths: [ path.resolve(__dirname, './scss') ] //, './src/scss/colors'
+//   }
+// };
