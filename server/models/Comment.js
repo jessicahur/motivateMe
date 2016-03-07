@@ -17,7 +17,8 @@ const Comment = new Schema({
     type: String,
     enum: ['advice', 'asset', 'comment']
   },
-  votes: [{type: Number, ref: 'User'}]
+  votes: [{type: Number, ref: 'User'}],
+  time : { type : Date, default: Date.now }
 });
 
 module.exports = mongoose.model( 'Comment', Comment );
