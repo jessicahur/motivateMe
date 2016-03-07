@@ -14,7 +14,7 @@ export default function(angularModule) {
                 id: '@_id'
             }, {
                 update: {
-                    method: 'PUT',
+                    method: 'PATCH',
                 },
                 delete: {
                     method: 'DELETE',
