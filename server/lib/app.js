@@ -15,7 +15,6 @@ const moment = require( 'moment' );
 const jwt = require( 'jwt-simple');
 //App and routers
 const app           = express();
-const router        = require('./router');
 const userRouter    = express.Router();
 const commentRouter = express.Router();
 const projectRouter = express.Router();
@@ -77,15 +76,3 @@ function ensureAuthenticated(req, res, next) {
   next();
 }
 
-//mongoose.connect('mongodb://localhost/database')
-
-// restify.serve(router, mongoose.model('Customer', new mongoose.Schema({
-//   name: { type: String, required: true },
-//   comment: { type: String }
-// })))
-
-// app.use(router)
-
-// app.listen(3000, function () {
-//   console.log('Express server listening on port 3000')
-// })
