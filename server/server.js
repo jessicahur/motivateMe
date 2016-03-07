@@ -1,4 +1,4 @@
-const app    = require('./app');
+const app    = require('./lib/app');
 const http   = require('http');
 const server = http.createServer(app);
 
