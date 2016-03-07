@@ -15,7 +15,7 @@ mongoose.connect(dbURI);
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + dbURI);
   app.listen(process.env.PORT || 3000, () => {
-    console.log(`Listening on port ${process.env.PORT}...`);
+    console.log(`Listening on port ${process.env.PORT || 3000}...`);
   });
 });
 
