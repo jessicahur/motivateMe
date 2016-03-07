@@ -2,6 +2,8 @@
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
 const User    = require('../models/User');
+const Comment = require('../models/Comment');
+const Project = require('../models/Project');
 //Other middlewares
 const express       = require('express');
 const methodOverride = require('method-override');
@@ -14,7 +16,9 @@ const jwt = require( 'jwt-simple');
 //App and routers
 const app           = express();
 const router        = require('./router');
-const userRouter    = require('./user-router');
+const userRouter    = express.Router();
+const commentRouter = express.Router();
+const projectRouter = express.Router();
 const public        = path.join( __dirname + '/public');
 //const auth = require( './auth.js' ); //un-comment once we have auth router in place
 
@@ -34,8 +38,12 @@ app.use((req, res, next) => {
 });
 
 restify.serve(userRouter, User);
+restify.serve(commentRouter, Comment);
+restify.serve(projectRouter, Project);
 
 app.use(userRouter);
+app.use(commentRouter);
+app.use(projectRouter);
 
 app.use(express.static(public, {redirect : false}));
 module.exports = app;
