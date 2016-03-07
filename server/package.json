@@ -1,0 +1,26 @@
+{
+  "name": "motivate-server",
+  "version": "1.0.0",
+  "description": "Server for motivateMe",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "<https://github.com/MotivateMeCF/motivateMe>"
+  },
+  "keywords": [
+    "motivation",
+    "angular",
+    "mongoDB",
+    "Express",
+    "Node",
+    "Webpack",
+    "Karma",
+    "Protractor"
+  ],
+  "author": "Miles Hochstein, Jessica Hur, Alex Anderson",
+  "license": "MIT"
+}
