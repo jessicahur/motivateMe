@@ -89,24 +89,26 @@
 	
 	var _authConfig2 = _interopRequireDefault(_authConfig);
 	
-	var _services = __webpack_require__(28);
+	var _routeConfig = __webpack_require__(28);
+	
+	var _routeConfig2 = _interopRequireDefault(_routeConfig);
+	
+	var _services = __webpack_require__(29);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./css/angular-toastr.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import filters   from './filters';
-	
-	
 	var app = _angular2.default.module('myApp', [_angularUiRouter2.default, _angularResource2.default, _satellizer2.default, _services2.default, _ngDialog2.default, _angularToastr2.default]);
-	//import configs   from './config';
-	
 	
 	var API_URL = 'http://localhost:3000/';
 	var API_ENDPOINTS = 'api/motivate/:id';
 	
 	(0, _components2.default)(app);
 	(0, _authConfig2.default)(app);
+	(0, _routeConfig2.default)(app);
 	
 	app.config(['MotivateProvider', function (MotivateProvider) {
 	  MotivateProvider.url(API_URL);
@@ -36857,7 +36859,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<mot-nav></mot-nav>\n<feed></feed>\n<login></login>\n<signup></signup>\n<project></project>\n<create-project></create-project>\n<comments></comments>\n";
+	module.exports = "<mot-nav></mot-nav>\n<main ui-view></main>\n";
 
 /***/ },
 /* 9 */
@@ -36942,7 +36944,7 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n<p>Nav</p>\n\n</div>\n";
+	module.exports = "<nav class=\"navbar\">\n  <style>\n  \n  </style>\n    <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n            <span>collapse button</span>\n        </button>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav\">\n            <li>\n              <a ui-sref=\"project\">Projects</a>\n            </li>\n            <li>\n              <a ui-sref=\"create\">Create</a>\n            </li>\n            <li>\n                <a ui-sref=\"feed\">Feed</a>\n            </li>\n            <li>\n                <a ui-sref=\"user\">Signin / Signup</a>\n            </li>\n        </ul>\n</nav>\n";
 
 /***/ },
 /* 12 */
@@ -37036,7 +37038,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h2>Sign in with:</h2>\n    <button ng-click=\"authenticate('twitter')\">twitter</button>\n    <h6>or</h6>\n    <h2>Log in</h2>\n\n    <form name=\"loginForm\">\n        <div>\n            <input type=\"text\" name=\"email\" ng-model=\"user.email\" placeholder=\"Email\" required autofocus>\n        </div>\n\n        <div>\n            <input type=\"password\" name=\"password\" ng-model=\"user.password\" placeholder=\"Password\" required>\n        </div>\n\n        <button ng-click=\"login()\" ng-disabled=\"loginForm.$invalid\" class=\"btn btn-lg  btn-block btn-success\">Log in</button>\n        <br/>\n            <p>Don't have an account yet? <a href=\"/#/signup\">Sign up</a></p>\n    </form>\n\n</div>\n";
+	module.exports = "<div>\n  \n  <signup></signup>\n\n    <h2>Sign in with:</h2>\n    <button ng-click=\"authenticate('twitter')\">twitter</button>\n    <h6>or</h6>\n    <h2>Log in</h2>\n\n    <form name=\"loginForm\">\n        <div>\n            <input type=\"text\" name=\"email\" ng-model=\"user.email\" placeholder=\"Email\" required autofocus>\n        </div>\n\n        <div>\n            <input type=\"password\" name=\"password\" ng-model=\"user.password\" placeholder=\"Password\" required>\n        </div>\n\n        <button ng-click=\"login()\" ng-disabled=\"loginForm.$invalid\" class=\"btn btn-lg  btn-block btn-success\">Log in</button>\n        <br/>\n            <p>Don't have an account yet? <a href=\"/#/signup\">Sign up</a></p>\n    </form>\n\n</div>\n";
 
 /***/ },
 /* 16 */
@@ -38611,10 +38613,56 @@
 	            })();
 	        }
 	    });
+	
+	    $rootScope.$on('$stateChangeSuccess', function (event, to, toParams, from, fromParams) {
+	        $rootScope.previousState = from.name;
+	        $rootScope.currentState = to.name;
+	    });
 	}
 
 /***/ },
 /* 28 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function (angularModule) {
+	    angularModule.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
+	        $urlRouterProvider.otherwise("/");
+	        $stateProvider.state('feed', {
+	            url: '/',
+	            template: '<feed></feed>',
+	            data: {
+	                authRequired: false
+	            }
+	        }).state('project', {
+	            url: '/project',
+	            template: '<project></project>',
+	            data: {
+	                authRequired: false
+	            }
+	        }).state('create', {
+	            url: '/create',
+	            template: '<create-project></create-project>',
+	            data: {
+	                authRequired: false
+	            }
+	        }).state('user', {
+	            url: '/user',
+	            template: '<login></login>',
+	            data: {
+	                authRequired: false
+	            }
+	        });
+	    }]);
+	};
+
+/***/ },
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38623,7 +38671,7 @@
 	  value: true
 	});
 	
-	var _resourceService = __webpack_require__(29);
+	var _resourceService = __webpack_require__(30);
 	
 	var _resourceService2 = _interopRequireDefault(_resourceService);
 	
@@ -38637,7 +38685,7 @@
 	exports.default = services.name;
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	'use strict';

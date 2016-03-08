@@ -49,4 +49,9 @@ function runAuth($rootScope, ngDialog, $state, $auth) {
                 .catch(() => alert('failure!'));
         }
     });
+    
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+        $rootScope.previousState = from.name;
+        $rootScope.currentState = to.name;
+    });
 }

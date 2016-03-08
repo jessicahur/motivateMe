@@ -18,8 +18,7 @@ export default function(angularModule) {
                             $location.path('/');
                         })
                         .catch(function(response) {
-                          console.log(response);
-                          //  toastr.error(response.data.message);
+                          toastr.error(response.data.message);
                         });
                 };
             }]

@@ -42,6 +42,7 @@
     "ng-dialog": "^0.5.8",
     "resolve-url-loader": "^1.4.3",
     "satellizer": "^0.14.0",
+    "style-loader": "^0.13.0",
     "toastr": "^2.1.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"

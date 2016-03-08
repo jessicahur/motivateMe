@@ -97,6 +97,7 @@ router.post('/twitter', function(req, res) {
         if (req.header('Authorization')) {
           User.findOne({ twitter: profile.id }, function(err, existingUser) {
             if (existingUser) {
+              console.log(existingUser);
               return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
             }
             var token = req.header('Authorization').split(' ')[1];
