@@ -43,10 +43,10 @@ restify.serve(commentRouter, Comment, {name: "comments"});
 restify.serve(projectRouter, Project, {name: "projects"});
 
 //app.use(userRouter);
-app.use(ensureAuthenticated,commentRouter);
-app.use(projectRouter);
-app.use('/auth', userAuthRouter);
 app.use('/public', publicRouter);
+app.use('/auth', userAuthRouter);
+app.use(ensureAuthenticated, commentRouter);
+app.use(ensureAuthenticated, projectRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
