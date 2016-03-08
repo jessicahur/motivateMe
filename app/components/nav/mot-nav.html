@@ -1,20 +1,12 @@
 <nav>
-    <div>
-        <ul>
-            <li>
-              <a ui-sref="profile" ng-click="active(false)">Projects</a>
-            </li>
-            <li>
-              <a ui-sref="profile" ng-click="active(true)">Create</a>
-            </li>
-            <li>
-                <a ui-sref="feed">Feed</a>
-            </li>
-            <li>
-                <a ui-sref="user">Signin / Signup</a>
-            </li>
-            <li>
-            <logout></logout>
-            </li>
-        </ul>
+
+    <div class="nav">
+        <a ui-sref="profile"  ng-click="active(false)">Projects</a>
+        <a ui-sref="profile"ng-click="active(true)">Create</a>
+        <a ui-sref="feed">Feed</a>
+        <a ui-sref="user">Signin / Signup</a>
+        <logout></logout>
+
+    </div>
+
 </nav>
