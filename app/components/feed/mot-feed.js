@@ -8,6 +8,8 @@ export default function(angularModule) {
     /**
    * Controller: displays feed for main page
    */
+
+
     angularModule.directive('feed', function() {
         return {
             replace: true,
@@ -16,7 +18,7 @@ export default function(angularModule) {
             scope: {
                 projects: '='
             },
-            controller: [ '$scope', 'resource-service',
+            controller: [ '$scope', 'resourceService',
                 function( $scope, resourceService ){
 
 

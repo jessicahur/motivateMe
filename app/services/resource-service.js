@@ -1,6 +1,6 @@
 export default function(angularModule) {
 
-    angularModule.provider('Motivate', function() {
+    angularModule.provider('resourceService', function() {
         var url = '';
         var endpoints = '';
         

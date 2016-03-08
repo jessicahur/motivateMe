@@ -32,9 +32,9 @@ authConfig(app);
 routeConfig(app);
 
 
-app.config(['MotivateProvider', function(MotivateProvider) {
-  MotivateProvider.url(API_URL);
-  MotivateProvider.endpoints(API_ENDPOINTS);
+app.config(['resourceProvider', function(resourceProvider) {
+  resourceProvider.url(API_URL);
+  resourceProvider.endpoints(API_ENDPOINTS);
 }])
 
 document.body.innerHTML = main;
