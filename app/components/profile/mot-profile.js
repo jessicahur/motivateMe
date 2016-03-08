@@ -4,7 +4,7 @@ export default function(angularModule) {
     /**
      * Controller:
      */
-    angularModule.directive('motNav', function() {
+    angularModule.directive('motProfile', function() {
         return {
             replace: true,
             restrict: 'E',
