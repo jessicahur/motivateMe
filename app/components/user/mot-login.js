@@ -9,29 +9,30 @@ export default function(angularModule) {
           replace: true,
           restrict: 'E',
           template: motLogin,
-          controller: ['$scope', '$rootScope', '$location', '$auth', function($scope, $rootScope, $location, $auth) {
+          controller: ['$scope', '$rootScope', '$location', '$auth', 'toastr', function($scope, $rootScope, $location, $auth, toastr) {
               $scope.login = function(user) {
                       $auth.login($scope.user)
                           .then(function() {
+                              toastr.success('Your signed in!');
                               $location.path(`/${$rootScope.previousState}`);
                           })
                           .catch(function(error) {
-                              console.log(error.data.message, error.status);
+                              toastr.error(error.data.message, error.status);
                           });
               };
               $scope.authenticate = function(provider) {
                   $auth.authenticate(provider)
                       .then(function() {
-                          console.log(`You are now signed in with ${provider}, thanks!`);
+                          toastr.success(`You are now signed in with ${provider}, thanks!`);
                           $location.path(`/${$rootScope.previousState}`);
                       })
                       .catch(function(error) {
                           if (error.error) {
-                              console.log(error.error);
+                              toastr.error(error.error);
                           } else if (error.data) {
-                              console.log(error.data.message, error.status);
+                              toastr.error(error.data.message, error.status);
                           } else {
-                              console.log(error);
+                              toastr.error(error);
                           }
                       });
               };
