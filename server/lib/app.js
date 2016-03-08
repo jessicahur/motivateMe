@@ -43,8 +43,8 @@ restify.serve(projectRouter, Project);
 
 //app.use(userRouter);
 app.use('/auth', userAuthRouter);
-app.use(commentRouter);
-app.use(projectRouter);
+app.use(ensureAuthenticated,commentRouter);
+app.use(ensureAuthenticated,projectRouter);
 
 app.use(express.static(public, {redirect : false}));
 module.exports = app;
