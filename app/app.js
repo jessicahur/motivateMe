@@ -31,12 +31,7 @@ components(app);
 authConfig(app);
 routeConfig(app);
 
-
-
-app.config(['resourceProvider', function(resourceProvider) {
-  resourceProvider.url(API_URL);
-  resourceProvider.endpoints(API_ENDPOINTS);
-}])
+app.constant( 'baseUrl', process.env.BASE_URL);
 
 document.body.innerHTML = main;
 angular.bootstrap(document, [app.name], {});

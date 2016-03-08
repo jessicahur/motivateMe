@@ -18,15 +18,16 @@ export default function(angularModule) {
             scope: {
                 projects: '='
             },
-            controller: [ '$scope', 'resourceService',
-                function( $scope, resourceService ){
+            controller: [ '$scope', 'FeedService',
+                function( $scope, FeedService ){
 
+                    //
+                    //$scope.viewProject = function(id){
+                    //    console.log("View Specific Project", id);
+                    //    Feedervice.view(id);
+                    //};
 
-                    $scope.viewProject = function(id){
-                        console.log("View Specific Project", id);
-                        resourceService.view(id);
-                    };
-
+                    $scope.viewProject = FeedService.query();
 
 
                 }]

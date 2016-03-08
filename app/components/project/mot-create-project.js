@@ -1,4 +1,4 @@
-import motCreateProject from './mot-create-create.html';
+import motCreateProject from './mot-create-project.html';
 export default function(angularModule) {
   /**
    * Controller: displays feed for main page

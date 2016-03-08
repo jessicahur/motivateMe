@@ -7,7 +7,6 @@ import signupDr from './user/mot-signup';
 
 
 import createProjectDr from './project/mot-create-project';
->>>>>>> master
 import projectDr from './project/mot-project';
 
 
