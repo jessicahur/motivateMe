@@ -4,7 +4,7 @@ const router       = express.Router();
 const request      = require('request');
 const jwt          = require('jwt-simple');
 const qs           = require('querystring');
-const User         = require('../models/user');
+const User         = require('../models/User');
 const moment       = require('moment');
 
 /**
@@ -18,32 +18,27 @@ const moment       = require('moment');
    };
    return jwt.encode(payload, process.env.TOKEN_SECRET);
  }
-router.post('/signup', (req, res) => {
-    User.findOne({
-        email: req.body.email
-    }, (err, userExists) => {
-        if (userExists) {
 
-            //for toastr popups
-            return res.status(409).send({
-                message: "that email has already been used"
-            });
-        }
-        let user = new User({
-            displayName: req.body.displayName,
-            email: req.body.email,
-            password: req.body.password
-        }).save((err, data) => {
-            if (err) {
-                res.status(500).send({
-                    message: err.message
-                });
-            }
-            res.send({
-                token: signJwt(data)
-            });
-        });
+router.post('/signup', function(req, res) {
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
+    if (existingUser) {
+      return res.status(409).send({ message: 'Email is already taken' });
+    }
+
+    var user = new User({
+      displayName: req.body.displayName,
+      email: req.body.email,
+      password: req.body.password
     });
+    console.log(user);
+    user.save(function(err, result) {
+      if (err) {
+        res.status(500).send({ message: err.message });
+      }
+      console.log('RESULT',result);
+      res.send({ token: createJWT(result) });
+    });
+  });
 });
 
 /**
@@ -51,30 +46,18 @@ router.post('/signup', (req, res) => {
  * Using the +password param to tell mongo to include in query
  */
 
-router.post('/login', (req, res) => {
-    User.findOne({
-        email: req.body.email
-    }, '+password', (err, user) => {
-        if (!user) {
-            return res.status(401).send({
-                message: 'sorry, we could not match that user name or password'
-            });
-        }
-
-        /**
-         *use the checkPassword method defined in models/user.js
-         */
-        user.comparePassword(req.body.password, (err, isMatch) => {
-            if (!isMatch) {
-                return res.status(401).send({
-                    message: 'sorry, invalid email/password'
-                });
-            }
-            res.send({
-                token: signJwt(user)
-            });
-        });
+router.post('/login', function(req, res) {
+  User.findOne({ email: req.body.email }, '+password', function(err, user) {
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid email and/or password' });
+    }
+    user.comparePassword(req.body.password, function(err, isMatch) {
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Invalid email and/or password' });
+      }
+      res.send({ token: createJWT(user) });
     });
+  });
 });
 
 router.post('/twitter', function(req, res) {
