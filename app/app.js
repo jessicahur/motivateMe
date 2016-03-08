@@ -16,7 +16,7 @@ import services     from './services';
 
 import './node_modules/angular-toastr/dist/angular-toastr.css';
 
-//import './main.scss';
+import './scss/main.scss';
 
 
 /**
