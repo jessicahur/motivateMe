@@ -1,5 +1,6 @@
 export default function(angularModule) {
 
+<<<<<<< HEAD
     angularModule.provider('resourceService', function() {
         var url = '';
         var endpoints = '';
@@ -25,3 +26,23 @@ export default function(angularModule) {
         };
     });
 }
+=======
+        function create(name, url) {
+            angularModule.factory(name, ['$resource', 'baseUrl',
+                function($resource, baseUrl) {
+                    return $resource(`${baseUrl}${url}`, {
+                        id: '@_id'
+                    }, {
+                        update: {
+                            method: 'PATCH',
+                        },
+                        delete: {
+                            method: 'DELETE',
+                        },
+                    });
+                }
+            ]);
+        }
+        create('ProfileService', '/api/v1/user');
+    }
+>>>>>>> master

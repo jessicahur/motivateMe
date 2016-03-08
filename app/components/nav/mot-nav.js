@@ -1,6 +1,4 @@
 import motNav from './mot-nav.html';
-import styles from './mot-nav.scss';
-
 export default function(angularModule) {
     /**
      * Controller:
