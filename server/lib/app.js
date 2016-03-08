@@ -15,8 +15,9 @@ const moment = require( 'moment' );
 const jwt = require( 'jwt-simple');
 //App and routers
 const app           = express();
-const userRouter    = express.Router();
 const userAuthRouter = require('./user-router');
+const publicRouter  = require('./public-router');
+const userRouter    = express.Router();
 const commentRouter = express.Router();
 const projectRouter = express.Router();
 const public        = path.join( __dirname + '/public');
@@ -43,8 +44,9 @@ restify.serve(projectRouter, Project);
 
 //app.use(userRouter);
 app.use('/auth', userAuthRouter);
-app.use(commentRouter);
-app.use(projectRouter);
+app.use('/', publicRouter);
+app.use(ensureAuthenticated,commentRouter);
+app.use(ensureAuthenticated,projectRouter);
 
 app.use(express.static(public, {redirect : false}));
 module.exports = app;

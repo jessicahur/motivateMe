@@ -6,28 +6,28 @@ export default function(angularModule) {
                 url: '/',
                 template: '<feed></feed>',
                 data: {
-                    authRequired: false
+                    requireAuth: false
                 }
             })
-            .state('project', {
-                url: '/project',
-                template: '<project></project>',
+            .state('profile', {
+                url: '/profile',
+                views: {
+                    'project': {
+                        template: '<project></project>'
+                    },
+                    'create': {
+                        template: '<create-project></create-project>'
+                    }
+                },
                 data: {
-                    authRequired: false
-                }
-            })
-            .state('create', {
-                url: '/create',
-                template: '<create-project></create-project>',
-                data: {
-                    authRequired: false
+                    requireAuth: true
                 }
             })
             .state('user', {
                 url: '/user',
                 template: '<login></login>',
                 data: {
-                    authRequired: false
+                    requireAuth: false
                 }
             })
     }]);

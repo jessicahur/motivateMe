@@ -7,7 +7,7 @@ import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 import motivationDr from './motivation/mot-comments';
 
-//import scss from './main.scss';
+import motProfileDr from './profile/mot-profile';
 
 /**
  * Bundle components in this dir. so that app can be passed to each.
@@ -21,5 +21,5 @@ export default function(angularModule) {
 	createProjectDr(angularModule);
 	projectDr(angularModule);
 	motivationDr(angularModule);
-//	scss(angularModule);
+	motProfileDr(angularModule);
 }
