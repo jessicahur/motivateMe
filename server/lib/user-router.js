@@ -30,11 +30,11 @@ router.post('/signup', function(req, res) {
       email: req.body.email,
       password: req.body.password
     });
-    user.save(function(err, result) {
+    user.save(function(err, savedUser) {
       if (err) {
         res.status(500).send({ message: err.message });
       }
-      res.send({ token: createJWT(result) });
+      res.send({ token: createJWT(savedUser), userId: savedUser._id  });
     });
   });
 });
@@ -53,7 +53,7 @@ router.post('/login', function(req, res) {
       if (!isMatch) {
         return res.status(401).send({ message: 'Invalid email and/or password' });
       }
-      res.send({ token: createJWT(user) });
+      res.send({ token: createJWT(user), userId: user._id });
     });
   });
 });
@@ -109,22 +109,22 @@ router.post('/twitter', function(req, res) {
               user.twitter = profile.id;
               user.displayName = user.displayName || profile.name;
               user.picture = user.picture || profile.profile_image_url.replace('_normal', '');
-              user.save(function(err) {
-                res.send({ token: createJWT(user) });
+              user.save(function(err, savedUser) {
+                res.send({ token: createJWT(user), userId: savedUser._id });
               });
             });
           });
         } else {
           User.findOne({ twitter: profile.id }, function(err, existingUser) {
             if (existingUser) {
-              return res.send({ token: createJWT(existingUser) });
+              return res.send({ token: createJWT(existingUser), userId: existingUser._id });
             }
             var user = new User();
             user.twitter = profile.id;
             user.displayName = profile.name;
             user.picture = profile.profile_image_url.replace('_normal', '');
-            user.save(function() {
-              res.send({ token: createJWT(user) });
+            user.save(function(err, savedUser) {
+              res.send({ token: createJWT(user), userId: savedUser._id});
             });
           });
         }
