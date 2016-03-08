@@ -31,6 +31,8 @@
   "author": "Miles Hochstein, Jessica Hur, Alex Anderson",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^0.8.5",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
