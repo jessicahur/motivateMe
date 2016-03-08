@@ -6,7 +6,9 @@ import signupDr from './user/mot-signup';
 import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 import motivationDr from './motivation/mot-comments';
+
 import motProfileDr from './profile/mot-profile';
+
 /**
  * Bundle components in this dir. so that app can be passed to each.
  */
