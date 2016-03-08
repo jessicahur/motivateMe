@@ -1,7 +1,7 @@
 //Mongoose
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
-//const User    = require('../models/User');
+const User    = require('../models/User');
 const Comment = require('../models/Comment');
 const Project = require('../models/Project');
 //Other middlewares
@@ -41,12 +41,14 @@ app.use((req, res, next) => {
 //restify.serve(userRouter, User);
 restify.serve(commentRouter, Comment, {name: "comments"});
 restify.serve(projectRouter, Project, {name: "projects"});
+restify.serve(userRouter, User, {name: "users"});
 
 //app.use(userRouter);
-app.use('/public', publicRouter);
+app.use('/projects', publicRouter);
 app.use('/auth', userAuthRouter);
 app.use(commentRouter);
 app.use(projectRouter);
+app.use(userRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
@@ -60,7 +62,6 @@ module.exports = app;
  |--------------------------------------------------------------------------
  */
 function ensureAuthenticated(req, res, next) {
-  console.log(req.url);
   if ( req.method === 'OPTIONS' ) return next(); //Pass this to router. Our router doesn't have any method hat deals with OPTIONS request
 
   if (!req.header('Authorization')) {
