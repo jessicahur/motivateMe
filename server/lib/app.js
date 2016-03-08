@@ -26,7 +26,7 @@ const public        = path.join( __dirname + '/public');
 app.use(bodyParser.json());
 app.use( bodyParser.urlencoded({ extended: false }) );
 
-//app.use(methodOverride());
+app.use(methodOverride());
 
 app.use(logger('dev'));
 
@@ -39,14 +39,17 @@ app.use((req, res, next) => {
 });
 
 //restify.serve(userRouter, User);
-restify.serve(commentRouter, Comment);
-restify.serve(projectRouter, Project);
+restify.serve(commentRouter, Comment, {name: "comments"});
+restify.serve(projectRouter, Project, {name: "projects"});
 
 //app.use(userRouter);
-app.use('/auth', userAuthRouter);
-app.use('/', publicRouter);
 app.use(ensureAuthenticated,commentRouter);
-app.use(ensureAuthenticated,projectRouter);
+app.use(projectRouter);
+app.use('/auth', userAuthRouter);
+app.use('/public', publicRouter);
+app.use(function(req, res, next) {
+  res.status(404).send('404, no page found: ' + req.url);
+});
 
 app.use(express.static(public, {redirect : false}));
 module.exports = app;
@@ -57,7 +60,7 @@ module.exports = app;
  |--------------------------------------------------------------------------
  */
 function ensureAuthenticated(req, res, next) {
-
+  console.log(req.url);
   if ( req.method === 'OPTIONS' ) return next(); //Pass this to router. Our router doesn't have any method hat deals with OPTIONS request
 
   if (!req.header('Authorization')) {
