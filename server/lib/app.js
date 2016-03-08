@@ -44,7 +44,7 @@ restify.serve(projectRouter, Project, {name: "projects"});
 
 //app.use(userRouter);
 app.use(ensureAuthenticated,commentRouter);
-app.use(projectRouter);
+app.use(ensureAuthenticated,projectRouter);
 app.use('/auth', userAuthRouter);
 app.use('/public', publicRouter);
 app.use(function(req, res, next) {
