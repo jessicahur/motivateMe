@@ -36,27 +36,27 @@ module.exports = {
         }, {
             test: /\.css$/,
             loader: 'style!css'
-        }, {
-            test: /\.scss$/,
-            loaders: ['style', 'css', 'postcss', 'sass']
-        }, {
-            test: /\.scss$/,
-            exclude: /node_modules/,
-            // scss -> css -> style loader
-            loader: 'style!css!resolve-url!sass?sourceMap',
-            // custom name for easier debug:
-            loader: 'style!css?modules&sourceMap&localIdentName=[name]---[local]---[hash:base64:5]!sass?sourceMap',
-            // use "css modules", see https://github.com/css-modules/css-modules
-            loader: 'style!css?modules&sourceMap&localIdentName=[name]---[local]---[hash:base64:5]!sass?sourceMap',
-        }, {
+        },
+
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                loader: 'style!css?sourceMap!sass?sourceMap'
+            },
+
+            {
             test: /\.(png|jpg)$/,
             loader: 'file-loader?limit=8192'
-        }, {
+        },
+            {
             test: /\.html$/,
             loader: 'html'
         }]
     },
     sassLoader: {
-        includePaths: [path.resolve(__dirname, './src/scss'), path.resolve(__dirname, './src/scss/components')] //, './src/scss/colors'
+        includePaths: [path.resolve(__dirname, './scss'),
+                        ]
+                       //, './src/scss/colors'
+
     }
 }
