@@ -18,15 +18,12 @@ import './node_modules/angular-toastr/dist/angular-toastr.css';
 
 import './scss/main.scss';
 
-console.log('in app',BASE_URL);
 /**
  * App Setup:
  */
 const app = angular.module('myApp', [router, resource, satellizer, services, ngDialog, toastr]);
 
 app.constant( 'baseUrl', BASE_URL);
-const API_URL = 'http://localhost:3000/';
-const API_ENDPOINTS = 'api/v1/';
 
 components(app);
 authConfig(app);
