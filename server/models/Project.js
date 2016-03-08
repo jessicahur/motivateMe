@@ -8,7 +8,6 @@ const Project = new Schema({
     ref: 'User'
   },
   progress: Array,
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
   time : { type : Date, default: Date.now }
   });
 

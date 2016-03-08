@@ -37,13 +37,11 @@ module.exports = {
             test: /\.css$/,
             loader: 'style!css'
         },
-
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 loader: 'style!css?sourceMap!sass?sourceMap'
             },
-
             {
             test: /\.(png|jpg)$/,
             loader: 'file-loader?limit=8192'
@@ -54,9 +52,7 @@ module.exports = {
         }]
     },
     sassLoader: {
-        includePaths: [path.resolve(__dirname, './scss'),
+        includePaths: [path.resolve(__dirname, './scss')
                         ]
-                       //, './src/scss/colors'
-
     }
 }
