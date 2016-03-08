@@ -25,17 +25,11 @@ import './scss/main.scss';
 const app = angular.module('myApp', [router, resource, satellizer, services, ngDialog, toastr]);
 
 const API_URL = 'http://localhost:3000/';
-const API_ENDPOINTS = 'api/motivate/:id';
+const API_ENDPOINTS = 'api/v1/';
 
 components(app);
 authConfig(app);
 routeConfig(app);
-
-
-app.config(['MotivateProvider', function(MotivateProvider) {
-  MotivateProvider.url(API_URL);
-  MotivateProvider.endpoints(API_ENDPOINTS);
-}])
 
 document.body.innerHTML = main;
 angular.bootstrap(document, [app.name], {});
