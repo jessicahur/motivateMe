@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const Project = new Schema({
   author: {
-    type: String,
+    type: Schema.Types.ObjectId,
     require: true,
     ref: 'User'
   },
   progress: Array,
-  comments: [{type: String, ref: 'Comment'}],
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
   time : { type : Date, default: Date.now }
   });
 
