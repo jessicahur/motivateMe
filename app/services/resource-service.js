@@ -16,5 +16,5 @@ export default function(angularModule) {
                 }
             ]);
         }
-        create('ProfileService', '/api/v1/');
+        create('ProfileService', '/foo/bar');
     }

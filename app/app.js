@@ -31,11 +31,5 @@ components(app);
 authConfig(app);
 routeConfig(app);
 
-
-app.config(['MotivateProvider', function(MotivateProvider) {
-  MotivateProvider.url(API_URL);
-  MotivateProvider.endpoints(API_ENDPOINTS);
-}])
-
 document.body.innerHTML = main;
 angular.bootstrap(document, [app.name], {});

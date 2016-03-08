@@ -13,6 +13,7 @@ export default function(angularModule) {
                 $scope.signupUser = function() {
                     $auth.signup($scope.user)
                         .then(function(response) {
+                            window.localStorage.setItem('userId', response.data.userId);
                             $auth.setToken(response);
                             toastr.info('You are now registered, thank!');
                             $location.path('/');
