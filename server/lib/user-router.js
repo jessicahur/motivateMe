@@ -30,12 +30,10 @@ router.post('/signup', function(req, res) {
       email: req.body.email,
       password: req.body.password
     });
-    console.log(user);
     user.save(function(err, result) {
       if (err) {
         res.status(500).send({ message: err.message });
       }
-      console.log('RESULT',result);
       res.send({ token: createJWT(result) });
     });
   });
