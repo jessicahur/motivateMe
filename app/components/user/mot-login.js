@@ -1,5 +1,9 @@
 import motLogin from './mot-login.html';
 export default function(angularModule) {
+
+  /**
+   * Controller: user authentication for login with provider or email/pwd
+   */
   angularModule.directive('login', function() {
       return {
           replace: true,
