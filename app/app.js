@@ -16,7 +16,7 @@ import services     from './services';
 
 import './node_modules/angular-toastr/dist/angular-toastr.css';
 
-//import './main.scss';
+import './scss/main.scss';
 
 
 /**
@@ -25,7 +25,7 @@ import './node_modules/angular-toastr/dist/angular-toastr.css';
 const app = angular.module('myApp', [router, resource, satellizer, services, ngDialog, toastr]);
 
 const API_URL = 'http://localhost:3000/';
-const API_ENDPOINTS = 'api/motivate/:id';
+const API_ENDPOINTS = 'api/v1/';
 
 components(app);
 authConfig(app);
