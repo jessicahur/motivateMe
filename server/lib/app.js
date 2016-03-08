@@ -39,16 +39,16 @@ app.use((req, res, next) => {
 });
 
 //restify.serve(userRouter, User);
-restify.serve(commentRouter, Comment, {name: "comments"});
-restify.serve(projectRouter, Project, {name: "projects"});
-restify.serve(userRouter, User, {name: "users"});
+restify.serve(commentRouter, Comment, {name: 'comments'});
+restify.serve(projectRouter, Project, {name: 'projects'});
+restify.serve(userRouter, User, {name: 'users'});
 
 //app.use(userRouter);
 app.use('/projects', publicRouter);
 app.use('/auth', userAuthRouter);
-app.use(commentRouter);
-app.use(projectRouter);
-app.use(userRouter);
+app.use(ensureAuthenticated, commentRouter);
+app.use(ensureAuthenticated, projectRouter);
+app.use(ensureAuthenticated, userRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
