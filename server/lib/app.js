@@ -43,7 +43,7 @@ restify.serve(commentRouter, Comment, {name: "comments"});
 restify.serve(projectRouter, Project, {name: "projects"});
 
 //app.use(userRouter);
-app.use('/public', publicRouter);
+app.use('/projects', publicRouter);
 app.use('/auth', userAuthRouter);
 app.use(commentRouter);
 app.use(projectRouter);
