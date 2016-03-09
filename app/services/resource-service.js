@@ -14,6 +14,7 @@ export default function(angularModule) {
             ]);
         }
         create('UserService', '/api/v1/users');
+        create('ProfileService', '/api/v1/users');
         create('FeedService', '/projects');
         create('CommentService', '/ap1/v1/comments');
     };

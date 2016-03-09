@@ -3,6 +3,7 @@ import feedDr from './feed/mot-feed';
 import loginDr from './user/mot-login';
 import logoutDr from './user/mot-logout';
 import signupDr from './user/mot-signup';
+ //import createProjectDr from './project/mot-create-project';
 
 
 import createProjectDr from './project/mot-create-project';
@@ -22,7 +23,7 @@ export default function(angularModule) {
 	logoutDr(angularModule);
 	signupDr(angularModule);
 	feedDr(angularModule);
-	createProjectDr(angularModule);
+//	createProjectDr(angularModule);
 	projectDr(angularModule);
 	motivationDr(angularModule);
 	motProfileDr(angularModule);
