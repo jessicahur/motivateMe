@@ -1,6 +1,10 @@
 <div>
-<p>We are a community of people supporting each other's plans</p>
-
-    <p>Pick a plan and lend a hand.... or a comment</p>
+<a ui-sref="profile" ng-click="active(false)">Projects</a>
+<a ui-sref="profile" ng-click="active(true)">Create</a>
+<img heigh="100px" width="100px" src={{userData.picture}}></img>
+<h4>{{userData.displayName}}</h4>
+<h4>Projects:</h4>
+<div ng-repeat="project in projects">
+  <li ng-repeat="progress in project.progress">{{progress}}</li>
 </div>
-
+</div>

@@ -7,46 +7,18 @@ export default function(app) {
 }
 
 function configAuth($authProvider) {
-    $authProvider.github({
-        clientId: CLIENT_ID
+    $authProvider.twitter({
+        url: `${baseUrl}/auth/twitter`
     });
-    $authProvider.github({
-        url: `${baseUrl}/auth/github`,
-        authorizationEndpoint: 'https://github.com/login/oauth/authorize',
-        redirectUri: window.location.origin,
-        optionalUrlParams: ['scope'],
-        scope: ['user:email'],
-        scopeDelimiter: ' ',
-        type: '2.0',
-        popupOptions: {
-            width: 1020,
-            height: 618
-        }
-    });
-  $authProvider.twitter({
-      url: 'http://localhost:3000/auth/twitter'
-  });
-  $authProvider.signupUrl = 'http://localhost:3000/auth/signup';
-  $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+    $authProvider.signupUrl = `${baseUrl}/auth/signup`;
+    $authProvider.loginUrl = `${baseUrl}/auth/login`;
 }
 
 function runAuth($rootScope, ngDialog, $state, $auth) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
         if (toState.data && toState.data.requireAuth && !$auth.isAuthenticated()) {
             event.preventDefault();
-            const dialog = ngDialog.open({
-                template: '<login></login>',
-                plain: true,
-                controller: ['$scope', function($scope) {
-                    $scope.success = function(response) {
-                        dialog.close();
-                        return $state.go(toState.name, toParams);
-                    };
-                }]
-            });
-            dialog.closePromise
-                .then(() => alert('success!'))
-                .catch(() => alert('failure!'));
+            $state.transitionTo('user');
         }
     });
 }

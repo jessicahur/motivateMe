@@ -46,9 +46,9 @@ restify.serve(userRouter, User, {name: 'users'});
 //app.use(userRouter);
 app.use('/projects', publicRouter);
 app.use('/auth', userAuthRouter);
-app.use(ensureAuthenticated, commentRouter);
-app.use(ensureAuthenticated, projectRouter);
-app.use(ensureAuthenticated, userRouter);
+app.use( commentRouter);
+app.use( projectRouter);
+app.use( userRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
@@ -65,6 +65,7 @@ function ensureAuthenticated(req, res, next) {
   if ( req.method === 'OPTIONS' ) return next(); //Pass this to router. Our router doesn't have any method hat deals with OPTIONS request
 
   if (!req.header('Authorization')) {
+    console.log(req.headers);
     return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
   }
   var token = req.header('Authorization').split(' ')[1];

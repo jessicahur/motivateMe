@@ -21,7 +21,7 @@ export default function(angularModule) {
 	logoutDr(angularModule);
 	signupDr(angularModule);
 	feedDr(angularModule);
-//	createProjectDr(angularModule);
+	createProjectDr(angularModule);
 	projectDr(angularModule);
 	motivationDr(angularModule);
 	motProfileDr(angularModule);
