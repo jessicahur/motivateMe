@@ -1,27 +1,20 @@
 export default function(angularModule) {
 
-    angularModule.provider('Motivate', function() {
-        var url = '';
-        var endpoints = '';
-        
-        this.url = function(inputUrl) {
-            url = inputUrl;
-        };
-        this.endpoints = function(inputEndPoints) {
-            endpoints = inputEndPoints;
-        };
-
-        this.$get = function($resource) {
-            return $resource(url + endpoints, {
-                id: '@_id'
-            }, {
-                update: {
-                    method: 'PATCH',
-                },
-                delete: {
-                    method: 'DELETE',
-                },
-            });
-        };
-    });
-}
+        function create(name, url) {
+            angularModule.factory(name, ['$resource', 'baseUrl',
+                function($resource, baseUrl) {
+                    return $resource(`${baseUrl}${url}`, {
+                        id: '@_id'
+                    }, {
+                        update: {
+                            method: 'PATCH',
+                        }
+                    });
+                }
+            ]);
+        }
+        create('ProfileService', '/api/v1/users');
+        create('FeedService', '/api/v1/projects');
+        create('ProjectService', '/api/v1/projects')
+        create('CommentService', '/ap1/v1/comments');
+    };

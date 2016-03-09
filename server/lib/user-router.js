@@ -30,13 +30,11 @@ router.post('/signup', function(req, res) {
       email: req.body.email,
       password: req.body.password
     });
-    console.log(user);
-    user.save(function(err, result) {
+    user.save(function(err, savedUser) {
       if (err) {
         res.status(500).send({ message: err.message });
       }
-      console.log('RESULT',result);
-      res.send({ token: createJWT(result) });
+      res.send({ token: createJWT(savedUser), userId: savedUser._id  });
     });
   });
 });
@@ -55,7 +53,7 @@ router.post('/login', function(req, res) {
       if (!isMatch) {
         return res.status(401).send({ message: 'Invalid email and/or password' });
       }
-      res.send({ token: createJWT(user) });
+      res.send({ token: createJWT(user), userId: user._id });
     });
   });
 });
@@ -99,6 +97,7 @@ router.post('/twitter', function(req, res) {
         if (req.header('Authorization')) {
           User.findOne({ twitter: profile.id }, function(err, existingUser) {
             if (existingUser) {
+              console.log(existingUser);
               return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
             }
             var token = req.header('Authorization').split(' ')[1];
@@ -110,22 +109,22 @@ router.post('/twitter', function(req, res) {
               user.twitter = profile.id;
               user.displayName = user.displayName || profile.name;
               user.picture = user.picture || profile.profile_image_url.replace('_normal', '');
-              user.save(function(err) {
-                res.send({ token: createJWT(user) });
+              user.save(function(err, savedUser) {
+                res.send({ token: createJWT(user), userId: savedUser._id });
               });
             });
           });
         } else {
           User.findOne({ twitter: profile.id }, function(err, existingUser) {
             if (existingUser) {
-              return res.send({ token: createJWT(existingUser) });
+              return res.send({ token: createJWT(existingUser), userId: existingUser._id });
             }
             var user = new User();
             user.twitter = profile.id;
             user.displayName = profile.name;
             user.picture = profile.profile_image_url.replace('_normal', '');
-            user.save(function() {
-              res.send({ token: createJWT(user) });
+            user.save(function(err, savedUser) {
+              res.send({ token: createJWT(user), userId: savedUser._id});
             });
           });
         }
@@ -133,97 +132,5 @@ router.post('/twitter', function(req, res) {
     });
   }
 });
-
-// router.post('/twitter', (req, res) => {
-//
-//     let reqTokenUrl = process.env.REQ_TOKEN_URL;
-//     let accTokenUrl = process.env.ACC_TOKEN_URL;
-//     let profileUrl = process.env.PROF_URL;
-//     let CON_KEY = process.env.CONSUMER_KEY;
-//     let CON_SEC = process.env.CONSUMER_SECRET;
-//     if (!req.body.oauth_token || req.body.oauth_verifier) {
-//       console.log('Verifier', req.body.oauth_verifier);
-//       console.log('token', req.body.oauth_token);
-//         let oauthReqToken = {
-//             consumer_key: CON_KEY,
-//             consumer_secret: CON_SEC,
-//             callback: req.body.redirectUri
-//         };
-//         request.post({
-//                 url: reqTokenUrl,
-//                 oauth: oauthReqToken
-//             },
-//             (err, response, body) => {
-//                 let oauthToken = qs.parse(body);
-//                 console.log('YYYYYYY', oauthToken);
-//                 res.send(oauthToken);
-//             });
-//     } else {
-//         let accToken = {
-//             consumer_key: CON_KEY,
-//             consumer_secret: CON_SEC,
-//             token: req.body.oauth_token,
-//             verifier: req.body.oauth_verifier
-//         };
-//         request.post({
-//             url: accTokenUrl,
-//             oauth: accToken
-//         }, (err, res, accessToken) => {
-//             accessToken = qs.parse(accessToken);
-//             let profileOauth = {
-//                 consumer_key: CON_KEY,
-//                 consumer_secret: CON_SEC,
-//                 oauth_token: accessToken.oauth_token
-//             };
-//             request.get({
-//                 url: `${profileUrl}${accToken.screen_name}`,
-//                 oauth: profileOauth,
-//                 json: true
-//             }, (err, res, profile) => {
-//                 if (req.header('Authorization')) {
-//                     User.findOne({
-//                         twitter: profile.id
-//                     }, (err, userExists) => {
-//                         let token = req.header('Authorization').split(' ')[1];
-//                         let data = jwt.decode(token, CON_SEC);
-//
-//                         User.findById(data.userId, (err, user) => {
-//                             if (!user) {
-//                                 return res.status(400).send({
-//                                     message: 'sorry, not found'
-//                                 })
-//                             }
-//                             user.twitter = profile.id;
-//                             user.displayName = user.displayName || profile.name;
-//                             user.save(err => {
-//                                 res.send({
-//                                     token: signJwt(user)
-//                                 });
-//                             });
-//                         });
-//                     });
-//                 } else {
-//                     User.findOne({
-//                         twitter: profile.id
-//                     }, (err, userExists) => {
-//                         if (userExists) {
-//                             return res.send({
-//                                 token: signJwt(userExists)
-//                             })
-//                         }
-//                         let user = new User();
-//                         user.twitter = profile.id;
-//                         user.displayName = profile.name;
-//                         user.save(() => {
-//                             res.send({
-//                                 token: signJwt(user)
-//                             })
-//                         })
-//                     })
-//                 }
-//             });
-//         });
-//     }
-// });
 
 module.exports = router;
