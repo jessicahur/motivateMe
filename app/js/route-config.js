@@ -23,15 +23,22 @@ export default function(angularModule) {
                     requireAuth: true
                 }
             })
+            .state('profile.detail', {
+                url: '/:id?edit',
+                template: '<project-detail></project-detail>',
+                data: {
+                    requireAuth: true
+                }
+            })
             .state('user', {
                 url: '/user',
-                views:{
-                  'login': {
-                    template: '<login></login>'
-                  },
-                  'signup': {
-                    template: '<signup></signup>'
-                  }
+                views: {
+                    'login': {
+                        template: '<login></login>'
+                    },
+                    'signup': {
+                        template: '<signup></signup>'
+                    }
                 },
                 data: {
                     requireAuth: false

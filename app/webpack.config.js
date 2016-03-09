@@ -5,7 +5,7 @@ const DefinePlugin = require('webpack').DefinePlugin;
 module.exports = {
     entry: [path.resolve(__dirname, './app.js')],
     output: {
-        path: path.resolve(__dirname, '../server/public'),
+        path: path.resolve(__dirname, '../../motivateDeploy/public'),
         filename: 'bundle.js'
     },
     devtool: 'source-map',
