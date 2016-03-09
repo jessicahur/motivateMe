@@ -9,6 +9,13 @@ export default function(angularModule) {
                     requireAuth: false
                 }
             })
+            .state('feed-detail', {
+                url: '/detail',
+                template: '<feed-detail></feed-detail>',
+                data: {
+                    requireAuth: false
+                }
+            })
             .state('profile', {
                 url: '/profile',
                 views: {
