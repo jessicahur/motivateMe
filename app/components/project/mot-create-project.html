@@ -1,3 +1,18 @@
 <div>
-<p>just a place holder for the creating a project directive</p>
+  <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
+  <form>
+    <label>Project Name</label>
+    <input name="projectName"
+           ng-model="project.name"
+           required
+           type="text"></input>
+    <br />
+    <label>Project Milestones</label>
+    <input name="projectMilestones"
+           ng-model="project.progress"
+           required
+           type="text"></input>
+    <br />
+    <button ng-click = "post()" type='submit'>ADD</button>
+  </form>
 </div>
