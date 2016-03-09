@@ -25,7 +25,14 @@ export default function(angularModule) {
             })
             .state('user', {
                 url: '/user',
-                template: '<login></login>',
+                views:{
+                  'login': {
+                    template: '<login></login>'
+                  },
+                  'signup': {
+                    template: '<signup></signup>'
+                  }
+                },
                 data: {
                     requireAuth: false
                 }
