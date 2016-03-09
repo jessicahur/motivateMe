@@ -1,4 +1,6 @@
 <div>
+  <a ui-sref="profile" ng-click="active(false)">Projects</a>
+  <a ui-sref="profile" ng-click="active(true)">Create</a>
   <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
   <form>
     <label>Project Name</label>

@@ -1,24 +1,24 @@
-<div>
-  
-  <signup></signup>
-
-    <h2>Sign in with:</h2>
-    <button ng-click="authenticate('twitter')">twitter</button>
-    <h6>or</h6>
-    <h2>Log in</h2>
-
-    <form name="loginForm">
-        <div>
-            <input type="text" name="email" ng-model="user.email" placeholder="Email" required autofocus>
+    <div class="login">
+      <div class="login-screen">
+        <div class="login-title">
+          <h2>Sign in with:</h2>
+          <button class="btn btn-primary btn-large btn-block" ng-click="authenticate('twitter')">twitter</button>
+          <h3>or</h3>
+          <h1>Login</h1>
         </div>
 
-        <div>
-            <input type="password" name="password" ng-model="user.password" placeholder="Password" required>
+        <div class="login-form">
+          <div class="control-group">
+          <input type="text" name="email" ng-model="user.email" placeholder="Email" required autofocus>				<label class="login-field-icon fui-user" for="login-name"></label>
+          </div>
+
+          <div class="control-group">
+          <input type="password" name="password" ng-model="user.password" placeholder="Password" required>
+          <label class="login-field-icon fui-lock" for="login-pass"></label>
+          </div>
+          <button "btn btn-primary btn-large btn-block" ng-click="login()" ng-disabled="loginForm.$invalid" class="btn btn-lg  btn-block btn-success">Log in</button>
+          <p>Don't have an account yet?</p>
+          <a class="login-link" href="/#/signup"><h2>Sign up</h2></a>
         </div>
-
-        <button ng-click="login()" ng-disabled="loginForm.$invalid" class="btn btn-lg  btn-block btn-success">Log in</button>
-        <br/>
-            <p>Don't have an account yet? <a href="/#/signup">Sign up</a></p>
-    </form>
-
-</div>
+      </div>
+    </div>
