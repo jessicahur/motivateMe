@@ -1,3 +1,8 @@
 <div>
-<p>just a place holder for viewing your projects directive</p>
+<img heigh="100px" width="100px" src={{userData.picture}}></img>
+<h4>{{userData.displayName}}</h4>
+<h4>Projects:</h4>
+<div ng-repeat="project in projects">
+  <li ng-repeat="progress in project.progress">{{progress}}</li>
+</div>
 </div>

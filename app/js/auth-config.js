@@ -7,6 +7,9 @@ export default function(app) {
 }
 
 function configAuth($authProvider) {
+    $authProvider.httpInterceptor = function() {
+        return true;
+    };
     $authProvider.github({
         clientId: CLIENT_ID
     });
@@ -23,11 +26,11 @@ function configAuth($authProvider) {
             height: 618
         }
     });
-  $authProvider.twitter({
-      url: 'http://localhost:3000/auth/twitter'
-  });
-  $authProvider.signupUrl = 'http://localhost:3000/auth/signup';
-  $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+    $authProvider.twitter({
+        url: 'http://localhost:3000/auth/twitter'
+    });
+    $authProvider.signupUrl = 'http://localhost:3000/auth/signup';
+    $authProvider.loginUrl = 'http://localhost:3000/auth/login';
 }
 
 function runAuth($rootScope, ngDialog, $state, $auth) {
