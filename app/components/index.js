@@ -1,5 +1,6 @@
 import motNavDr from './nav/mot-nav';
 import feedDr from './feed/mot-feed';
+import feedDetailDr from './feed-detail/mot-feed-detail.js';
 import loginDr from './user/mot-login';
 import logoutDr from './user/mot-logout';
 import signupDr from './user/mot-signup';
@@ -21,6 +22,7 @@ export default function(angularModule) {
 	logoutDr(angularModule);
 	signupDr(angularModule);
 	feedDr(angularModule);
+	feedDetailDr( angularModule );
 	createProjectDr(angularModule);
 	projectDr(angularModule);
 	motivationDr(angularModule);
