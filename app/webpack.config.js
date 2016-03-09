@@ -33,10 +33,12 @@ module.exports = {
                     // cacheDirectory: true,
                     // plugins: [ 'transform-runtime' ]//https://www.npmjs.com/package/babel-plugin-transform-runtime
             }
-        }, {
+        },
+            {
             test: /\.css$/,
             loader: 'style!css'
-        },
+            },
+
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,

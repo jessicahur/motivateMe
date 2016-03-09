@@ -29,5 +29,7 @@ components(app);
 routeConfig(app);
 authConfig(app);
 
+//app.constant( 'baseUrl', process.env.BASE_URL);
+
 document.body.innerHTML = main;
 angular.bootstrap(document, [app.name], {});
