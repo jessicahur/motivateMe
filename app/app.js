@@ -9,7 +9,9 @@ import toastr       from 'angular-toastr';
 import authConfig   from './js/auth-config';
 import routeConfig  from './js/route-config';
 import services     from './services';
-
+import uib        from 'angular-ui-bootstrap';
+import animate    from 'angular-animate';
+// import jquery     from 'jquery';
 /**
  * CSS imports:
  */
@@ -21,7 +23,7 @@ import './scss/main.scss';
 /**
  * App Setup:
  */
-const app = angular.module('myApp', [router, resource, satellizer, services, ngDialog, toastr]);
+const app = angular.module('myApp', [router, resource, satellizer, services, ngDialog, toastr, uib, animate]);
 
 app.constant( 'baseUrl', BASE_URL);
 

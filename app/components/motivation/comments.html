@@ -1,4 +1,6 @@
 <div ng-show="authed">
+  Rating: <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+  <br />
   <textarea ng-model="comment.content">Add your comment here...</textarea>
   <button ng-click = "post()" type='submit'>ADD</button>
 </div>
