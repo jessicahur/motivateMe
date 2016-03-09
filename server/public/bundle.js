@@ -77,47 +77,51 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
-	var _ngDialog = __webpack_require__(24);
+	var _ngDialog = __webpack_require__(28);
 	
 	var _ngDialog2 = _interopRequireDefault(_ngDialog);
 	
-	var _angularToastr = __webpack_require__(25);
+	var _angularToastr = __webpack_require__(29);
 	
 	var _angularToastr2 = _interopRequireDefault(_angularToastr);
 	
-	var _authConfig = __webpack_require__(27);
+	var _authConfig = __webpack_require__(31);
 	
 	var _authConfig2 = _interopRequireDefault(_authConfig);
 	
-	var _routeConfig = __webpack_require__(28);
+	var _routeConfig = __webpack_require__(32);
 	
 	var _routeConfig2 = _interopRequireDefault(_routeConfig);
 	
-	var _services = __webpack_require__(29);
+	var _services = __webpack_require__(33);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./css/angular-toastr.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(35);
+	
+	__webpack_require__(39);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var app = _angular2.default.module('myApp', [_angularUiRouter2.default, _angularResource2.default, _satellizer2.default, _services2.default, _ngDialog2.default, _angularToastr2.default]);
+	/**
+	 * App Setup:
+	 */
 	
-	var API_URL = 'http://localhost:3000/';
-	var API_ENDPOINTS = 'api/motivate/:id';
-	
-	(0, _components2.default)(app);
-	(0, _authConfig2.default)(app);
-	(0, _routeConfig2.default)(app);
-	
-	app.config(['MotivateProvider', function (MotivateProvider) {
-	  MotivateProvider.url(API_URL);
-	  MotivateProvider.endpoints(API_ENDPOINTS);
-	}]);
 	
 	/**
-	 * Insert top-level template main.html and bootstrap the app
+	 * CSS imports:
 	 */
+	
+	var app = _angular2.default.module('myApp', [_angularUiRouter2.default, _angularResource2.default, _satellizer2.default, _services2.default, _ngDialog2.default, _angularToastr2.default]);
+	
+	app.constant('baseUrl', ("https://pure-temple-44622.herokuapp.com"));
+	
+	(0, _components2.default)(app);
+	(0, _routeConfig2.default)(app);
+	(0, _authConfig2.default)(app);
+	
+	//app.constant( 'baseUrl', process.env.BASE_URL);
+	
 	document.body.innerHTML = _index2.default;
 	_angular2.default.bootstrap(document, [app.name], {});
 
@@ -36859,7 +36863,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<mot-nav></mot-nav>\n<main ui-view></main>\n";
+	module.exports = "<mot-nav></mot-nav>\n<main ui-view></main>\n<div ui-view=\"project\" ng-show=\"!user.active\"></div>\n<div ui-view=\"create\" ng-show=\"user.active\"></div>\n<div ui-view=\"login\"></div>\n<div ui-view=\"signup\"></div>\n";
 
 /***/ },
 /* 9 */
@@ -36874,11 +36878,13 @@
 	exports.default = function (angularModule) {
 		(0, _motNav2.default)(angularModule);
 		(0, _motLogin2.default)(angularModule);
+		(0, _motLogout2.default)(angularModule);
 		(0, _motSignup2.default)(angularModule);
 		(0, _motFeed2.default)(angularModule);
 		(0, _motCreateProject2.default)(angularModule);
 		(0, _motProject2.default)(angularModule);
 		(0, _motComments2.default)(angularModule);
+		(0, _motProfile2.default)(angularModule);
 	};
 	
 	var _motNav = __webpack_require__(10);
@@ -36893,21 +36899,29 @@
 
 	var _motLogin2 = _interopRequireDefault(_motLogin);
 
-	var _motSignup = __webpack_require__(16);
+	var _motLogout = __webpack_require__(16);
+
+	var _motLogout2 = _interopRequireDefault(_motLogout);
+
+	var _motSignup = __webpack_require__(18);
 
 	var _motSignup2 = _interopRequireDefault(_motSignup);
 
-	var _motCreateProject = __webpack_require__(18);
+	var _motCreateProject = __webpack_require__(20);
 
 	var _motCreateProject2 = _interopRequireDefault(_motCreateProject);
 
-	var _motProject = __webpack_require__(20);
+	var _motProject = __webpack_require__(22);
 
 	var _motProject2 = _interopRequireDefault(_motProject);
 
-	var _motComments = __webpack_require__(22);
+	var _motComments = __webpack_require__(24);
 
 	var _motComments2 = _interopRequireDefault(_motComments);
+
+	var _motProfile = __webpack_require__(26);
+
+	var _motProfile2 = _interopRequireDefault(_motProfile);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36929,7 +36943,19 @@
 	        return {
 	            replace: true,
 	            restrict: 'E',
-	            template: _motNav2.default
+	            template: _motNav2.default,
+	            controller: ['$scope', '$location', '$auth', 'toastr', function ($scope, $location, $auth, toastr) {
+	                //TODO create a number checking view controller
+	
+	                $scope.user = {
+	                    active: true
+	                };
+	                $scope.active = function (x) {
+	                    $scope.user = {
+	                        active: x
+	                    };
+	                };
+	            }]
 	        };
 	    });
 	};
@@ -36944,7 +36970,7 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<nav class=\"navbar\">\n  <style>\n  \n  </style>\n    <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n            <span>collapse button</span>\n        </button>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav\">\n            <li>\n              <a ui-sref=\"project\">Projects</a>\n            </li>\n            <li>\n              <a ui-sref=\"create\">Create</a>\n            </li>\n            <li>\n                <a ui-sref=\"feed\">Feed</a>\n            </li>\n            <li>\n                <a ui-sref=\"user\">Signin / Signup</a>\n            </li>\n        </ul>\n</nav>\n";
+	module.exports = "<div class='banner'>\n    <div class='innerBanner' style=\"background-color: #1F486C\"></div>\n    <header>\n        <div class=\"headline\">\n            <h1>MotivateMe</h1>\n            <h4>A Social Motivation App</h4>\n            <a class=\"headlineLink\" ui-sref=\"user\">Signin / Signup</a>\n        </div>\n        <nav role='navigation'>\n            <ul>\n                <li>\n                    <a class=\"navLink\" ui-sref=\"profile\">Profile</a>\n                </li>\n                <li>\n                    <a class=\"navLink\" ui-sref=\"feed\">Feed</a>\n                </li>\n            </ul>\n        </nav>\n    </header>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -36957,14 +36983,21 @@
 	});
 	
 	exports.default = function (angularModule) {
+	
 	    /**
-	     * Controller: displays feed for main page
-	     */
+	    * Controller: displays feed for main page
+	    */
+	
 	    angularModule.directive('feed', function () {
 	        return {
 	            replace: true,
 	            restrict: 'E',
-	            template: _motFeed2.default
+	            template: _motFeed2.default,
+	            scope: {},
+	            controller: ['$scope', 'FeedService', function ($scope, FeedService) {
+	
+	                $scope.projects = FeedService.query();
+	            }]
 	        };
 	    });
 	};
@@ -36979,7 +37012,7 @@
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n<p>just a place holder for the feed directive</p>\n</div>\n";
+	module.exports = "<section>\n    <div class=\"container\"   ng-class-odd=\" 'odd' \" ng-class-even=\" 'even' \"\n         ng-repeat=\"project in projects\n \t\t\t| orderBy: '_id'\n\t\t\ttrack by project._id \">\n\n        <div class = \"item\">\n\n            <a href = \"{{project.url}}\">{{project.name}}</a><br>\n            <a> Author is: {{ project.author }}></a><br>\n            <a> Comments are: {{project.comments}}</a><br>\n            <a> Progress Goals are: {{project.progress}}</a><br>\n            <a> Project ID is: {{project._id }}</a><br>\n        </div>\n    </div>\n</section>\n";
 
 /***/ },
 /* 14 */
@@ -37001,25 +37034,28 @@
 	            replace: true,
 	            restrict: 'E',
 	            template: _motLogin2.default,
-	            controller: ['$scope', '$rootScope', '$location', '$auth', function ($scope, $rootScope, $location, $auth) {
+	            controller: ['$scope', '$rootScope', '$location', '$auth', 'toastr', function ($scope, $rootScope, $location, $auth, toastr) {
 	                $scope.login = function (user) {
-	                    $auth.login($scope.user).then(function () {
+	                    $auth.login($scope.user).then(function (name) {
+	                        window.localStorage.setItem('userId', name.data.userId);
+	                        toastr.success('Your signed in!');
 	                        $location.path('/' + $rootScope.previousState);
 	                    }).catch(function (error) {
-	                        console.log(error.data.message, error.status);
+	                        toastr.error(error.data.message, error.status);
 	                    });
 	                };
 	                $scope.authenticate = function (provider) {
-	                    $auth.authenticate(provider).then(function () {
-	                        console.log('You are now signed in with ' + provider + ', thanks!');
+	                    $auth.authenticate(provider).then(function (name) {
+	                        window.localStorage.setItem('userId', name.data.userId);
+	                        toastr.success('You are now signed in with ' + provider + ', thanks!');
 	                        $location.path('/' + $rootScope.previousState);
 	                    }).catch(function (error) {
 	                        if (error.error) {
-	                            console.log(error.error);
+	                            toastr.error(error.error);
 	                        } else if (error.data) {
-	                            console.log(error.data.message, error.status);
+	                            toastr.error(error.data.message, error.status);
 	                        } else {
-	                            console.log(error);
+	                            toastr.error(error);
 	                        }
 	                    });
 	                };
@@ -37038,10 +37074,55 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  \n  <signup></signup>\n\n    <h2>Sign in with:</h2>\n    <button ng-click=\"authenticate('twitter')\">twitter</button>\n    <h6>or</h6>\n    <h2>Log in</h2>\n\n    <form name=\"loginForm\">\n        <div>\n            <input type=\"text\" name=\"email\" ng-model=\"user.email\" placeholder=\"Email\" required autofocus>\n        </div>\n\n        <div>\n            <input type=\"password\" name=\"password\" ng-model=\"user.password\" placeholder=\"Password\" required>\n        </div>\n\n        <button ng-click=\"login()\" ng-disabled=\"loginForm.$invalid\" class=\"btn btn-lg  btn-block btn-success\">Log in</button>\n        <br/>\n            <p>Don't have an account yet? <a href=\"/#/signup\">Sign up</a></p>\n    </form>\n\n</div>\n";
+	module.exports = "    <div class=\"login\">\n        <div class=\"login-title\">\n          <h2>Sign in with:</h2>\n          <button class=\"btn btn-primary btn-large btn-block\" ng-click=\"authenticate('twitter')\">twitter</button>\n          <h3>or</h3>\n          <h1>Login</h1>\n        </div>\n\n        <div class=\"login-form\">\n          <div class=\"control-group\">\n          <input type=\"text\" name=\"email\" ng-model=\"user.email\" placeholder=\"Email\" required autofocus>\t\t\t\t<label class=\"login-field-icon fui-user\" for=\"login-name\"></label>\n          </div>\n\n          <div class=\"control-group\">\n          <input type=\"password\" name=\"password\" ng-model=\"user.password\" placeholder=\"Password\" required>\n          <label class=\"login-field-icon fui-lock\" for=\"login-pass\"></label>\n          </div>\n          <button \"btn btn-primary btn-large btn-block\" ng-click=\"login()\" ng-disabled=\"loginForm.$invalid\" class=\"btn btn-lg  btn-block btn-success\">Log in</button>\n          <p>Don't have an account yet?</p>\n          <a class=\"login-link\" href=\"/#/signup\"><h2>Sign up</h2></a>\n        </div>\n    </div>\n";
 
 /***/ },
 /* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function (angularModule) {
+	    angularModule.directive('logout', function () {
+	        return {
+	            replace: true,
+	            restrict: 'E',
+	            template: _motLogout2.default,
+	            controller: ['$scope', '$location', '$auth', 'toastr', function ($scope, $location, $auth, toastr) {
+	                $scope.logout = function () {
+	                    console.log('ran');
+	                    $auth.logout().then(function () {
+	                        toastr.info('your logged out!');
+	                        $location.path('/');
+	                    }).catch(function (error) {
+	                        if (error.error) {
+	                            toastr.error(error.error);
+	                        }
+	                    });
+	                };
+	            }]
+	        };
+	    });
+	};
+	
+	var _motLogout = __webpack_require__(17);
+
+	var _motLogout2 = _interopRequireDefault(_motLogout);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = "<a href=\"\" ng-click=\"logout()\">Logout</a>\n";
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37063,12 +37144,12 @@
 	            controller: ['$scope', '$location', '$auth', 'toastr', function ($scope, $location, $auth, toastr) {
 	                $scope.signupUser = function () {
 	                    $auth.signup($scope.user).then(function (response) {
+	                        window.localStorage.setItem('userId', response.data.userId);
 	                        $auth.setToken(response);
 	                        toastr.info('You are now registered, thank!');
 	                        $location.path('/');
 	                    }).catch(function (response) {
-	                        console.log(response);
-	                        //  toastr.error(response.data.message);
+	                        toastr.error(response.data.message);
 	                    });
 	                };
 	            }]
@@ -37076,44 +37157,9 @@
 	    });
 	};
 	
-	var _motSignup = __webpack_require__(17);
+	var _motSignup = __webpack_require__(19);
 
 	var _motSignup2 = _interopRequireDefault(_motSignup);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n        <form name=\"signupForm\">\n            <div ng-class=\"{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }\">\n                <input type=\"text\" name=\"displayName\" ng-model=\"user.displayName\" placeholder=\"Name\" required autofocus>\n            </div>\n            <div ng-class=\"{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }\">\n                <input type=\"email\" id=\"email\" name=\"email\" ng-model=\"user.email\" placeholder=\"Email\" required>\n            </div>\n            <div ng-class=\"{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }\">\n                <input password-strength class=\"form-control input-lg\" type=\"password\" name=\"password\" ng-model=\"user.password\" placeholder=\"Password\" required>\n            </div>\n            <div ng-class=\"{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }\">\n                <input password-match=\"user.password\" class=\"form-control input-lg\" type=\"password\" name=\"confirmPassword\" ng-model=\"confirmPassword\" placeholder=\"Confirm Password\">\n            </div>\n            <button ng-click=\"signupUser()\" ng-disabled=\"signupForm.$invalid\" class=\"btn btn-lg btn-block btn-primary\">Sign up</button>\n            <br/>\n            <p>Already have an account? <a href=\"/#/login\">Log in now</a></p>\n        </form>\n</div>\n";
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	exports.default = function (angularModule) {
-	    /**
-	     * Controller: displays feed for main page
-	     */
-	    angularModule.directive('createProject', function () {
-	        return {
-	            replace: true,
-	            restrict: 'E',
-	            template: _motCreateProject2.default
-	        };
-	    });
-	};
-	
-	var _motCreateProject = __webpack_require__(19);
-
-	var _motCreateProject2 = _interopRequireDefault(_motCreateProject);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37121,10 +37167,55 @@
 /* 19 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n<p>just a place holder for the creating a project directive</p>\n</div>\n";
+	module.exports = "<div class=\"login\">\n      <div class=\"login-title\">\n        <h2>Create an Account:</h2>\n        </div>\n        <div class=\"login-form\">\n            <div class=\"control-group\" ng-class=\"{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }\">\n                <input type=\"text\" name=\"displayName\" ng-model=\"user.displayName\" placeholder=\"Name\" required autofocus>\n            </div>\n\n            <div class=\"control-group\" ng-class=\"{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }\">\n                <input type=\"email\" id=\"email\" name=\"email\" ng-model=\"user.email\" placeholder=\"Email\" required>\n            </div>\n\n            <div class=\"control-group\" ng-class=\"{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }\">\n                <input password-strength class=\"form-control input-lg\" type=\"password\" name=\"password\" ng-model=\"user.password\" placeholder=\"Password\" required>\n            </div>\n\n            <div class=\"control-group\" ng-class=\"{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }\">\n                <input password-match=\"user.password\" class=\"form-control input-lg\" type=\"password\" name=\"confirmPassword\" ng-model=\"confirmPassword\" placeholder=\"Confirm Password\">\n            </div>\n\n            <button class=\"btn btn-primary btn-large btn-block\" ng-click=\"signupUser()\" ng-disabled=\"signupForm.$invalid\" class=\"btn btn-lg btn-block btn-primary\">Sign up</button>\n            <br/>\n            <p>Already have an account?<p>\n            <a class=\"login-link\" href=\"/#/login\"><h2>Log in</h2></a>\n        </div>\n</div>\n";
 
 /***/ },
 /* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (angularModule) {
+	  /**
+	   * Controller: displays feed for main page
+	   */
+	  angularModule.directive('createProject', function () {
+	    return {
+	      replace: true,
+	      restrict: 'E',
+	      template: _motCreateProject2.default,
+	      controller: function controller($scope, ProjectService, $window) {
+	        $scope.project = new ProjectService();
+	        $scope.post = function () {
+	          $scope.project.progress = $scope.project.progress.split(', ');
+	          $scope.project.author = $window.localStorage.getItem('userId');
+	          $scope.project.$save(function (res) {
+	            $scope.savedProject = res;
+	          });
+	        };
+	      }
+	    };
+	  });
+	};
+	
+	var _motCreateProject = __webpack_require__(21);
+
+	var _motCreateProject2 = _interopRequireDefault(_motCreateProject);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <a ui-sref=\"profile\" ng-click=\"active(false)\">Projects</a>\n  <a ui-sref=\"profile\" ng-click=\"active(true)\">Create</a>\n  <p ng-show=\"savedProject\">The project named {{savedProject.name}} was successfully posted</p>\n  <form>\n    <label>Project Name</label>\n    <input name=\"projectName\"\n           ng-model=\"project.name\"\n           required\n           type=\"text\"></input>\n    <br />\n    <label>Project Milestones</label>\n    <input name=\"projectMilestones\"\n           ng-model=\"project.progress\"\n           required\n           type=\"text\"></input>\n    <br />\n    <button ng-click = \"post()\" type='submit'>ADD</button>\n  </form>\n</div>\n";
+
+/***/ },
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37142,25 +37233,36 @@
 	        return {
 	            replace: true,
 	            restrict: 'E',
-	            template: _motProject2.default
+	            template: _motProject2.default,
+	            controller: ['$scope', '$location', '$auth', 'toastr', 'UserService', 'FeedService', function ($scope, $location, $auth, toastr, UserService, FeedService) {
+	                var userId = localStorage.getItem('userId');
+	                $scope.userData = UserService.get({
+	                    id: userId
+	                });
+	                FeedService.query({
+	                    _id: userId
+	                }).$promise.then(function (data) {
+	                    $scope.projects = data;
+	                });
+	            }]
 	        };
 	    });
 	};
 	
-	var _motProject = __webpack_require__(21);
+	var _motProject = __webpack_require__(23);
 
 	var _motProject2 = _interopRequireDefault(_motProject);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n<p>just a place holder for viewing your projects directive</p>\n</div>\n";
+	module.exports = "<div>\n<a ui-sref=\"profile\" ng-click=\"active(false)\">Projects</a>\n<a ui-sref=\"profile\" ng-click=\"active(true)\">Create</a>\n<img heigh=\"100px\" width=\"100px\" src={{userData.picture}}></img>\n<pre>{{projects | json}}</pre>\n<h4>{{userData.displayName}}</h4>\n<h4>Projects:</h4>\n<div ng-repeat=\"project in projects\">\n  <li ng-repeat=\"progress in project.progress\">{{progress}}</li>\n</div>\n</div>\n";
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37182,20 +37284,56 @@
 	    });
 	};
 	
-	var _motComments = __webpack_require__(23);
+	var _motComments = __webpack_require__(25);
 
 	var _motComments2 = _interopRequireDefault(_motComments);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = "<div>\n<p>just a place holder for the comments directive</p>\n</div>\n";
 
 /***/ },
-/* 24 */
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function (angularModule) {
+	
+	    /**
+	     * Controller:
+	     */
+	    angularModule.directive('motProfile', function () {
+	        return {
+	            replace: true,
+	            restrict: 'E',
+	            template: _motProfile2.default
+	        };
+	    });
+	};
+	
+	var _motProfile = __webpack_require__(27);
+
+	var _motProfile2 = _interopRequireDefault(_motProfile);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 27 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <h1>Profile</h1>\n  <a ui-sref=\"profile\" ng-click=\"active(false)\">Projects</a>\n  <a ui-sref=\"profile\" ng-click=\"active(true)\">Create</a>\n<div>\n";
+
+/***/ },
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -38031,16 +38169,16 @@
 
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(26);
+	__webpack_require__(30);
 	module.exports = 'toastr';
 	
 
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports) {
 
 	(function() {
@@ -38542,7 +38680,7 @@
 	$templateCache.put("directives/toast/toast.html","<div class=\"{{toastClass}} {{toastType}}\" ng-click=\"tapToast()\">\n  <div ng-switch on=\"allowHtml\">\n    <div ng-switch-default ng-if=\"title\" class=\"{{titleClass}}\" aria-label=\"{{title}}\">{{title}}</div>\n    <div ng-switch-default class=\"{{messageClass}}\" aria-label=\"{{message}}\">{{message}}</div>\n    <div ng-switch-when=\"true\" ng-if=\"title\" class=\"{{titleClass}}\" ng-bind-html=\"title\"></div>\n    <div ng-switch-when=\"true\" class=\"{{messageClass}}\" ng-bind-html=\"message\"></div>\n  </div>\n  <progress-bar ng-if=\"progressBar\"></progress-bar>\n</div>\n");}]);
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38563,65 +38701,28 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var baseUrl = ("");
+	var baseUrl = ("https://pure-temple-44622.herokuapp.com");
 	
 	
 	function configAuth($authProvider) {
-	    $authProvider.github({
-	        clientId: ("")
-	    });
-	    $authProvider.github({
-	        url: baseUrl + '/auth/github',
-	        authorizationEndpoint: 'https://github.com/login/oauth/authorize',
-	        redirectUri: window.location.origin,
-	        optionalUrlParams: ['scope'],
-	        scope: ['user:email'],
-	        scopeDelimiter: ' ',
-	        type: '2.0',
-	        popupOptions: {
-	            width: 1020,
-	            height: 618
-	        }
-	    });
 	    $authProvider.twitter({
-	        url: 'http://localhost:3000/auth/twitter'
+	        url: baseUrl + '/auth/twitter'
 	    });
-	    $authProvider.signupUrl = 'http://localhost:3000/auth/signup';
-	    $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+	    $authProvider.signupUrl = baseUrl + '/auth/signup';
+	    $authProvider.loginUrl = baseUrl + '/auth/login';
 	}
 	
 	function runAuth($rootScope, ngDialog, $state, $auth) {
 	    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 	        if (toState.data && toState.data.requireAuth && !$auth.isAuthenticated()) {
-	            (function () {
-	                event.preventDefault();
-	                var dialog = ngDialog.open({
-	                    template: '<login></login>',
-	                    plain: true,
-	                    controller: ['$scope', function ($scope) {
-	                        $scope.success = function (response) {
-	                            dialog.close();
-	                            return $state.go(toState.name, toParams);
-	                        };
-	                    }]
-	                });
-	                dialog.closePromise.then(function () {
-	                    return alert('success!');
-	                }).catch(function () {
-	                    return alert('failure!');
-	                });
-	            })();
+	            event.preventDefault();
+	            $state.transitionTo('user');
 	        }
-	    });
-	
-	    $rootScope.$on('$stateChangeSuccess', function (event, to, toParams, from, fromParams) {
-	        $rootScope.previousState = from.name;
-	        $rootScope.currentState = to.name;
 	    });
 	}
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -38637,32 +38738,40 @@
 	            url: '/',
 	            template: '<feed></feed>',
 	            data: {
-	                authRequired: false
+	                requireAuth: false
 	            }
-	        }).state('project', {
-	            url: '/project',
-	            template: '<project></project>',
+	        }).state('profile', {
+	            url: '/profile',
+	            views: {
+	                'project': {
+	                    template: '<project></project>'
+	                },
+	                'create': {
+	                    template: '<create-project></create-project>'
+	                }
+	            },
 	            data: {
-	                authRequired: false
-	            }
-	        }).state('create', {
-	            url: '/create',
-	            template: '<create-project></create-project>',
-	            data: {
-	                authRequired: false
+	                requireAuth: true
 	            }
 	        }).state('user', {
 	            url: '/user',
-	            template: '<login></login>',
+	            views: {
+	                'login': {
+	                    template: '<login></login>'
+	                },
+	                'signup': {
+	                    template: '<signup></signup>'
+	                }
+	            },
 	            data: {
-	                authRequired: false
+	                requireAuth: false
 	            }
 	        });
 	    }]);
 	};
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38671,7 +38780,7 @@
 	  value: true
 	});
 	
-	var _resourceService = __webpack_require__(30);
+	var _resourceService = __webpack_require__(34);
 	
 	var _resourceService2 = _interopRequireDefault(_resourceService);
 	
@@ -38685,7 +38794,7 @@
 	exports.default = services.name;
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -38696,31 +38805,415 @@
 	
 	exports.default = function (angularModule) {
 	
-	    angularModule.provider('Motivate', function () {
-	        var url = '';
-	        var endpoints = '';
-	
-	        this.url = function (inputUrl) {
-	            url = inputUrl;
-	        };
-	        this.endpoints = function (inputEndPoints) {
-	            endpoints = inputEndPoints;
-	        };
-	
-	        this.$get = function ($resource) {
-	            return $resource(url + endpoints, {
+	    function create(name, url) {
+	        angularModule.factory(name, ['$resource', 'baseUrl', function ($resource, baseUrl) {
+	            return $resource('' + baseUrl + url + '/:id', {
 	                id: '@_id'
 	            }, {
 	                update: {
 	                    method: 'PATCH'
-	                },
-	                delete: {
-	                    method: 'DELETE'
 	                }
 	            });
-	        };
-	    });
+	        }]);
+	    }
+	    create('UserService', '/api/v1/users');
+	    create('ProfileService', '/api/v1/users');
+	    create('ProjectService', '/api/v1/projects');
+	    create('FeedService', '/projects');
+	    create('CommentService', '/ap1/v1/comments');
 	};
+	
+	;
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(36);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(38)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./angular-toastr.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./angular-toastr.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(37)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".toast-title {\n  font-weight: bold;\n}\n.toast-message {\n  word-wrap: break-word;\n}\n.toast-message a,\n.toast-message label {\n  color: #FFFFFF;\n}\n.toast-message a:hover {\n  color: #CCCCCC;\n  text-decoration: none;\n}\n.toast-close-button {\n  position: relative;\n  right: -0.3em;\n  top: -0.3em;\n  float: right;\n  font-size: 20px;\n  font-weight: bold;\n  color: #FFFFFF;\n  -webkit-text-shadow: 0 1px 0 #ffffff;\n  text-shadow: 0 1px 0 #ffffff;\n  opacity: 0.8;\n}\n.toast-close-button:hover,\n.toast-close-button:focus {\n  color: #000000;\n  text-decoration: none;\n  cursor: pointer;\n  opacity: 0.4;\n}\n/*Additional properties for button version\n iOS requires the button element instead of an anchor tag.\n If you want the anchor version, it requires `href=\"#\"`.*/\nbutton.toast-close-button {\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n  border: 0;\n  -webkit-appearance: none;\n}\n.toast-top-center {\n  top: 0;\n  right: 0;\n  width: 100%;\n}\n.toast-bottom-center {\n  bottom: 0;\n  right: 0;\n  width: 100%;\n}\n.toast-top-full-width {\n  top: 0;\n  right: 0;\n  width: 100%;\n}\n.toast-bottom-full-width {\n  bottom: 0;\n  right: 0;\n  width: 100%;\n}\n.toast-top-left {\n  top: 12px;\n  left: 12px;\n}\n.toast-top-right {\n  top: 12px;\n  right: 12px;\n}\n.toast-bottom-right {\n  right: 12px;\n  bottom: 12px;\n}\n.toast-bottom-left {\n  bottom: 12px;\n  left: 12px;\n}\n#toast-container {\n  position: fixed;\n  z-index: 999999;\n  /*overrides*/\n}\n#toast-container * {\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n}\n#toast-container > div {\n  position: relative;\n  overflow: hidden;\n  margin: 0 0 6px;\n  padding: 15px 15px 15px 50px;\n  width: 300px;\n  -moz-border-radius: 3px 3px 3px 3px;\n  -webkit-border-radius: 3px 3px 3px 3px;\n  border-radius: 3px 3px 3px 3px;\n  background-position: 15px center;\n  background-repeat: no-repeat;\n  -moz-box-shadow: 0 0 12px #999999;\n  -webkit-box-shadow: 0 0 12px #999999;\n  box-shadow: 0 0 12px #999999;\n  color: #FFFFFF;\n  opacity: 0.8;\n}\n#toast-container > :hover {\n  -moz-box-shadow: 0 0 12px #000000;\n  -webkit-box-shadow: 0 0 12px #000000;\n  box-shadow: 0 0 12px #000000;\n  opacity: 1;\n  cursor: pointer;\n}\n#toast-container > .toast-info {\n  background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=\") !important;\n}\n#toast-container > .toast-error {\n  background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=\") !important;\n}\n#toast-container > .toast-success {\n  background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==\") !important;\n}\n#toast-container > .toast-warning {\n  background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=\") !important;\n}\n#toast-container.toast-top-center > div,\n#toast-container.toast-bottom-center > div {\n  width: 300px;\n  margin: auto;\n}\n#toast-container.toast-top-full-width > div,\n#toast-container.toast-bottom-full-width > div {\n  width: 96%;\n  margin: auto;\n}\n.toast {\n  background-color: #030303;\n}\n.toast-success {\n  background-color: #51A351;\n}\n.toast-error {\n  background-color: #BD362F;\n}\n.toast-info {\n  background-color: #2F96B4;\n}\n.toast-warning {\n  background-color: #F89406;\n}\n.toast-progress {\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  height: 4px;\n  background-color: #000000;\n  opacity: 0.4;\n}\n/*Animations*/\n.toast {\n  opacity: 1 !important;\n}\n.toast.ng-enter {\n  opacity: 0 !important;\n  transition: opacity .3s linear;\n}\n.toast.ng-enter.ng-enter-active {\n  opacity: 1 !important;\n}\n.toast.ng-leave {\n  opacity: 1;\n  transition: opacity .3s linear;\n}\n.toast.ng-leave.ng-leave-active {\n  opacity: 0 !important;\n}\n/*Responsive Design*/\n@media all and (max-width: 240px) {\n  #toast-container > div {\n    padding: 8px 8px 8px 50px;\n    width: 11em;\n  }\n  #toast-container .toast-close-button {\n    right: -0.2em;\n    top: -0.2em;\n  }\n}\n@media all and (min-width: 241px) and (max-width: 480px) {\n  #toast-container > div {\n    padding: 8px 8px 8px 50px;\n    width: 18em;\n  }\n  #toast-container .toast-close-button {\n    right: -0.2em;\n    top: -0.2em;\n  }\n}\n@media all and (min-width: 481px) and (max-width: 768px) {\n  #toast-container > div {\n    padding: 15px 15px 15px 50px;\n    width: 25em;\n  }\n}\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 37 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+	
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+	
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+	
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+	
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+	
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+	
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+	
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+	
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+	
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+	
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+	
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+	
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+	
+		update(obj);
+	
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+	
+	var replaceText = (function () {
+		var textStore = [];
+	
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+	
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+	
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+	
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+	
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+	
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+	
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		var blob = new Blob([css], { type: "text/css" });
+	
+		var oldSrc = linkElement.href;
+	
+		linkElement.href = URL.createObjectURL(blob);
+	
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(40);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(38)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/sass-loader/index.js?sourceMap!./main.scss", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js?sourceMap!./../node_modules/sass-loader/index.js?sourceMap!./main.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(37)();
+	// imports
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Open+Sans);", ""]);
+	
+	// module
+	exports.push([module.id, ".banner {\n  position: relative;\n  width: 100%;\n  height: 80vh;\n  top: 0;\n  left: 0; }\n\n.innerBanner {\n  width: 100%;\n  height: 80vh; }\n\nheader {\n  position: absolute;\n  top: 0;\n  width: 100%; }\n\n.headline {\n  max-width: 600px;\n  margin: 0 auto;\n  padding-top: 20vh;\n  height: 60vh;\n  text-align: center;\n  color: #FFF; }\n\n.headlineLink {\n  color: rgba(255, 255, 255, 0.85);\n  line-height: 30px;\n  padding: 1rem;\n  border: 1px solid rgba(255, 255, 255, 0.3);\n  -webkit-border-radius: 2rem;\n  border-radius: 2rsem;\n  -webkit-transition: all 0.3s ease;\n  -moz-transition: all 0.3s ease;\n  -o-transition: all 0.3s ease;\n  -ms-transition: all 0.3s ease;\n  transition: all 0.3s ease; }\n\n.headlineLink:hover {\n  background: #fff;\n  color: Gray; }\n\nnav {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n  height: 60px;\n  border-top: 1px rgba(255, 255, 255, 0.35) solid; }\n\nnav ul li {\n  display: inline-block;\n  margin-right: 20px; }\n\n.navLink {\n  text-transform: uppercase;\n  letter-spacing: 0.2em;\n  color: rgba(255, 255, 255, 0.5);\n  -webkit-transition: color 0.3s linear;\n  -moz-transition: color 0.3s linear;\n  -o-transition: color 0.3s linear;\n  -ms-transition: color 0.3s linear;\n  transition: color 0.3s linear;\n  line-height: 60px;\n  display: block; }\n\n.navLink.active {\n  -webkit-box-shadow: 0px -1px 0px #fff;\n  box-shadow: 0px -1px 0px #fff; }\n\n.navLink.active,\n.navLink:hover {\n  color: #fff; }\n\n.login {\n  margin: 0 auto;\n  max-width: 300px; }\n\n.login-title {\n  text-align: center;\n  color: #777; }\n\n.login-form {\n  text-align: center; }\n\n.control-group {\n  margin-bottom: 10px; }\n\ninput {\n  text-align: center;\n  background-color: #ECF0F1;\n  border: none;\n  border-radius: 3px;\n  font-size: 1rem;\n  padding: .75rem 0;\n  width: 100%; }\n\n.btn {\n  border: none;\n  background: #3498DB;\n  color: #FFF;\n  font-size: 1.2rem;\n  line-height: 25px;\n  padding: 10px 0;\n  text-decoration: none;\n  border-radius: 3px;\n  transition: 0.25s;\n  width: 100%;\n  margin: 0 auto; }\n\n.btn:hover {\n  background-color: #2980B9; }\n\n.login-link {\n  color: #444;\n  margin-top: 10px; }\n\nbody {\n  font-size: 1rem;\n  font-family: Sans-Serif;\n  margin: 0; }\n\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\na {\n  text-decoration: none; }\n", "", {"version":3,"sources":["/./scss/_mot-nav.scss","/./scss/_mot-log-reg.scss","/./scss/_global.scss"],"names":[],"mappings":"AAAA;EACE,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,OAAO;EACP,QAAQ,EACT;;AACD;EACE,YAAY;EACZ,aAAa,EACd;;AACD;EACE,mBAAmB;EACnB,OAAO;EACP,YAAY,EACb;;AACD;EACE,iBAAiB;EACjB,eAAe;EACf,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,YAAY,EACb;;AACD;EACE,iCAAW;EACX,kBAAkB;EAClB,cAAc;EACd,2CAAsB;EACtB,4BAA4B;EAC5B,qBAAqB;EACrB,kCAAkC;EAClC,+BAA+B;EAC/B,6BAA6B;EAC7B,8BAA8B;EAC9B,0BAA0B,EAC3B;;AACD;EACE,iBAAiB;EACjB,YAAY,EACb;;AACD;EACE,mBAAmB;EACnB,iBAAiB;EACjB,eAAe;EACf,aAAa;EACb,gDAA4C,EAC7C;;AACD;EACE,sBAAsB;EACtB,mBAAmB,EACpB;;AACD;EACE,0BAA0B;EAC1B,sBAAsB;EACtB,gCAAW;EACX,sCAAsC;EACtC,mCAAmC;EACnC,iCAAiC;EACjC,kCAAkC;EAClC,8BAA8B;EAC9B,kBAAkB;EAClB,eAAe,EAChB;;AACD;EACE,sCAAsC;EACtC,8BAA8B,EAC/B;;AACD;;EAEE,YAAY,EACb;;ACvED;EACA,eAAe;EACf,iBAAiB,EAChB;;AACD;EACA,mBAAmB;EACnB,YAAY,EACX;;AACD;EACA,mBAAmB,EAClB;;AACD;EACA,oBAAoB,EACnB;;AACD;EACA,mBAAmB;EACnB,0BAA0B;EAC1B,aAAa;EACb,mBAAmB;EACnB,gBAAgB;EAChB,kBAAkB;EAClB,YAAY,EACX;;AACD;EACE,aAAa;EACb,oBAAoB;EACpB,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;EAClB,gBAAgB;EAChB,sBAAsB;EACtB,mBAAmB;EACnB,kBAAkB;EAClB,YAAY;EACZ,eAAe,EAChB;;AACD;EACE,0BAA0B,EAC3B;;AACD;EACE,YAAY;EACb,iBAAiB,EACjB;;AC1CD;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU,EACX;;AACD;EACE,+BAA+B;EAC/B,4BAA4B;EAC5B,uBAAuB,EACxB;;AACD;EACE,sBAAsB,EACvB","file":"main.scss","sourcesContent":[".banner {\n  position: relative;\n  width: 100%;\n  height: 80vh;\n  top: 0;\n  left: 0;\n}\n.innerBanner {\n  width: 100%;\n  height: 80vh;\n}\nheader {\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.headline {\n  max-width: 600px;\n  margin: 0 auto;\n  padding-top: 20vh;\n  height: 60vh;\n  text-align: center;\n  color: #FFF;\n}\n.headlineLink {\n  color: rgba(255,255,255,0.85);\n  line-height: 30px;\n  padding: 1rem;\n  border: 1px solid rgba(255,255,255,0.3);\n  -webkit-border-radius: 2rem;\n  border-radius: 2rsem;\n  -webkit-transition: all 0.3s ease;\n  -moz-transition: all 0.3s ease;\n  -o-transition: all 0.3s ease;\n  -ms-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.headlineLink:hover {\n  background: #fff;\n  color: Gray;\n}\nnav {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n  height: 60px;\n  border-top: 1px rgba(255,255,255,0.35) solid;\n}\nnav ul li {\n  display: inline-block;\n  margin-right: 20px;\n}\n.navLink {\n  text-transform: uppercase;\n  letter-spacing: 0.2em;\n  color: rgba(255,255,255,0.5);\n  -webkit-transition: color 0.3s linear;\n  -moz-transition: color 0.3s linear;\n  -o-transition: color 0.3s linear;\n  -ms-transition: color 0.3s linear;\n  transition: color 0.3s linear;\n  line-height: 60px;\n  display: block;\n}\n.navLink.active {\n  -webkit-box-shadow: 0px -1px 0px #fff;\n  box-shadow: 0px -1px 0px #fff;\n}\n.navLink.active,\n.navLink:hover {\n  color: #fff;\n}\n",".login {\nmargin: 0 auto;\nmax-width: 300px;\n}\n.login-title {\ntext-align: center;\ncolor: #777;\n}\n.login-form {\ntext-align: center;\n}\n.control-group {\nmargin-bottom: 10px;\n}\ninput {\ntext-align: center;\nbackground-color: #ECF0F1;\nborder: none;\nborder-radius: 3px;\nfont-size: 1rem;\npadding: .75rem 0;\nwidth: 100%;\n}\n.btn {\n  border: none;\n  background: #3498DB;\n  color: #FFF;\n  font-size: 1.2rem;\n  line-height: 25px;\n  padding: 10px 0;\n  text-decoration: none;\n  border-radius: 3px;\n  transition: 0.25s;\n  width: 100%;\n  margin: 0 auto;\n}\n.btn:hover {\n  background-color: #2980B9;\n}\n.login-link {\n  color: #444;\n\tmargin-top: 10px;\n}\n","body {\n  font-size: 1rem;\n  font-family: Sans-Serif;\n  margin: 0;\n}\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\na {\n  text-decoration: none;\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);

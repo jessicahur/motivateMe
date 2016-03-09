@@ -9,6 +9,8 @@ export default function(angularModule) {
                     restrict: 'E',
                     template: motNav,
                     controller: ['$scope', '$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
+                      //TODO create a number checking view controller
+
                             $scope.user = {
                                 active: true
                             };
