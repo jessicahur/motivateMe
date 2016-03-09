@@ -7,22 +7,22 @@ export default function(app) {
 }
 
 function configAuth($authProvider) {
-    $authProvider.github({
-        clientId: CLIENT_ID
-    });
-    $authProvider.github({
-        url: `${baseUrl}/auth/github`,
-        authorizationEndpoint: 'https://github.com/login/oauth/authorize',
-        redirectUri: window.location.origin,
-        optionalUrlParams: ['scope'],
-        scope: ['user:email'],
-        scopeDelimiter: ' ',
-        type: '2.0',
-        popupOptions: {
-            width: 1020,
-            height: 618
-        }
-    });
+    // $authProvider.github({
+    //     clientId: CLIENT_ID
+    // });
+    // $authProvider.github({
+    //     url: `${baseUrl}/auth/github`,
+    //     authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+    //     redirectUri: window.location.origin,
+    //     optionalUrlParams: ['scope'],
+    //     scope: ['user:email'],
+    //     scopeDelimiter: ' ',
+    //     type: '2.0',
+    //     popupOptions: {
+    //         width: 1020,
+    //         height: 618
+    //     }
+    // });
   $authProvider.twitter({
       url: 'http://localhost:3000/auth/twitter'
   });

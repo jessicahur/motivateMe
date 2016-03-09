@@ -9,17 +9,13 @@ export default function(angularModule) {
             restrict: 'E',
             template: motCreateProject,
             controller: function($scope, ProjectService, $window, $http) {
-              $scope.project = {};
+              $scope.project = new ProjectService();
               $scope.post = function() {
                 $scope.project.progress = $scope.project.progress.split(', ');
                 $scope.project.author = $window.localStorage.getItem('userId');
-                $http.post('http://3000/api/v1/projects')
-                      .then(res => {
-                        console.log(res);
-                      })
-                      .catch(err => {
-                        console.log('error', err);
-                      })
+                $scope.project.$save(res => {
+                  console.log(res);
+                })
               }
             }
         };
