@@ -20,17 +20,9 @@ export default function(angularModule) {
                     $scope.returnToFeed = function(){
                         $scope.singleProjectView = null;
 
-
                     }
-
-
                 }
             ]
-
-
-
-
-                }
-
-        })
-    }
+        }
+    })
+}

@@ -11,12 +11,18 @@ export default function(angularModule) {
             controller: function($scope, ProjectService, $window) {
               $scope.project = new ProjectService();
               $scope.post = function() {
+
                 $scope.project.progress = $scope.project.progress.split(', ');
+
                 $scope.project.author = $window.localStorage.getItem('userId');
+
                 $scope.project.$save(res => {
-                  $scope.savedProject = res;
+                    $scope.savedProject = res;
+
                 })
               }
+
+
             }
         };
     });
