@@ -10,7 +10,7 @@ export default function(angularModule) {
                   console.log('ran');
                     $auth.logout()
                         .then(function() {
-                            toastr.info('your logged out!');
+                            toastr.info('You are logged out!');
                             $location.path('/');
                         })
                         .catch(function(error) {

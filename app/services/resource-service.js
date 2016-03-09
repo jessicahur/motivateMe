@@ -17,5 +17,6 @@ export default function(angularModule) {
         create('ProfileService', '/api/v1/users');
         create('ProjectService', '/api/v1/projects')
         create('FeedService', '/projects');
-        create('CommentService', '/ap1/v1/comments');
+         create('CommentService', '/api/v1/comments');
     };
+

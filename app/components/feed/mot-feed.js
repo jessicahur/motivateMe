@@ -1,7 +1,6 @@
 import motFeed from './mot-feed.html';
 
 //import filters from '../../filters';
-//import styles from './scss/_global.scss';
 
 export default function(angularModule) {
 
@@ -18,12 +17,17 @@ export default function(angularModule) {
             scope: {
 
              },
+
             controller: [ '$scope', 'FeedService',
                 function( $scope, FeedService ){
-
                     $scope.projects = FeedService.query();
 
-                }]
+                    $scope.projectView = function(project){
+                        console.log("View Project", project);
+                        $scope.singleProjectView = project;
+                    }
+                }
+            ]
         };
     });
 }
