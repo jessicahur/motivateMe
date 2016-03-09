@@ -8,7 +8,7 @@ import signupDr from './user/mot-signup';
 import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 
-import motivationDr from './motivation/mot-comments';
+import motivationDr from './motivation/comments';
 
 import motProfileDr from './profile/mot-profile';
 
