@@ -1,7 +1,6 @@
 import motFeed from './mot-feed.html';
 
 //import filters from '../../filters';
-//import styles from './scss/_global.scss';
 
 export default function(angularModule) {
 
@@ -23,7 +22,21 @@ export default function(angularModule) {
 
                     $scope.projects = FeedService.query();
 
-                }]
+
+                    $scope.viewProjectDetail = function(id){
+
+                        console.log("View Project", id);
+
+                        console.log (FeedService.query(id) );
+
+                        //    .then( () => {
+                        //    console.log('deleting', _id);
+                    //})
+                    }
+
+                }
+
+            ]
         };
     });
 }

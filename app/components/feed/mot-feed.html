@@ -3,11 +3,7 @@
     <p>A Social Motivation App</p>
     <p>FEED:</p>
 
-
-    {{ }}
-
-
-    <div class="container"   ng-class-odd=" 'odd' " ng-class-even=" 'even' "
+    <div class="suround"   ng-class-odd=" 'odd' " ng-class-even=" 'even' "
          ng-repeat="project in projects
  			| orderBy: '_id'
 			track by project._id ">
@@ -21,7 +17,7 @@
 
             <a> Project ID is: {{project._id }}</a><br>
 
-            <button ng-click="deleteProject( project._id )">X</button>
+            <button ng-click="viewProjectDetail( project._id )">View Project</button>
         </div>
     </div>
 
