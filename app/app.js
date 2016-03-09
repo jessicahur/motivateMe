@@ -26,8 +26,8 @@ const app = angular.module('myApp', [router, resource, satellizer, services, ngD
 app.constant( 'baseUrl', BASE_URL);
 
 components(app);
-authConfig(app);
 routeConfig(app);
+authConfig(app);
 
 document.body.innerHTML = main;
 angular.bootstrap(document, [app.name], {});

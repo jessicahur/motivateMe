@@ -7,7 +7,21 @@ export default function(angularModule) {
         return {
             replace: true,
             restrict: 'E',
-            template: motCreateProject
+            template: motCreateProject,
+            controller: function($scope, ProjectService, $window, $http) {
+              $scope.project = {};
+              $scope.post = function() {
+                $scope.project.progress = $scope.project.progress.split(', ');
+                $scope.project.author = $window.localStorage.getItem('userId');
+                $http.post('http://3000/api/v1/projects')
+                      .then(res => {
+                        console.log(res);
+                      })
+                      .catch(err => {
+                        console.log('error', err);
+                      })
+              }
+            }
         };
     });
 }

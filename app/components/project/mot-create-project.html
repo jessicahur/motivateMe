@@ -1,5 +1,17 @@
 <div>
-  <form>
-
+  <form name="projectForm" action="http://localhost:3000/api/v1/projects" method="post">
+    <label>Project Name</label>
+    <input name="projectName"
+           ng-model="project.name"
+           required
+           type="text"></input>
+    <br />
+    <label>Project Milestones</label>
+    <input name="projectMilestones"
+           ng-model="project.progress"
+           required
+           type="text"></input>
+    <br />
+    <button ng-click = "post()" type='submit'>ADD</button>
   </form>
 </div>
