@@ -1,7 +1,8 @@
 export default function( angularModule ) {
 
-    ngModule.provider( projectsService', function (  ) {
-        var url = 'http://localhost:3000';
+    ngModule.provider( projectsService, function (  ) {
+            //var url = 'http://localhost:3000';
+            var url = BASE_URL;
 
         this.setUrl = function( setUrl ) {
             url = setUrl;
