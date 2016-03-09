@@ -1,7 +1,7 @@
 //Mongoose
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
-const User    = require('../models/User');
+const User    = require('../models/user');
 const Comment = require('../models/Comment');
 const Project = require('../models/Project');
 //Other middlewares
@@ -20,16 +20,14 @@ const publicRouter  = require('./public-router');
 const userRouter    = express.Router();
 const commentRouter = express.Router();
 const projectRouter = express.Router();
-const public        = path.join( __dirname + '/public');
+//const public        = path.join( __dirname + '/public');
 //const auth = require( './auth.js' ); //un-comment once we have auth router in place
-
+app.use(logger('dev'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use( bodyParser.urlencoded({ extended: false }) );
 
 app.use(methodOverride());
-
-app.use(logger('dev'));
-
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -52,8 +50,6 @@ app.use( userRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
-
-app.use(express.static(public, {redirect : false}));
 module.exports = app;
 
 /*
