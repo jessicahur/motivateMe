@@ -22,16 +22,16 @@ export default function(angularModule) {
 
                     $scope.projects = FeedService.query();
 
+                    //$scope.projectView = FeedService.query(id);
 
-                    $scope.viewProjectDetail = function(id){
+                    $scope.projectView = function(id){
 
                         console.log("View Project", id);
 
-                        console.log (FeedService.query(id) );
+                        console.log (FeedService.query('?',id) );
 
-                        //    .then( () => {
-                        //    console.log('deleting', _id);
-                    //})
+                        FeedService.query(  {id: id} );
+
                     }
 
                 }

@@ -1,7 +1,7 @@
 <section>
     <h1>MotivateMe</h1>
-    <p>A Social Motivation App</p>
-    <p>FEED:</p>
+    <p>The Social Motivation App</p>
+    <p>The Feed</p>
 
     <div class="suround"   ng-class-odd=" 'odd' " ng-class-even=" 'even' "
          ng-repeat="project in projects
@@ -17,10 +17,11 @@
 
             <a> Project ID is: {{project._id }}</a><br>
 
-            <button ng-click="viewProjectDetail( project._id )">View Project</button>
+            <button ng-click="projectView( project._id )">View Project</button>
         </div>
     </div>
 
 
+    Here's the project you asked for: {{oneproject}}
 
 </section>
