@@ -4,10 +4,9 @@ import feedDetailDr from './feed-detail/mot-feed-detail.js';
 import loginDr from './user/mot-login';
 import logoutDr from './user/mot-logout';
 import signupDr from './user/mot-signup';
- //import createProjectDr from './project/mot-create-project';
-
 import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
+import projectDetDr from './project/project-detail';
 
 import motivationDr from './motivation/comments';
 
@@ -25,6 +24,7 @@ export default function(angularModule) {
 	feedDetailDr( angularModule );
 	createProjectDr(angularModule);
 	projectDr(angularModule);
+	projectDetDr(angularModule);
 	motivationDr(angularModule);
 	motProfileDr(angularModule);
 }

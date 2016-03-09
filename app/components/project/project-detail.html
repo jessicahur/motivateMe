@@ -1,0 +1,15 @@
+<div>
+    <h4>Projects:</h4>
+        <h3>{{project.name}}</h3>
+        <p>{{project.description}}</p>
+        <h4>My Progress:</h4>
+        <p>{{progress}}</p>
+        <h4>Edit</h4>
+        <section>
+            <input ng-model="project.name"></input>
+            <textarea ng-model="project.description"></textarea>
+            <h4>My Progress</h4>
+            <input ng-repeat="progress in project.progress" ng-model="progress"></input>
+        </section>
+        <button class="btn" ng-click="update(project)">Save</button>
+  </div>

@@ -8,7 +8,13 @@ export default function(angularModule) {
         return {
             replace: true,
             restrict: 'E',
-            template: motProfile
+            template: motProfile,
+            controller: ['$scope', '$location', '$auth', 'toastr', 'UserService', function($scope, $location, $auth, toastr, UserService) {
+            var userId = localStorage.getItem('userId');
+            $scope.userData = UserService.get({
+                id: userId
+            });
+          }]
         }
     });
 }

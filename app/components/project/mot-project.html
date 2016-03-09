@@ -1,11 +1,12 @@
-<div>
-<a ui-sref="profile" ng-click="active(false)">Projects</a>
-<a ui-sref="profile" ng-click="active(true)">Create</a>
-<img heigh="100px" width="100px" src={{userData.picture}}></img>
-<pre>{{projects | json}}</pre>
-<h4>{{userData.displayName}}</h4>
-<h4>Projects:</h4>
-<div ng-repeat="project in projects">
-  <li ng-repeat="progress in project.progress">{{progress}}</li>
+<div class="profile-container">
+<div ng-show="!can">
+    <h4>Projects:</h4>
+    <div ng-repeat="project in projects">
+        <a ui-sref="profile.detail({id: project._id})" ng-click="edit(true)"><h3>{{project.name}}</h3></a>
+        <p>{{project.description}}</p>
+        <h4>My Progress:</h4>
+        <p ng-repeat="progress in project.progress">{{progress}}</p>
+    </div>
 </div>
+    <div ui-view></div>
 </div>
