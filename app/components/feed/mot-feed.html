@@ -17,8 +17,11 @@
 
             <!--<a> Comments are: {{project.comments}}</a><br>-->
 
-            <a class = 'progressGoals'> Progress Goals are: {{project.progress}}</a><br>
+            <a class = 'progressGoals'> Progress Goals are:  </a>
 
+            <span ng-repeat = "n in project.progress" track by $index><span>{{n}}  |   </span></span>
+
+            <br>
             <!--<a> Project ID is: {{project._id }}</a><br>-->
 
             <!--<a ui-sref = 'feed-detail()'>View Project </a>-->
