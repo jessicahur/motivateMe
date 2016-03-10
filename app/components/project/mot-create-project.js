@@ -17,43 +17,29 @@ export default function(angularModule) {
 
                 var promises = [];
                 var progresses = $scope.project.progress.split(', ');
-                progresses.forEach(progress => {
-                                    var resourceProgress = new ProgressService();
-                                    resourceProgress.content = progress;
-                                    resourceProgress.done = false;
-                                    console.log('GIve me promise!!',resourceProgress);
-                                    var myPromise = new Promise((resolve, reject) => {
-                                      resourceProgress.$save(
-                                        savedProgress => {
-                                          resolve(savedProgress);
-                                        },
-                                        err => {
-                                          reject(err);
-                                      });//end $save
-                                    });//end myPromise
-                                    promises.push(myPromise);
-                                  });
 
-                Promise.all(promises)
-                       .then(result => {
-                        console.log('RESULT',result);
-                        $scope.project.progress = result.map(progress => {
-                          return progress._id;
-                        });
-                        $scope.project.$save(res => {
-                          $scope.savedProject = res;
-                          console.log($scope.savedProject);
-                        });
-                       })
-                       .catch(err => {
-                        console.log(err);
-                       });
-                // $scope.project.$save(res => {
-                //     $scope.savedProject = res;
-                // });
-              }
-
-            }]
+                Promise.all(
+                  progresses.map( progress => {
+                    return new ProgressService({
+                      content: progress,
+                      done: false
+                    }).$save();
+                  })
+                ).then( result => {
+                    console.log('RESULT',result);
+                    $scope.project.progress = result.map(progress => {
+                      return progress._id;
+                    });
+                    $scope.project.$save(res => {
+                      $scope.savedProject = res;
+                      console.log($scope.savedProject);
+                    });
+                })
+                 .catch(err => {
+                    console.log(err);
+                  });
+              }//end $scope.post
+            }]//end controller
          };
     });
 }
