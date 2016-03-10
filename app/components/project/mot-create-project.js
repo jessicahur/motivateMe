@@ -23,6 +23,9 @@ export default function(angularModule) {
                 $scope.project.$save(res => {
                     $scope.savedProject = res;
 
+
+
+
                 })
               }
 

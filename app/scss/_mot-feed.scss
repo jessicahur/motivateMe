@@ -10,5 +10,19 @@
     margin: 10px;
     padding: 10px;
     background-color: #lightblue;
+
+    a {
+      .projectname {
+        font-size: 2.1rem;
+        backgroud-color: orange;
+      }
+      .authorDisplayName {
+        font-size: 1.1rem;
+      }
+      .progressGoals {
+        font-size: 1rem;
+      }
+
+    }
   }
 }
