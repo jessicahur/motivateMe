@@ -10,6 +10,9 @@ export default function(angularModule) {
                     template: motNav,
                     controller: ['$scope', 'viewService', function($scope, viewService) {
                           $scope.view = viewService;
+                          $scope.do = function(x) {
+                            console.log(x);
+                          };
                         }]
                     }
             });
