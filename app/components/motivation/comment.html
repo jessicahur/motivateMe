@@ -1,18 +1,22 @@
 <div ng-show="authed">
-<!--   Rating: <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating" ng-click="postVote()"></uib-rating> -->
-  <button type="button"
-          id="testBtn"
-          class="btn btn-success glyphicon glyphicon-thumbs-up"
-          data-loading-text=" ... "
-          ng-show="authed"
-          ng-click="vote('up')">
-      {{ups}}</button>
-  <button type="button"
-          id="testBtnDown"
-          class="btn btn-success glyphicon glyphicon-thumbs-down"
-          data-loading-text=" ... "
-          ng-show="authed"
-          ng-click="vote('down')">
-      {{downs}}</button>
-  <b>{{comment.author.displayName}} says:</b> {{comment.content}}
+    <div class="comment-wrap">
+        <div class="comment-block">
+            <div class="project-info">
+                <img class="project-avatar" src="{{comment.author.picture}}"></img>
+                <p><a href="" class="author-name">{{comment.author.displayName}}</a></p>
+                <div class="comment-date">posted this on...</div>
+            </div>
+            <br>
+            <br>
+            <p class="comment-text">{{comment.content}}</p>
+            <button type="button" id="testBtn" data-loading-text=" ... " ng-show="authed" ng-click="vote('up')">
+                <span class="glyphicon glyphicon-thumbs-up">
+                  {{ups}}
+                </button>
+            <button type="button" id="testBtnDown" data-loading-text=" ... " ng-show="authed" ng-click="vote('down')">
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                {{downs}}
+              </button>
+        </div>
+    </div>
 </div>
