@@ -3,7 +3,7 @@ export default function(angularModule) {
         function create(name, url) {
             angularModule.factory(name, ['$resource', 'baseUrl',
                 function($resource, baseUrl) {
-                    return $resource(`${baseUrl}${url}/:id`, {
+                    return $resource(`${baseUrl}${url}/:id?populate=author`, {
                         id: '@_id'
                     }, {
                         update: {
