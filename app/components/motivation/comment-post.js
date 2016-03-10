@@ -23,7 +23,6 @@ export default function(angularModule) {
               createComment();
               $scope.post = function () {
                 $scope.comment.votes.$save(savedVote => {
-                  console.log('HEREEE', savedVote);
                   $scope.comment.votes = savedVote._id;
                   $scope.comment.project = $scope.projectId;
                   $scope.comment.author = $window.localStorage.getItem('userId');

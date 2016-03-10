@@ -14,11 +14,6 @@
         </div>
 
         <h5>Support your fellow community members in the space below.</h5>
-        <div ng-repeat="comment in comments">
-          <!-- <img src="{{comment.author.picture}}">  --><!--We can put a default picture here if user doesn't have twitter profile pic-->
-          <b>{{comment.author.displayName}} says:</b>
-          {{comment.content}}
-        </div>
 
         <comments comments="comments"
                   authed="authed"></comments>

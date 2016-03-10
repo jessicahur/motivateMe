@@ -14,7 +14,7 @@ export default function(angularModule) {
             controller: function($scope, $window, VoteService) {
               var userId = $window.localStorage.getItem('userId');
               var votes = new VoteService();
-
+              console.log('comment passed in', $scope.comment);
               votes._id = $scope.comment.votes._id;
               votes.ups = $scope.comment.votes.ups;
               votes.downs = $scope.comment.votes.downs;
