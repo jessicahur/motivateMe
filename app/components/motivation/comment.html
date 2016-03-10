@@ -1,0 +1,4 @@
+<div>
+  Rating: <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating" ng-click="postVote()"></uib-rating>
+  <b>{{comment.author.displayName}} says:</b> {{comment.content}}
+</div>
