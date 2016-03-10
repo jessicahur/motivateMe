@@ -8,26 +8,19 @@
         <div class="description">
             I like javascript!
         </div>
-        <ul class="data">
-            <li>
-                <span>Projects: 3</span>
-            </li>
-            <li>
-                <span>Motivations: 6</span>
-            </li>
-            <li>
-                <span>Motivated: 10</span>
-            </li>
-        </ul>
+        <div class="description">
+            <span class="glyphicon glyphicon-heart"> 3</span>
+            <span class="glyphicon glyphicon-star"> 6</span>
+        </div>
     </div>
     <div class="profile-container">
-
-    <a ng-click="view.showView('')">Projects</a>
-    <a ng-click="view.showView('create')">Create</a>
-
+        <uib-tabset active="active">
+            <uib-tab index="0" heading="Projects">
+                <div ui-view="project"></div>
+            </uib-tab>
+            <uib-tab index="1" heading="Create">
+                <div ui-view="create"></div>
+            </uib-tab>
+        </uib-tabset>
     </div>
-
-    <div ui-view="project" ng-hide="view.name === 'create'"></div>
-    <div ui-view="create" ng-show="view.name === 'create'"></div>
-
 </div>
