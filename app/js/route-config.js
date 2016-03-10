@@ -17,7 +17,14 @@ export default function(angularModule) {
                 }
             })
             .state('profile', {
-                url: '/profile',
+              url: '/profile',
+              template: '<mot-profile></mot-profile>',
+              data: {
+                requireAuth: true
+              }
+            })
+            .state('profile.projects', {
+                url: '/projects',
                 views: {
                     'project': {
                         template: '<project></project>'

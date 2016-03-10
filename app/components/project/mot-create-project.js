@@ -8,7 +8,8 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motCreateProject,
-            controller: ['$scope', 'ProjectService', '$window',function($scope, ProjectService, $window) {
+            controller: ['$scope', 'ProjectService', '$window', 'viewService', function($scope, ProjectService, $window, viewService) {
+              $scope.view = viewService;
               $scope.project = new ProjectService();
               $scope.post = function() {
                 //for edit state

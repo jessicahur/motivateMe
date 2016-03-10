@@ -13,7 +13,7 @@
                 <span>Projects: 3</span>
             </li>
             <li>
-                <span>Motivations: 4</span>
+                <span>Motivations: 6</span>
             </li>
             <li>
                 <span>Motivated: 10</span>
@@ -21,9 +21,13 @@
         </ul>
     </div>
     <div class="profile-container">
-    <a ui-sref="profile" ng-click="active(false)">Projects</a>
-    <a ui-sref="profile" ng-click="active(true)">Create</a>
+
+    <a ng-click="view.showView('')">Projects</a>
+    <a ng-click="view.showView('create')">Create</a>
+
     </div>
-    <div ui-view="project" ng-show="!user.active"></div>
-    <div ui-view="create" ng-show="user.active"></div>
+
+    <div ui-view="project" ng-hide="view.name === 'create'"></div>
+    <div ui-view="create" ng-show="view.name === 'create'"></div>
+
 </div>

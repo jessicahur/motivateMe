@@ -1,5 +1,5 @@
 <div class="profile-container">
-<div ng-show="!can">
+<div>
     <h4>Projects:</h4>
     <div ng-repeat="project in projects">
         <a ui-sref="profile.detail({id: project._id})" ng-click="edit(true)"><h3>{{project.name}}</h3></a>
