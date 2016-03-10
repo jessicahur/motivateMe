@@ -19,7 +19,7 @@ const Comments = require('../models/Comment');
 router.get('/', (req, res, next) => {
   Projects.find()
       .sort( {date: 'desc'} )
-      .populate('author')
+      .populate('author progress')
         .lean()
         .exec((err, projects) => {
             if(err) {
