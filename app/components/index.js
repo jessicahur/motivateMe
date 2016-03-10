@@ -9,7 +9,8 @@ import signupDr from './user/mot-signup';
 import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 
-import motivationDr from './motivation/comments';
+import motivationDr from './motivation/comment-post';
+import motivationCommentsDr from './motivation/comments';
 
 import motProfileDr from './profile/mot-profile';
 
@@ -26,5 +27,6 @@ export default function(angularModule) {
 	createProjectDr(angularModule);
 	projectDr(angularModule);
 	motivationDr(angularModule);
+	motivationCommentsDr(angularModule);
 	motProfileDr(angularModule);
 }
