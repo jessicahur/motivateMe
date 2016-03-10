@@ -22,7 +22,10 @@ export default function(angularModule) {
                 $scope.edit = function(x) {
                   $scope.can = x;
 
-                $scope.time = project.time.substring(0,10);
+                //$scope.time = project.time.substring(0,10);
+                    $scope.time = project.time;
+
+
 
                 }
             }]
