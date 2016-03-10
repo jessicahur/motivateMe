@@ -30,7 +30,6 @@ export default function(angularModule) {
                                    .$promise
                                    .then(res => {
                                         $scope.comments = res;
-                                        console.log($scope.comments);
                                    });
                     }
 

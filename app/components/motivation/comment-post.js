@@ -28,7 +28,6 @@ export default function(angularModule) {
                   $scope.comment.author = $window.localStorage.getItem('userId');
                   $scope.comment.$save(savedCmt => {
                     $scope.comments.push(savedCmt);
-                    console.log(savedCmt);
                   });
                   createComment();
                 });
