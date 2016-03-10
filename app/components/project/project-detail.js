@@ -11,6 +11,8 @@ export default function(angularModule) {
                   };
                 var data = ProjectService.get(param, function() {
                     $scope.project = data;
+                    console.log('DATA',data);
+                    console.log($scope.project.progress);
                   });
                 $scope.update = function(update) {
                         var param = {

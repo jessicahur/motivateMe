@@ -8,7 +8,6 @@ import signupDr from './user/mot-signup';
 import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 import projectDetDr from './project/project-detail';
-import progressDr from './progress/progress';
 
 import motivationDr from './motivation/comment-post';
 import motivationCommentsDr from './motivation/comments';
@@ -32,7 +31,6 @@ export default function(angularModule) {
 	createProjectDr(angularModule);
 	projectDr(angularModule);
 	projectDetDr(angularModule);
-	progressDr(angularModule);
 	//Comment Directives
 	motivationDr(angularModule);
 	motivationComment(angularModule);

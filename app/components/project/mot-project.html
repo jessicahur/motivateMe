@@ -17,7 +17,7 @@
                 </a>
                   <p class="project-description">{{project.description}}</p>
                   <p class="milestones">Milestones</p>
-                  <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress}}</p>
+                  <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
             </div>
         </div>
     <div ui-view></div>
