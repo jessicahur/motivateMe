@@ -18,6 +18,7 @@ export default function(angularModule) {
 
 
                 var promises = [];
+
                 var progresses = $scope.project.progress.split(', ');
 
                 Promise.all(
@@ -28,13 +29,11 @@ export default function(angularModule) {
                     }).$save();
                   })
                 ).then( result => {
-                    console.log('RESULT',result);
                     $scope.project.progress = result.map(progress => {
                       return progress._id;
                     });
                     $scope.project.$save(res => {
                       $scope.savedProject = res;
-                      console.log($scope.savedProject);
                     });
                 })
                  .catch(err => {
