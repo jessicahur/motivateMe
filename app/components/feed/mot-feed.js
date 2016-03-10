@@ -17,7 +17,6 @@ export default function(angularModule) {
             scope: {
 
              },
-
             controller: [ '$scope', 'FeedService',
                 function( $scope, FeedService ){
                     $scope.projects = FeedService.query();
@@ -25,6 +24,11 @@ export default function(angularModule) {
                     $scope.projectView = function(project){
                         console.log("View Project", project);
                         $scope.singleProjectView = project;
+                        FeedService.query({id: project._id})
+                                   .$promise
+                                   .then(res => {
+                                        $scope.comments = res;
+                                   });
                     }
                 }
             ]
