@@ -3,20 +3,28 @@
     <feed-detail ng-show="singleProjectView"
                  single-project-view="singleProjectView"
                  comments="comments"></feed-detail>
-    <div class="project-container" ng-hide="singleProjectView" ng-class-odd=" 'odd' " ng-class-even=" 'even' " ng-repeat="project in projects | orderBy: '_id' track by project._id ">
+
+    <div class="project-container" ng-hide="singleProjectView"
+         ng-repeat="project in projects | orderBy: '-project.time':true">
+
         <div class="projects">
             <aside class="project-meta">
                 <img class="project-avatar" src={{project.author.picture}}></img>
                 <div class="project-info">
                     <p><a href="{{project.url}}" class="author-name">{{project.author.displayName}}</a></p>
                     <p>Created on
-                        <strong>Date here</strong>
+                        <strong>{{project.time}}</strong>
                     </p>
                 </div>
             </aside>
             <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
 
             <div class="project-info">
+
+
+                <!--{{singleProjectView.time}}singleProjectView.time-->
+
+
                 <a href="" ng-click="projectView( project)">
                     <h3>{{project.name}}</h3>
                 </a>
