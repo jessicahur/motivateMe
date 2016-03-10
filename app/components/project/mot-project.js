@@ -12,6 +12,7 @@ export default function(angularModule) {
             controller: ['$scope', '$stateParams', 'FeedService', 'viewService', function($scope, $stateParams, FeedService, viewService) {
                 $scope.view = viewService;
                 var userId = localStorage.getItem('userId');
+
                 FeedService.query({
                     _id: userId
                 }).$promise.then((data) => {
@@ -20,6 +21,9 @@ export default function(angularModule) {
                 $scope.can = false;
                 $scope.edit = function(x) {
                   $scope.can = x;
+
+                $scope.time = project.time.substring(0,10);
+
                 }
             }]
         };
