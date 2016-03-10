@@ -9,7 +9,8 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motProject,
-            controller: ['$scope', '$stateParams', 'FeedService', function($scope, $stateParams, FeedService) {
+            controller: ['$scope', '$stateParams', 'FeedService', 'viewService', function($scope, $stateParams, FeedService, viewService) {
+                $scope.view = viewService;
                 var userId = localStorage.getItem('userId');
                 FeedService.query({
                     _id: userId

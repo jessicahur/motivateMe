@@ -8,9 +8,6 @@ export default function( angularModule ) {
             url = setUrl;
         };
 
-        //this.successCallback= function(){console.log('success');};
-        //this.errorCallback = function(){console.log('that did not work');};
-
         this.$get = function ( $http ) {
 
             console.log('url is: ', url);
@@ -36,4 +33,3 @@ export default function( angularModule ) {
         };
     });
 }
-

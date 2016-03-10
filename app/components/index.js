@@ -8,7 +8,8 @@ import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 import projectDetDr from './project/project-detail';
 
-import motivationDr from './motivation/comments';
+import motivationDr from './motivation/comment-post';
+import motivationCommentsDr from './motivation/comments';
 
 import motProfileDr from './profile/mot-profile';
 
@@ -26,5 +27,6 @@ export default function(angularModule) {
 	projectDr(angularModule);
 	projectDetDr(angularModule);
 	motivationDr(angularModule);
+	motivationCommentsDr(angularModule);
 	motProfileDr(angularModule);
 }

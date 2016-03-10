@@ -7,15 +7,12 @@
         <p>Project Start Date: {{singleProjectView.time}}</p>
         <p>Project Steps: {{singleProjectView.progress}} </p>
         <p>Community Support (Comments): ___________ </p>
-        <div ng-repeat="comment in comments">
-          <!-- <img src="{{comment.author.picture}}">  --><!--We can put a default picture here if user doesn't have twitter profile pic-->
-          <b>{{comment.author.displayName}} says:</b>
-          {{comment.content}}
-        </div>
 
-        <comments authed="authed"
+        <comments comments="comments"></comments>
+
+        <comment-post authed="authed"
                   project-id="singleProjectView._id"
-                  comments="comments"></comments>
+                  comments="comments"></comment-post>
         <button ng-click="returnToFeed()">View All</button>
 
 
