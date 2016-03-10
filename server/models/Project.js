@@ -15,7 +15,7 @@ const Project = new Schema({
     type: String,
     require: true
   },
-  progress: Array,
+  progress: [{type: Schema.Types.ObjectId, ref: 'Progress'}],
   time : { type : Date, default: Date.now }
   });
 
