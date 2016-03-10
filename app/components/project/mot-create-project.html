@@ -1,6 +1,4 @@
-<div>
-  <a ui-sref="profile" ng-click="active(false)">Projects</a>
-  <a ui-sref="profile" ng-click="active(true)">Create</a>
+<div class="profile-container">
   <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
   <form>
     <label>Project Name</label>
@@ -10,11 +8,14 @@
            type="text"></input>
     <br />
     <label>Project Milestones</label>
+
+    <p>{{project.goalArray}}</p>
+
     <input name="projectMilestones"
            ng-model="project.progress"
            required
            type="text"></input>
     <br />
-    <button ng-click = "post()" type='submit'>ADD</button>
+    <button ng-click="post()" type='submit'>ADD</button>
   </form>
 </div>

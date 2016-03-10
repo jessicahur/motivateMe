@@ -17,7 +17,14 @@ export default function(angularModule) {
                 }
             })
             .state('profile', {
-                url: '/profile',
+              url: '/profile',
+              template: '<mot-profile></mot-profile>',
+              data: {
+                requireAuth: true
+              }
+            })
+            .state('profile.projects', {
+                url: '/projects',
                 views: {
                     'project': {
                         template: '<project></project>'
@@ -30,15 +37,22 @@ export default function(angularModule) {
                     requireAuth: true
                 }
             })
+            .state('profile.detail', {
+                url: '/:id?edit',
+                template: '<project-detail></project-detail>',
+                data: {
+                    requireAuth: true
+                }
+            })
             .state('user', {
                 url: '/user',
-                views:{
-                  'login': {
-                    template: '<login></login>'
-                  },
-                  'signup': {
-                    template: '<signup></signup>'
-                  }
+                views: {
+                    'login': {
+                        template: '<login></login>'
+                    },
+                    'signup': {
+                        template: '<signup></signup>'
+                    }
                 },
                 data: {
                     requireAuth: false

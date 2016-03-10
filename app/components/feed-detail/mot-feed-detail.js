@@ -25,7 +25,7 @@ export default function(angularModule) {
                         $scope.singleProjectView = null;
               }
 
-            }
+             }
         }
 
         })

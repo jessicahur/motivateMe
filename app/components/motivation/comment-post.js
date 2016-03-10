@@ -13,15 +13,26 @@ export default function(angularModule) {
               'projectId': '=',
               'comments': '='
             },
-            controller: function($auth, $scope, $location, $window, CommentService) {
-              $scope.comment = new CommentService();
-              $scope.post = function () {
-                $scope.comment.project = $scope.projectId;
-                $scope.comment.author = $window.localStorage.getItem('userId');
-                $scope.comment.$save(savedCmt => {
-                  $scope.comments.push(savedCmt);
-                });
+            controller: function($auth, $scope, $location, $window, CommentService, VoteService) {
+              function createComment() {
                 $scope.comment = new CommentService();
+                $scope.comment.votes = new VoteService();
+                $scope.comment.votes.ups = [];
+                $scope.comment.votes.downs = [];
+              }
+              createComment();
+              $scope.post = function () {
+                $scope.comment.votes.$save(savedVote => {
+                  console.log('HEREEE', savedVote);
+                  $scope.comment.votes = savedVote._id;
+                  $scope.comment.project = $scope.projectId;
+                  $scope.comment.author = $window.localStorage.getItem('userId');
+                  $scope.comment.$save(savedCmt => {
+                    $scope.comments.push(savedCmt);
+                    console.log(savedCmt);
+                  });
+                  createComment();
+                });
                 // console.log($location);
                 // console.log($window.localStorage.getItem('userId'));
                 // console.log($scope.comment);
@@ -30,3 +41,4 @@ export default function(angularModule) {
         };
     });
 }
+

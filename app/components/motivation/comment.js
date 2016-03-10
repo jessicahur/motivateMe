@@ -8,32 +8,46 @@ export default function(angularModule) {
             restrict: 'E',
             template: commentTemplate,
             scope: {
-              'comment': '='
+              'comment': '=',
+              'authed': '='
             },
-            controller: function($scope) {
-              //for rating
-              console.log($scope.comment);
-              $scope.rate = $scope.comment.vote;
-              $scope.max = 5;
-              $scope.isReadonly = false;
+            controller: function($scope, $window, VoteService) {
+              var userId = $window.localStorage.getItem('userId');
+              var votes = new VoteService();
 
-              $scope.hoveringOver = function(value) {
-                $scope.overStar = value;
-                $scope.percent = 100 * (value / $scope.max);
-              };
+              votes._id = $scope.comment.votes._id;
+              votes.ups = $scope.comment.votes.ups;
+              votes.downs = $scope.comment.votes.downs;
+              $scope.ups = votes.ups.length;
+              $scope.downs = votes.downs.length;
 
-              $scope.postVote = function() {
-                console.log($scope.rate, $scope.comment.vote);
+              function updateVote(str) {
+                if (votes[str].indexOf(userId) === -1) {
+                    votes[str].push(userId);
+                    votes.$update(res => {
+                      console.log(res);
+                      $scope[str] = res[str].length;
+                    });
+                  } else {
+                    votes[str].splice(userId, 1);
+                    votes.$update(res => {
+                      console.log(res);
+                      $scope[str] = res[str].length
+                    });
+                  }
               }
-              $scope.ratingStates = [
-                {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
-                {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
-                {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
-                {stateOn: 'glyphicon-heart'},
-                {stateOff: 'glyphicon-off'}
-              ];
-            }
-        }
+              $scope.vote = function(str) {
+                if (str === 'up') {
+                  updateVote('ups')
+                }
+                else {
+                  updateVote('downs');
+                }
+              }
+              // $scope.votes = new VoteService();
+              //initiate arrays for up and down vote if not existed
 
+              }//end controller
+        }//end return
     });
 }

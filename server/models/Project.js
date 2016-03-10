@@ -11,6 +11,10 @@ const Project = new Schema({
     require: true,
     ref: 'User'
   },
+  description: {
+    type: String,
+    require: true
+  },
   progress: Array,
   time : { type : Date, default: Date.now }
   });

@@ -8,7 +8,8 @@ export default function(angularModule) {
             restrict: 'E',
             template: commentsTemplate,
             scope: {
-              'comments': '='
+              'comments': '=',
+              'authed': '='
             }
         }
 

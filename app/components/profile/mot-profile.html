@@ -1,5 +1,33 @@
 <div>
-  <h1>Profile</h1>
-  <a ui-sref="profile" ng-click="active(false)">Projects</a>
-  <a ui-sref="profile" ng-click="active(true)">Create</a>
-<div>
+    <div class="user-profile">
+        <img class="avatar" src={{userData.picture}}></img>
+        <div class="username">{{userData.displayName}}</div>
+        <div class="bio">
+            Dev or Something
+        </div>
+        <div class="description">
+            I like javascript!
+        </div>
+        <ul class="data">
+            <li>
+                <span>Projects: 3</span>
+            </li>
+            <li>
+                <span>Motivations: 6</span>
+            </li>
+            <li>
+                <span>Motivated: 10</span>
+            </li>
+        </ul>
+    </div>
+    <div class="profile-container">
+
+    <a ng-click="view.showView('')">Projects</a>
+    <a ng-click="view.showView('create')">Create</a>
+
+    </div>
+
+    <div ui-view="project" ng-hide="view.name === 'create'"></div>
+    <div ui-view="create" ng-show="view.name === 'create'"></div>
+
+</div>

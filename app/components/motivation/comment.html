@@ -1,4 +1,18 @@
 <div>
-  Rating: <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating" ng-click="postVote()"></uib-rating>
+<!--   Rating: <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating" ng-click="postVote()"></uib-rating> -->
+  <button type="button"
+          id="testBtn"
+          class="btn btn-success glyphicon glyphicon-thumbs-up"
+          data-loading-text=" ... "
+          ng-show="authed"
+          ng-click="vote('up')">
+      {{ups}}</button>
+  <button type="button"
+          id="testBtnDown"
+          class="btn btn-success glyphicon glyphicon-thumbs-down"
+          data-loading-text=" ... "
+          ng-show="authed"
+          ng-click="vote('down')">
+      {{downs}}</button>
   <b>{{comment.author.displayName}} says:</b> {{comment.content}}
 </div>
