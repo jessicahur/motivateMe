@@ -1,18 +1,15 @@
-import motNav from './mot-nav.html';
+import motBanner from './banner.html';
 export default function(angularModule) {
     /**
      * Controller:
      */
-    angularModule.directive('motNav', function() {
+    angularModule.directive('banner', function() {
                 return {
                     replace: true,
                     restrict: 'E',
-                    template: motNav,
+                    template: motBanner,
                     controller: ['$scope', 'viewService', function($scope, viewService) {
                           $scope.view = viewService;
-                          $scope.do = function(x) {
-                            console.log(x);
-                          };
                         }]
                     }
             });

@@ -9,24 +9,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">M</a>
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-heart-empty"></span><br>motivate</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a class="navLink" ui-sref="profile.projects()">Profile</a></li>
           <li><a class="navLink" ui-sref="feed">Feed</a></li>
+          <li ng-show="view.name === 'banner'"><a class="headlineLink" ui-sref="user">Signin / Signup</a><li>
         </ul>
       </div>
     </div>
   </nav>
-<div class='banner'>
-    <div class='innerBanner' style="background-color: #1F486C"></div>
-    <header>
-        <div class="headline">
-            <h1>MotivateMe</h1>
-            <h4>A Social Motivation App</h4>
-            <a class="headlineLink" ui-sref="user">Signin / Signup</a>
-        </div>
-    </header>
- </div>
 </div>

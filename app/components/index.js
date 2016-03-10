@@ -1,4 +1,5 @@
 import motNavDr from './nav/mot-nav';
+import motBannerDr from './nav/banner';
 import feedDr from './feed/mot-feed';
 import feedDetailDr from './feed-detail/mot-feed-detail.js';
 import loginDr from './user/mot-login';
@@ -20,6 +21,7 @@ import motProfileDr from './profile/mot-profile';
 export default function(angularModule) {
 	//Nav Directives
 	motNavDr(angularModule);
+	motBannerDr(angularModule);
 	loginDr(angularModule);
 	logoutDr(angularModule);
 	signupDr(angularModule);
