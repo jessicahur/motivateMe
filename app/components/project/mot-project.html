@@ -1,13 +1,11 @@
-<div class="project-container">
-    <div>
-
+<div class="projects-container">
         <div class="projects" ng-repeat="project in projects">
             <aside class="project-meta">
                 <img class="project-avatar" src={{userData.picture}}></img>
                 <div class="project-info">
                     <p><a href="" class="author-name">{{userData.displayName}}</a></p>
                     <p>Created on
-                        <strong>Date here</strong>
+                        <strong>{{project.time}}</strong>
                     </p>
                 </div>
             </aside>
@@ -21,9 +19,5 @@
                   <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress}}</p>
             </div>
         </div>
-
-
-
-    </div>
     <div ui-view></div>
 </div>

@@ -17,7 +17,10 @@ const Comment = new Schema({
     type: String,
     enum: ['advice', 'asset', 'comment']
   },
-  votes: [{type: Number, ref: 'User'}],
+  votes: {
+    type: Schema.Types.ObjectId,
+    ref: 'Vote'
+  },
   time : { type : Date, default: Date.now }
 });
 

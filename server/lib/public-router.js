@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Comments.find({'project': req.params.id})
-          .populate('author')
+          .populate('author votes')
           .lean()
           .exec((err, comments) => {
             if(err) {

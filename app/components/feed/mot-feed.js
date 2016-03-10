@@ -17,15 +17,26 @@ export default function(angularModule) {
             scope: {
 
              },
-
             controller: [ '$scope', 'FeedService',
                 function( $scope, FeedService ){
                     $scope.projects = FeedService.query();
 
                     $scope.projectView = function(project){
-                        console.log("View Project", project);
+                      console.log(project);
                         $scope.singleProjectView = project;
+
+                        $scope.singleProjectView.time = project.time.substring(0,10);
+
+                        FeedService.query({id: project._id})
+                                   .$promise
+                                   .then(res => {
+                                        $scope.comments = res;
+                                   });
                     }
+
+
+
+
                 }
             ]
         };

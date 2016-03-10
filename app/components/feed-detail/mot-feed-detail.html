@@ -16,6 +16,14 @@
             <p class="milestones">Milestones</p>
             <p class="project-progress" ng-repeat="progress in singleProjectView.progress"><span class="glyphicon glyphicon-flag"></span>{{progress}}</p>
       </div>
+      <div class="project-comments">
+      <comments comments="comments"
+                authed="authed"></comments>
+
+      <comment-post authed="authed"
+                project-id="singleProjectView._id"
+                comments="comments"></comment-post>
+      </div>
       <a ng-click="returnToFeed()"><span class="glyphicon glyphicon-arrow-left"></span>Feed</a>
   </div>
 </div>

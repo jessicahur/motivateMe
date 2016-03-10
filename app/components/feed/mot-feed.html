@@ -1,8 +1,9 @@
 <section>
-    <feed-detail ng-show="singleProjectView"></feed-detail>
+    <feed-detail ng-show="singleProjectView"
+                 single-project-view="singleProjectView"
+                 comments="comments"></feed-detail>
     <div class="project-container" ng-hide="singleProjectView" ng-class-odd=" 'odd' " ng-class-even=" 'even' " ng-repeat="project in projects | orderBy: '_id' track by project._id ">
         <div class="projects">
-
             <aside class="project-meta">
                 <img class="project-avatar" src={{project.author.picture}}></img>
                 <div class="project-info">
