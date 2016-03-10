@@ -24,9 +24,6 @@ export default function(angularModule) {
 
                 //$scope.time = project.time.substring(0,10);
                     $scope.time = project.time;
-
-
-
                 }
             }]
         };
