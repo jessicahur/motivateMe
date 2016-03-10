@@ -1,72 +1,46 @@
- .banner {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  top: 0;
-  left: 0;
-}
-.innerBanner {
-  width: 100%;
-  height: 80vh;
-}
-header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-.headline {
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 20vh;
-  height: 60vh;
-  text-align: center;
-  color: #FFF;
-}
-.headlineLink {
-  color: rgba(255,255,255,0.85);
-  line-height: 30px;
-  padding: 1rem;
-  border: 1px solid rgba(255,255,255,0.3);
-  -webkit-border-radius: 2rem;
-  border-radius: 2rsem;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-.headlineLink:hover {
-  background: #fff;
-  color: Gray;
-}
-nav {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  height: 60px;
-  border-top: 1px rgba(255,255,255,0.35) solid;
-}
-nav ul li {
-  display: inline-block;
-  margin-right: 20px;
+.navbar {
+    margin-bottom: 0;
 }
 .navLink {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.5);
-  -webkit-transition: color 0.3s linear;
-  -moz-transition: color 0.3s linear;
-  -o-transition: color 0.3s linear;
-  -ms-transition: color 0.3s linear;
-  transition: color 0.3s linear;
-  line-height: 60px;
-  display: block;
+  
 }
-.navLink.active {
-  -webkit-box-shadow: 0px -1px 0px #fff;
-  box-shadow: 0px -1px 0px #fff;
+.banner {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    top: 0;
+    left: 0;
 }
-.navLink.active,
-.navLink:hover {
-  color: #fff;
+.innerBanner {
+    width: 100%;
+    height: 60vh;
+}
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.headline {
+    margin: 0 auto;
+    padding-top: 20vh;
+    height: 60vh;
+    text-align: center;
+    color: #FFF;
+}
+.headlineLink {
+    color: rgba(255,255,255,0.85);
+    line-height: 30px;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    -webkit-border-radius: 2rem;
+    border-radius: 2rem;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.headlineLink:hover {
+    background: #fff;
+    color: Gray;
 }
