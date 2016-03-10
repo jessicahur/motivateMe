@@ -26,8 +26,6 @@ export default function(angularModule) {
                 } else {
                   var notStr = 'ups';
                 }
-                console.log('String', str);
-                console.log('Not String', notStr);
 
                 if (votes[str].indexOf(userId) === -1 && votes[notStr].indexOf(userId) === -1) {
                   votes[str].push(userId);
@@ -59,10 +57,7 @@ export default function(angularModule) {
                   updateVote('downs');
                 }
               }
-              // $scope.votes = new VoteService();
-              //initiate arrays for up and down vote if not existed
-
-              }//end controller
+            }//end controller
         }//end return
     });
 }

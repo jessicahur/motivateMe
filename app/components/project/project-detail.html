@@ -9,7 +9,9 @@
             <input ng-model="project.name"></input>
             <textarea ng-model="project.description"></textarea>
             <h4>My Progress</h4>
-            <input ng-repeat="progress in project.progress" ng-model="progress"></input>
+            <div ng-repeat="progress in project.progress">
+                <progress progress = "progress"></progress>
+            </div>
         </section>
         <button class="btn" ng-click="update(project)">Save</button>
   </div>
