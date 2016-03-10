@@ -1,33 +1,29 @@
 <section>
-    <h1>MotivateMe</h1>
-    <p>The Social Motivation App</p>
-    <p>The Public Feed</p>
-
     <feed-detail ng-show="singleProjectView"
                  single-project-view="singleProjectView"
                  comments="comments"></feed-detail>
+    <div class="project-container" ng-hide="singleProjectView" ng-class-odd=" 'odd' " ng-class-even=" 'even' " ng-repeat="project in projects | orderBy: '_id' track by project._id ">
+        <div class="projects">
+            <aside class="project-meta">
+                <img class="project-avatar" src={{project.author.picture}}></img>
+                <div class="project-info">
+                    <p><a href="{{project.url}}" class="author-name">{{project.author.displayName}}</a></p>
+                    <p>Created on
+                        <strong>Date here</strong>
+                    </p>
+                </div>
+            </aside>
+            <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
 
-    <div class="container"   ng-hide="singleProjectView" ng-class-odd=" 'odd' " ng-class-even=" 'even' "ng-repeat="project in projects | orderBy: '_id' track by project._id ">
-
-        <div class = "item">
-
-            <a class='projectname' href = "{{project.url}}">{{project.name}}</a><br>
-
-            <a class = 'authorDisplayName' > Author is: {{ project.displayName }}</a><br>
-
-            <!--<a> Comments are: {{project.comments}}</a><br>-->
-
-            <a class = 'progressGoals'> Progress Goals are:  </a>
-
-            <span ng-repeat = "n in project.progress" track by $index><span>{{n}}  |   </span></span>
-
-            <br>
-            <!--<a> Project ID is: {{project._id }}</a><br>-->
-
-            <!--<a ui-sref = 'feed-detail()'>View Project </a>-->
-
-            <button ng-click="projectView( project)">View Project</button>
-
+            <div class="project-info">
+                <a href="" ng-click="projectView( project)">
+                    <h3>{{project.name}}</h3>
+                </a>
+                <p class="project-description">{{project.author.description}}</p>
+                <p class="milestones">Milestones</p>
+                <p class="project-progress" ng-repeat="progress in project.progress">
+                    <span class="glyphicon glyphicon-flag"></span> {{progress}}</p>
+            </div>
         </div>
     </div>
 </section>

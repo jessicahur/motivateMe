@@ -1,0 +1,45 @@
+.project-container {
+  margin:0 auto;
+  width: 100%;
+  max-width: 480px;
+}
+.projects {
+  margin: 1rem auto;
+  border: 1px solid #ddd;
+  border-radius: 1px;
+}
+.username {
+
+}
+.project-meta {
+  display: flex;
+  margin: 0 auto;
+}
+.project-info {
+  margin-top: 2rem;
+}
+.project-img {
+  display: flex;
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+.project-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  margin: 1rem;
+}
+.project-info {
+  margin: 1rem;
+// text-align: center;
+}
+.project-description {
+  display: flex;
+}
+.milestones {
+  //text-align: center;
+}
+.project-progress {
+
+}

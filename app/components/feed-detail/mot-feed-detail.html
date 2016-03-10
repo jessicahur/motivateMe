@@ -1,28 +1,29 @@
-<div>
+<div class="project-container">
+  <div class="projects">
+      <aside class="project-meta">
+          <img class="project-avatar" src="{{singleProjectView.author.picture}}"></img>
+          <div class="project-info">
+              <p><a href="" class="author-name">{{singleProjectView.author.displayName}}</a></p>
+              <p>Created on <strong>{{singleProjectView.time}}</strong></p>
+          </div>
+      </aside>
+      <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
+      <div class="project-info">
+          <a ui-sref="profile.detail({id: project._id})" ng-click="edit(true)">
+              <h3>{{singleProjectView.name}}</h3>
+          </a>
+            <p class="project-description">{{project.description}}</p>
+            <p class="milestones">Milestones</p>
+            <p class="project-progress" ng-repeat="progress in singleProjectView.progress"><span class="glyphicon glyphicon-flag"></span>{{progress}}</p>
+      </div>
+      <div class="project-comments">
+      <comments comments="comments"
+                authed="authed"></comments>
 
-    <p>Public Single Project View</p>
-    <section class="container">
-
-        <h3>{{singleProjectView.name}} </h3>
-        <h5>by: {{singleProjectView.author.displayName }}</h5>
-        <h5>Started on: {{singleProjectView.time}}</h5>
-
-        <h5>These are the steps I will take to achieve my goal or complete my project.</h5>
-        <div ng-repeat="n in singleProjectView.progress track by $index">
-
-            <h5>{{$index +1 }} : {{n}}</h5>
-        </div>
-
-        <h5>Support your fellow community members in the space below.</h5>
-
-        <comments comments="comments"
-                  authed="authed"></comments>
-
-        <comment-post authed="authed"
-                  project-id="singleProjectView._id"
-                  comments="comments"></comment-post>
-        <button ng-click="returnToFeed()">View All</button>
-
-
-    </section>
+      <comment-post authed="authed"
+                project-id="singleProjectView._id"
+                comments="comments"></comment-post>
+      </div>
+      <a ng-click="returnToFeed()"><span class="glyphicon glyphicon-arrow-left"></span>Feed</a>
+  </div>
 </div>
