@@ -2,5 +2,5 @@
 <mot-nav></mot-nav>
 <main ui-view></main>
 <div ui-view="create" ng-show="user.active"></div>
-<div ui-view="login"></div>
-<div ui-view="signup"></div>
+<div ui-view="login" ng-hide="view.name === 'signup'"></div>
+<div ui-view="signup" ng-show="view.name === 'signup'"></div>

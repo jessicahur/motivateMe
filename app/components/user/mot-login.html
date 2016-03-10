@@ -17,6 +17,6 @@
           </div>
           <button "btn btn-primary btn-large btn-block" ng-click="login()" ng-disabled="loginForm.$invalid" class="btn btn-lg  btn-block btn-success">Log in</button>
           <p>Don't have an account yet?</p>
-          <a class="login-link" href="/#/signup"><h2>Sign up</h2></a>
+          <a class="login-link" ng-click="view.showView('signup')"><h2>Sign up</h2></a>
         </div>
     </div>
