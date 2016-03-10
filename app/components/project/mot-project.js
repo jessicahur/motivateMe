@@ -19,12 +19,9 @@ export default function(angularModule) {
                     $scope.projects = data;
                 })
                 $scope.can = false;
-                $scope.edit = function(x) {
-                  $scope.can = x;
-
-                //$scope.time = project.time.substring(0,10);
-                    $scope.time = project.time;
-                }
+                // $scope.edit = function(x) {
+                //   $scope.can = x;
+                // }
             }]
         };
     });

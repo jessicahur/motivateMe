@@ -6,12 +6,12 @@ export default function(angularModule) {
             restrict: 'E',
             template: projDetail,
             controller: ['$scope', 'ProjectService', '$stateParams', 'ProgressService', function($scope, ProjectService, $stateParams, ProgressService) {
+                $scope.project = {};
                 var param = {
                       id: $stateParams.id
                   };
                 var data = ProjectService.get(param, function() {
                     $scope.project = data;
-                    console.log($scope.project);
                   });
                 $scope.update = function(project) {
                     Promise.all(
