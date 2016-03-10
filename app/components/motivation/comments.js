@@ -1,4 +1,4 @@
-import motFeedDetail from './comments.html';
+import commentsTemplate from './comments.html';
 
 export default function(angularModule) {
 
@@ -6,9 +6,10 @@ export default function(angularModule) {
         return {
             replace: true,
             restrict: 'E',
-            template: motFeedDetail,
+            template: commentsTemplate,
             scope: {
-              'comments': '='
+              'comments': '=',
+              'authed': '='
             }
         }
 

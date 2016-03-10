@@ -22,7 +22,6 @@ export default function(angularModule) {
                     $scope.projects = FeedService.query();
 
                     $scope.projectView = function(project){
-                        console.log("View Project", project);
                         $scope.singleProjectView = project;
 
                         $scope.singleProjectView.time = project.time.substring(0,10);
