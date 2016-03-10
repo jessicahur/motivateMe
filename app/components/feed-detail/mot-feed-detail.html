@@ -2,14 +2,20 @@
     <p>Public Single Project View</p>
     <section class="container">
 
-
         <p>Project Title: {{singleProjectView.name}} </p>
         <p>Project Author: {{singleProjectView.author}}</p>
         <p>Project Start Date: {{singleProjectView.time}}</p>
         <p>Project Steps: {{singleProjectView.progress}} </p>
         <p>Community Support (Comments): ___________ </p>
+        <div ng-repeat="comment in comments">
+          <!-- <img src="{{comment.author.picture}}">  --><!--We can put a default picture here if user doesn't have twitter profile pic-->
+          <b>{{comment.author.displayName}} says:</b>
+          {{comment.content}}
+        </div>
 
-
+        <comments authed="authed"
+                  project-id="singleProjectView._id"
+                  comments="comments"></comments>
         <button ng-click="returnToFeed()">View All</button>
 
 
