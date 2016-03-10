@@ -15,16 +15,14 @@
             <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
 
             <div class="project-info">
-                <a ui-sref="profile.detail({id: project._id})" ng-click="edit(true)">
-                    <h3>{{project.author.name}}</h3>
+                <a href="" ng-click="projectView( project)">
+                    <h3>{{project.name}}</h3>
                 </a>
                 <p class="project-description">{{project.author.description}}</p>
                 <p class="milestones">Milestones</p>
                 <p class="project-progress" ng-repeat="progress in project.progress">
                     <span class="glyphicon glyphicon-flag"></span> {{progress}}</p>
             </div>
-
-            <button ng-click="projectView( project)">View Project</button>
         </div>
     </div>
 </section>

@@ -1,17 +1,21 @@
-<div>
-    <p>Public Single Project View</p>
-    <section class="container">
-
-
-        <p>Project Title: {{singleProjectView.name}} </p>
-        <p>Project Author: {{singleProjectView.author}}</p>
-        <p>Project Start Date: {{singleProjectView.time}}</p>
-        <p>Project Steps: {{singleProjectView.progress}} </p>
-        <p>Community Support (Comments): ___________ </p>
-
-
-        <button ng-click="returnToFeed()">View All</button>
-
-
-    </section>
+<div class="project-container">
+  <div class="projects">
+      <aside class="project-meta">
+          <img class="project-avatar" src="{{singleProjectView.author.picture}}"></img>
+          <div class="project-info">
+              <p><a href="" class="author-name">{{singleProjectView.author.displayName}}</a></p>
+              <p>Created on <strong>{{singleProjectView.time}}</strong></p>
+          </div>
+      </aside>
+      <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
+      <div class="project-info">
+          <a ui-sref="profile.detail({id: project._id})" ng-click="edit(true)">
+              <h3>{{singleProjectView.name}}</h3>
+          </a>
+            <p class="project-description">{{project.description}}</p>
+            <p class="milestones">Milestones</p>
+            <p class="project-progress" ng-repeat="progress in singleProjectView.progress"><span class="glyphicon glyphicon-flag"></span>{{progress}}</p>
+      </div>
+      <a ng-click="returnToFeed()"><span class="glyphicon glyphicon-arrow-left"></span>Feed</a>
+  </div>
 </div>
