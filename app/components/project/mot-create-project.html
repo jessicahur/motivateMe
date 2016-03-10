@@ -1,7 +1,12 @@
 <div class="profile-container">
+
   <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
+
+
   <form>
+
     <label>Project Name</label>
+
     <input name="projectName"
            ng-model="project.name"
            required
@@ -9,13 +14,16 @@
     <br />
     <label>Project Milestones</label>
 
-    <p>{{project.goalArray}}</p>
+    <p> {{project.progress}} </p>
 
     <input name="projectMilestones"
            ng-model="project.progress"
            required
            type="text"></input>
     <br />
+
+
     <button ng-click = "post()" type='submit'>ADD</button>
   </form>
+
 </div>

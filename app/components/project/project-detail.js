@@ -19,7 +19,6 @@ export default function(angularModule) {
                         ProjectService.update(param, JSON.stringify(update));
                     };
 
-
             }]
         };
     });
