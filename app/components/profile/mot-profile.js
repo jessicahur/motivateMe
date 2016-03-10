@@ -9,7 +9,8 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motProfile,
-            controller: ['$scope', '$location', '$auth', 'toastr', 'UserService', function($scope, $location, $auth, toastr, UserService) {
+            controller: ['$scope', '$location', '$auth', 'toastr', 'UserService', 'viewService', function($scope, $location, $auth, toastr, UserService, viewService) {
+            $scope.view = viewService;
             var userId = localStorage.getItem('userId');
             $scope.userData = UserService.get({
                 id: userId

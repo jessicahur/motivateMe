@@ -19,4 +19,3 @@ export default function(angularModule) {
         create('FeedService', '/projects');
         create('CommentService', '/api/v1/comments');
     };
-

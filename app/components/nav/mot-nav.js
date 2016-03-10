@@ -8,17 +8,8 @@ export default function(angularModule) {
                     replace: true,
                     restrict: 'E',
                     template: motNav,
-                    controller: ['$scope', '$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
-                      //TODO create a number checking view controller
-
-                            $scope.user = {
-                                active: true
-                            };
-                            $scope.active = function(x) {
-                                $scope.user = {
-                                    active: x
-                                };
-                            };
+                    controller: ['$scope', 'viewService', function($scope, viewService) {
+                          $scope.view = viewService;
                         }]
                     }
             });
