@@ -1,13 +1,11 @@
 <div ng-show="authed" class="comments">
-    <div class="comments">
-        <div class="comment-wrap">
-            <img class="project-avatar" src="{{project.author.picture}}"></img>
-            <div class="comment-block">
-                <form>
-                    <textarea ng-model="comment.content" name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
-                </form>
-                <button ng-click="post()" type='submit'>ADD</button>
-            </div>
+    <div class="comment-wrap">
+        <img class="project-avatar" src="{{project.author.picture}}"></img>
+        <div class="comment-block">
+            <form>
+                <textarea ng-model="comment.content" name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
+            </form>
+            <button ng-click="post()" type='submit'>ADD</button>
         </div>
     </div>
 </div>
