@@ -1,12 +1,19 @@
 <div>
+
     <p>Public Single Project View</p>
     <section class="container">
 
-        <p>Project Title: {{singleProjectView.name}} </p>
-        <p>Project Author: {{singleProjectView.author}}</p>
-        <p>Project Start Date: {{singleProjectView.time}}</p>
-        <p>Project Steps: {{singleProjectView.progress}} </p>
-        <p>Community Support (Comments): ___________ </p>
+        <h3>{{singleProjectView.name}} </h3>
+        <h5>by: {{singleProjectView.author.displayName }}</h5>
+        <h5>Started on: {{singleProjectView.time}}</h5>
+
+        <h5>These are the steps I will take to achieve my goal or complete my project.</h5>
+        <div ng-repeat="n in singleProjectView.progress track by $index">
+
+            <h5>{{$index +1 }} : {{n}}</h5>
+        </div>
+
+        <h5>Support your fellow community members in the space below.</h5>
         <div ng-repeat="comment in comments">
           <!-- <img src="{{comment.author.picture}}">  --><!--We can put a default picture here if user doesn't have twitter profile pic-->
           <b>{{comment.author.displayName}} says:</b>

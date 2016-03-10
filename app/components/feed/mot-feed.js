@@ -24,12 +24,19 @@ export default function(angularModule) {
                     $scope.projectView = function(project){
                         console.log("View Project", project);
                         $scope.singleProjectView = project;
+
+                        $scope.singleProjectView.time = project.time.substring(0,10);
+
                         FeedService.query({id: project._id})
                                    .$promise
                                    .then(res => {
                                         $scope.comments = res;
                                    });
                     }
+
+
+
+
                 }
             ]
         };
