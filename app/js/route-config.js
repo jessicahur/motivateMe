@@ -37,8 +37,8 @@ export default function(angularModule) {
                     requireAuth: true
                 }
             })
-            .state('profile.detail', {
-                url: '/:id?edit',
+            .state('project', {
+                url: '/project/:id?edit',
                 template: '<project-detail></project-detail>',
                 data: {
                     requireAuth: true
