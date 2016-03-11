@@ -14,19 +14,24 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motFeed,
-            controller: [ '$scope', 'FeedService', 'ProgressService',
-                function( $scope, FeedService, ProgressService ){
+            controller: [ '$scope', 'FeedService',
+                function( $scope, FeedService ){
                     $scope.projects = FeedService.query();
                     $scope.projectView = function(project){
-                      $scope.singleProjectView = project;
-                      FeedService.query({'id':project._id}, res => {
+                        $scope.singleProjectView = project;
+                        FeedService.query({'id':project._id}, res => {
                                   $scope.comments = res;
-                                 })
-                      $scope.singleProjectView.time = project.time.substring(0,10);
+                                 });
+                        $scope.singleProjectView.time = project.time.substring(0,10);
+                        //For milestone progress bar:
+                        $scope.max = $scope.singleProjectView.progress.length;
+                        $scope.value = 0;
+                        $scope.singleProjectView.progress.forEach(progress => {
+                            if (progress.done === true) {
+                                $scope.value += 1;
+                            }
+                        });
                     }
-
-
-
                 }
             ]
         };
