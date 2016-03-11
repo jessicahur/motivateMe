@@ -1,15 +1,3 @@
-@import '_fonts';
-@import '_mot-nav';
-@import '_mot-feed';
-@import '_mot-log-reg';
-@import '_mot-profile';
 @import '_global';
-@import '_mot-feed';
-@import '_feedDetail';
-@import '_mot-projects';
-@import '_comments';
-@import '_mot-create-project';
-
-body {
-	font-family: 'Open Sans', sans-serif;
-}
+@import '_modules';
+@import '_palette';
