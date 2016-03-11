@@ -9,15 +9,16 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motProfile,
-            controller: ['$scope', '$location', '$auth', 'toastr', 'UserService', 'viewService', 'FeedService', function($scope, $location, $auth, toastr, UserService, viewService, FeedService) {
+            controller: ['$scope', '$location', '$auth', 'toastr', 'UserService', 'viewService', 'ProjectService', '$window', function($scope, $location, $auth, toastr, UserService, viewService, ProjectService, $window) {
                 $scope.view = viewService;
-                var userId = localStorage.getItem('userId');
+                var userId = $window.localStorage.getItem('userId');
+
                 $scope.userData = UserService.get({
                     id: userId
                 });
 
-                FeedService.query({
-                    _id: userId
+                ProjectService.query({
+                    id: userId
                 }).$promise.then((data) => {
                     $scope.projects = data;
                 })

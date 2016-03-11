@@ -21,7 +21,6 @@ export default function(angularModule) {
                       $scope.singleProjectView = project;
                       FeedService.query({'id':project._id}, res => {
                                   $scope.comments = res;
-                                  console.log('HEREEE', $scope.comments.length);
                                  })
                       $scope.singleProjectView.time = project.time.substring(0,10);
                     }
