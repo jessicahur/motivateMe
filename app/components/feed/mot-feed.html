@@ -25,13 +25,13 @@
                 <!--{{singleProjectView.time}}singleProjectView.time-->
 
 
-                <a href="" ng-click="projectView( project)">
+                <a ng-click="projectView( project)">
                     <h3>{{project.name}}</h3>
                 </a>
                 <p class="project-description">{{project.author.description}}</p>
                 <p class="milestones">Milestones</p>
-                <p class="project-progress" ng-repeat="item in progress">
-                    <span class="glyphicon glyphicon-flag"></span>{{item.content}}</p>
+                <p class="project-progress" ng-repeat="progress in project.progress">
+                    <span class="glyphicon glyphicon-flag"></span>{{progress.content}}</p>
             </div>
         </div>
     </div>

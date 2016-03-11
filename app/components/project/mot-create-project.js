@@ -14,15 +14,12 @@ export default function(angularModule) {
               $scope.project = new ProjectService();
 
                 $scope.difference = function(datetime){
-
-                    //$scope.datetime= datetime;
-                    //console.log (datetime, 'xxxxx');
                     datetime = Date.parse(datetime);
-                    //console.log (datetime, 'zzzz');
                     var now = new Date();
-                    var diff =  Math.floor( ( datetime - now ) / 86400000);
-                    //console.log ( datetime - now );
-                    //console.log ( diff );
+                    var diff =  Math.floor( 1 + ( datetime - now ) / 86400000);
+
+                    $scope.project.completion =  datetime;
+
                     return diff;
                 }
 
@@ -31,6 +28,10 @@ export default function(angularModule) {
                 $scope.project.author = $window.localStorage.getItem('userId');
 
                 var progresses = $scope.project.progress.split(', ');
+
+
+                  console.log($scope.project.completion, 'xxxxxx');
+                  var completion = $scope.project.completion;
 
                 Promise.all(
                   progresses.map( progress => {
@@ -54,7 +55,6 @@ export default function(angularModule) {
                   });
               }//end $scope.post
 
-             //////////////////////////
 
 
                 ////////////////////////////
@@ -153,9 +153,6 @@ export default function(angularModule) {
 
                     return '';
                 }
-
-
-
 
 
                 /////////////////
