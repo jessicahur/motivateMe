@@ -15,17 +15,18 @@
                     </p>
                 </div>
             </aside>
-
+            <div class="img-wrap">
             <img class="project-img" src="{{project.img}}"></img>
-
+            </div>
             <div class="project-info">
                 <a ng-click="projectView( project)">
                     <h3>{{project.name}}</h3>
                 </a>
-                <p class="project-description">{{project.author.description}}</p>
-                <p class="milestones">Milestones</p>
+                <p class="project-description">{{project.description}}</p>
+                <h4>Milestones</h4>
                 <p class="project-progress" ng-repeat="progress in project.progress">
-                    <span class="glyphicon glyphicon-flag"></span>{{progress.content}}</p>
+                    <span class="glyphicon glyphicon-plus-sign"></span>{{progress.content}}</p>
+                    <p><a href="{{project.url}}" class="author-name">View more...</a></p>
             </div>
         </div>
     </div>

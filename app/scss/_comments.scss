@@ -14,6 +14,16 @@
   vertical-align: top;
   border-radius: 0.1875rem;
 }
+.comment-area {
+  width: 100%;
+  margin: 1rem 0;
+  border-color: #ddd;
+  border-radius: 3px;
+}
+.selected-motivation {
+  color: #ddd;
+  font-weight: bolder;
+}
 .comment-block textarea {
   width: 100%;
   resize: none;

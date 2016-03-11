@@ -1,15 +1,12 @@
 .project-container {
   margin:0 auto;
   width: 100%;
-  max-width: 480px;
+  max-width: 760px;
 }
 .projects {
   margin: 1rem auto;
   border: 1px solid #ddd;
   border-radius: 1px;
-}
-.username {
-
 }
 .project-meta {
   display: flex;
@@ -18,8 +15,12 @@
 .project-info {
   margin-top: 2rem;
 }
+.img-wrap {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
 .project-img {
-  display: flex;
   width: 100%;
   padding: 0 1rem;
   margin: 0 auto;
@@ -36,10 +37,13 @@
 }
 .project-description {
   display: flex;
-}
-.milestones {
-  //text-align: center;
+  font-size: 1.2rem;
 }
 .project-progress {
-
+  margin: .5rem;
+  font-size: 2rem;
+  letter-spacing: .2rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1rem;
 }

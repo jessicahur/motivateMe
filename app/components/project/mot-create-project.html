@@ -1,13 +1,13 @@
 <div class="projects-container">
     <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
     <form>
-        <label>Name</label>
+        <h4>Name</h4>
         <input name="projectName" ng-model="project.name" required type="text"></input>
-        <label>Description</label>
+        <h4>Description</h4>
         <input name="projectDescription" ng-model="project.description" required type="text"></input>
-        <label>Milestones (comma separated)</label>
+        <h4>Milestones (Comma list)</h4>
         <input name="projectMilestones" ng-model="project.progress" required type="text"></input>
-        <label>Project Header (img url)</label>
+        <h4>Project Header (img url)</h4>
         <input name="projectHeader" ng-model="project.img" required type="text"></input>
         <div>
 
@@ -16,10 +16,10 @@
            <button ng-show="$last" ng-click="removeMilestone()"><span class="glyphicon glyphicon-remove"><span></button>
         </fieldset>
         <button ng-click="addMilestone()">New</button> -->
-            <div>Finishing by: {{dt | date:'fullDate' }}
+            <div><h4 class="selected-motivation">Finishing by:</h4><h4>{{dt | date:'fullDate' }}</h4>
             <span class="biglength"> {{ difference(dt) }} days </span> from now.</div>
-            <label>Select Your Completion Date</label>
-            <uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="inlineOptions" ng-click="difference(dt)"></uib-datepicker>
+            <h5>Select Your Completion Date</h5>
+            <uib-datepicker ng-model="dt" class="well well-md" datepicker-options="inlineOptions" ng-click="difference(dt)"></uib-datepicker>
         </div>
         <button ng-click="post()" type='submit'>Start This Project</button>
     </form>
