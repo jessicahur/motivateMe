@@ -3,13 +3,16 @@
              ng-repeat="project in projects | orderBy: '-project.time': true">
             <aside class="project-meta">
                 <img class="project-avatar" src={{userData.picture}}></img>
+
+
                 <div class="project-info">
                     <p><a href="" class="author-name">{{userData.displayName}}</a></p>
                     <p>Created on
                         <strong>{{project.time}}</strong></p>
                     <p>Completing on
                         <strong>{{project.completion}}</strong></p>
-                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  Days remaining </p>
+                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  days remaining </p>
+                    <p>{{percentTimeUsed(project.time, project.completion) }} percent of available time used.</p>
 
                 </p>
                 </div>

@@ -10,9 +10,22 @@
                 <img class="project-avatar" src={{project.author.picture}}></img>
                 <div class="project-info">
                     <p><a href="{{project.url}}" class="author-name">{{project.author.displayName}}</a></p>
-                    <p>Created on
-                        <strong>{{project.time}}</strong>
-                    </p>
+
+
+                    <div class="project-info">
+                         <p>Created on
+                            <strong>{{project.time}}</strong></p>
+                        <p>Completing on
+                            <strong>{{project.completion}}</strong></p>
+                        <p><strong>{{ remaining( project.time, project.completion) }} </strong>  days remaining </p>
+
+                        <p>{{ percentTimeUsed(project.time, project.completion) }}  percent of available time used.</p>
+
+                        </p>
+                    </div>
+
+
+
                 </div>
             </aside>
             <div class="img-wrap">

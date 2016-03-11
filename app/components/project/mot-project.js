@@ -29,9 +29,31 @@ export default function(angularModule) {
 
                 $scope.remaining = function(time, completion){
                     console.log(Date.parse(time), Date.parse(completion) );
-                    var remains = Math.floor((1+ Date.parse(completion) - Date.parse(time)  )/86400000);
+                    var remains = Math.floor((1+ Date.parse(completion) - Date.now()  )/86400000);
                     console.log(remains, ' is remains');
                     return remains;
+                }
+
+                $scope.percentTimeUsed = function(time, completion){
+                    // percent is  remaining / total
+                        var time = Date.parse(time);  //start time
+                        console.log(time, ' is incoming time unix');
+                        var completion = Date.parse(completion);  //completion time
+                        console.log(completion, ' is incoming completion unix');
+
+                        var total =  completion - time;   //allocated time
+
+                        var total =  1 + Math.floor(( completion - time )/86400000);
+
+                        console.log(total, 'total days available');
+
+                        //remaining days
+                        var remaining = Math.floor((completion - Date.now()  )/86400000);
+                        console.log(remaining, ' is remaining');   //remaining time
+                        var percentTime = (remaining / total) * 100;
+                        console.log (percentTime, 'is percent time');
+                        percentTime = 100 - Math.trunc( percentTime) ;
+                        return percentTime;
                 }
 
                 $scope.difference = function(datetime){
