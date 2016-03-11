@@ -13,8 +13,6 @@ export default function(angularModule) {
               $scope.view = viewService;
               $scope.project = new ProjectService();
 
-                ////testing
-
                 $scope.difference = function(datetime){
                     datetime = Date.parse(datetime);
                     var now = new Date();
@@ -24,22 +22,14 @@ export default function(angularModule) {
 
                     return diff;
                 }
-                /////
-
-
 
               $scope.post = function() {
 
                 $scope.project.author = $window.localStorage.getItem('userId');
-                
-
-                var promises = [];
 
                 var progresses = $scope.project.progress.split(', ');
 
-
-                  console.log($scope.project.completion, 'xxxxxx');
-                  var completion = $scope.project.completion;
+                var completion = $scope.project.completion;
 
                 Promise.all(
                   progresses.map( progress => {
@@ -54,6 +44,8 @@ export default function(angularModule) {
                     });
                     $scope.project.$save(res => {
                       $scope.savedProject = res;
+                      $scope.projects.push(res);
+                      $scope.project = new ProjectService();
                     });
                 })
                  .catch(err => {

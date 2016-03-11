@@ -1,14 +1,7 @@
  <div class="projects-container">
-
-
-
   <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
-
-
   <form>
-
     <label>Project Name</label>
-
     <input name="projectName"
            ng-model="project.name"
            required
@@ -16,24 +9,18 @@
     <br />
     <br>
     <label>Project Milestones (comma separated)</label>
-
     <p> {{project.progress}} </p>
-
-
     <input name="projectMilestones"
            ng-model="project.progress"
            required
            type="text"></input>
     <br/>
-
     <br>
-
     <label>I will finish this by:</label>
     <pre> <em>{{dt | date:'fullDate' }}</em></pre>
     <br>
     <label>which is <span class="biglength"> {{ difference(dt) }} days </span> from now.</label>
     <br><br>
-
     <div style="display:inline-block; min-height:290px;">
 
 
@@ -45,12 +32,6 @@
                       ng-click="difference(dt)"></uib-datepicker>
     </div>
      <br><br>
-
-
-
      <button ng-click="post()" type='submit'>Start This Project</button>
-
   </form>
-
-
 </div>

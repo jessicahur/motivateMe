@@ -1,19 +1,20 @@
 <div>
-    <h4>Projects:</h4>
-        <h3>{{project.name}}</h3>
-        <p>{{project.description}}</p>
-        <h4>My Progress:</h4>
-        <p>{{progress}}</p>
-        <h4>Edit</h4>
-        <section>
-            <input ng-model="project.name"></input>
-            <textarea ng-model="project.description"></textarea>
-            <h4>My Progress</h4>
+    <label>Project Name:</label>
+    <input ng-model="project.name"></input>
 
-            <div ng-repeat="progress in project.progress">
-                <progress progress = "progress"></progress>
-            </div>
+    <label>Description:</label>
+    <textarea ng-model="project.description"></textarea>
+    <br />
 
-        </section>
-        <button class="btn" ng-click="update(project)">Save</button>
-  </div>
+    <label>Progress:</label>
+    <div ng-repeat="progress in project.progress">
+       {{progress.content}}
+       <input type="checkbox"
+              ng-model="progress.done"
+              ng-change="progress.done">
+              <span ng-show="progress.done">Finished</span>
+       </input>
+    </div>
+    <button class="btn" ng-click="update(project)">Save</button>
+</div>
+

@@ -9,13 +9,13 @@ export default function(angularModule) {
                     requireAuth: false
                 }
             })
-            .state('feed-detail', {
-                url: '/detail',
-                template: '<feed-detail></feed-detail>',
-                data: {
-                    requireAuth: false
-                }
-            })
+            // .state('feed-detail', {
+            //     url: '/detail',
+            //     template: '<feed-detail></feed-detail>',
+            //     data: {
+            //         requireAuth: false
+            //     }
+            // })
             .state('profile', {
               url: '/profile',
               template: '<mot-profile></mot-profile>',
@@ -23,22 +23,8 @@ export default function(angularModule) {
                 requireAuth: true
               }
             })
-            .state('profile.projects', {
-                url: '/projects',
-                views: {
-                    'project': {
-                        template: '<project></project>'
-                    },
-                    'create': {
-                        template: '<create-project></create-project>'
-                    }
-                },
-                data: {
-                    requireAuth: true
-                }
-            })
             .state('project', {
-                url: '/project/:id?edit',
+                url: '/project/:id',
                 template: '<project-detail></project-detail>',
                 data: {
                     requireAuth: true
