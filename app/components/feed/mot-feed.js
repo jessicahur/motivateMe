@@ -34,7 +34,6 @@ export default function(angularModule) {
                         FeedService.query({'id':project._id}, res => {
                                   $scope.comments = res;
                                   $scope.comments.sort(compare);
-                                  console.log($scope.comments);
                                  });
                         $scope.singleProjectView.time = project.time.substring(0,10);
                         //For milestone progress bar:
@@ -52,9 +51,7 @@ export default function(angularModule) {
                     };
 
                     $scope.remaining = function(time, completion){
-                        console.log(Date.parse(time), Date.parse(completion) );
                         var remains = Math.floor((1+ Date.parse(completion) - Date.now()  )/86400000);
-                        console.log(remains, ' is remains');
                         return remains;
                     };
 
