@@ -16,16 +16,19 @@ export default function(angularModule) {
             template: motFeed,
             controller: [ '$scope', 'FeedService',
                 function( $scope, FeedService ){
-                    function compare(commentA, commentB) {
-                        if (commentA.time > commentB.time) {
+                    function compare(A, B) {
+                        if (A.time > B.time) {
                             return -1;
                         }
-                        else if (commentA.time < commentB.time) {
+                        else if (A.time < B.time) {
                             return 1;
                         }
                         return 0;
                     };
-                    $scope.projects = FeedService.query();
+                    FeedService.query( res => {
+                        $scope.projects = res;
+                        $scope.projects.sort(compare);
+                    });
                     $scope.projectView = function(project){
                         $scope.singleProjectView = project;
                         FeedService.query({'id':project._id}, res => {
