@@ -23,20 +23,6 @@ export default function(angularModule) {
                 requireAuth: true
               }
             })
-            .state('profile.projects', {
-                url: '/projects',
-                views: {
-                    'project': {
-                        template: '<project></project>'
-                    },
-                    'create': {
-                        template: '<create-project></create-project>'
-                    }
-                },
-                data: {
-                    requireAuth: true
-                }
-            })
             .state('project', {
                 url: '/project/:id',
                 template: '<project-detail></project-detail>',

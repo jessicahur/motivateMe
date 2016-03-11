@@ -45,6 +45,7 @@ export default function(angularModule) {
                     });
                     $scope.project.$save(res => {
                       $scope.savedProject = res;
+                      $scope.projects.push(res);
                       $scope.project = new ProjectService();
                     });
                 })
