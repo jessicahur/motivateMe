@@ -17,10 +17,10 @@ export default function(angularModule) {
             scope: {
 
              },
-            controller: [ '$scope', 'FeedService',
-                function( $scope, FeedService ){
+            controller: [ '$scope', 'FeedService', 'ProgressService',
+                function( $scope, FeedService, ProgressService ){
                     $scope.projects = FeedService.query();
-                    console.log('projects progress', $scope.projects);
+                    $scope.progress = ProgressService.query();
                     $scope.projectView = function(project){
                         $scope.singleProjectView = project;
 
