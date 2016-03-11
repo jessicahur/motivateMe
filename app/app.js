@@ -8,6 +8,7 @@ import ngDialog     from 'ng-dialog';
 import toastr       from 'angular-toastr';
 import authConfig   from './js/auth-config';
 import routeConfig  from './js/route-config';
+import toastrConfig from './js/toastr-config';
 import services     from './services';
 import uib          from 'angular-ui-bootstrap';
 import animate      from 'angular-animate';
@@ -31,6 +32,7 @@ app.constant( 'baseUrl', BASE_URL);
 components(app);
 routeConfig(app);
 authConfig(app);
+toastrConfig(app);
 
 //app.constant( 'baseUrl', process.env.BASE_URL);
 

@@ -1,24 +1,29 @@
 <div>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-heart"></span><br>motivate</a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navLink" ui-sref="profile.projects()">Profile</a></li>
-          <li><a data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navLink" ui-sref="feed">Feed</a></li>
-          <li ng-show="view.name === 'banner'" ng-hide="logout"><a data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navLink" ui-sref="user">Signin / Signup</a></li>
-          <li ng-show="logout"><logout data-toggle="collapse" data-target=".nav-collapse.in" class="navLink"></logout></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    motivate<br>
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="profile.projects()">Profile</a></li>
+                    <li><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="feed">Feed</a></li>
+                    <li ng-show="view.name === 'banner'" ng-hide="logout"><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="user">Signin / Signup</a></li>
+                    <li ng-show="logout">
+                        <logout data-toggle="collapse" data-target=".navbar-collapse" class="navLink"></logout>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
