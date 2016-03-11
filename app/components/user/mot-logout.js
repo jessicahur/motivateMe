@@ -10,6 +10,7 @@ export default function(angularModule) {
                     $auth.logout()
                         .then(function() {
                             toastr.info('You are logged out!');
+                            $scope.logout = $auth.isAuthenticated();
                             $location.path('/');
                         })
                         .catch(function(error) {
