@@ -26,21 +26,26 @@ export default function(angularModule) {
                 } else {
                   var notStr = 'ups';
                 }
-
+                //If user has not voted up or down
                 if (votes[str].indexOf(userId) === -1 && votes[notStr].indexOf(userId) === -1) {
+                  console.log('not in ups and downs', userId, votes[str]);
                   votes[str].push(userId);
                   votes.$update(res => {
                     $scope[str] = res[str].length;
                   });
                   }
-                else if (votes[notStr].indexOf(userId) === -1 ){
-                  votes[str].splice(userId, 1);
+                  //If user has voted in this category before
+                else if (votes[str].indexOf(userId) !== -1 ){
+                  console.log('not in the other but in here', userId, votes[str]);
+                  votes[str].splice(votes[str].indexOf(userId), 1);
                     votes.$update(res => {
                       $scope[str] = res[str].length;
                     });
                 }
+                //If user has not voted in this category before but voted in the other category
                 else {
-                  votes[notStr].splice(userId, 1);
+                  console.log('other case');
+                  votes[notStr].splice(votes[str].indexOf(userId), 1);
                   votes[str].push(userId);
                   votes.$update(res => {
                     $scope[notStr] = res[notStr].length;

@@ -20,7 +20,6 @@ export default function(angularModule) {
             controller: [ '$scope', 'FeedService',
                 function( $scope, FeedService ){
                     $scope.projects = FeedService.query();
-                    console.log('projects progress', $scope.projects);
                     $scope.projectView = function(project){
                         $scope.singleProjectView = project;
 
