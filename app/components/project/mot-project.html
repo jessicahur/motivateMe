@@ -9,12 +9,14 @@
                         <strong>{{project.time}}</strong></p>
                     <p>Completing on
                         <strong>{{project.completion}}</strong></p>
-                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  Days Remaining Until Project Success </p>
+                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  Days remaining </p>
 
                 </p>
                 </div>
             </aside>
-            <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
+            <div class="img-wrap">
+            <img class="project-img" src="{{project.img}}"></img>
+            </div>
             <div class="project-info">
                 <a ui-sref="project({id: project._id})" ng-click="edit(true)">
                     <h3>{{project.name}}</h3>
@@ -22,8 +24,6 @@
                   <p class="project-description">{{project.description}}</p>
                   <p class="milestones">Milestones</p>
                   <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
-                   <p>Days remaining {{ diff }} </p>
-                   <p>Percent of Time Used {{percentTime}} </p>
             </div>
         </div>
     <div ui-view></div>

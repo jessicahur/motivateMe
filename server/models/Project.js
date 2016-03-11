@@ -18,7 +18,10 @@ const Project = new Schema({
     type: String,
     require: true
   },
-
+  img: {
+    type: String,
+    require: true
+  },
   progress: [{type: Schema.Types.ObjectId, ref: 'Progress'}],
 
   time : { type : Date, default: Date.now },
