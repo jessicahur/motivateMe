@@ -11,15 +11,15 @@ export default function(angularModule) {
               'singleProjectView': '=',
               'comments': '='
             },
-            controller: function($scope, $auth) {
-              //Hide-show comment textarea depending on auth
+            controller: ['$scope', '$auth', 'ProgressService', function($scope, $auth, ProgressService) {
+
               if ($auth.isAuthenticated()) {
                 $scope.authed = true;
               }
               else {
                 $scope.authed = false;
-              }
-
+              };
+              $scope.progress = ProgressService.query();
               //To return to public feed
               $scope.returnToFeed = function(){
                         $scope.singleProjectView = null;
@@ -28,7 +28,7 @@ export default function(angularModule) {
 
 
 
-             }
+            }]
         }
 
         })

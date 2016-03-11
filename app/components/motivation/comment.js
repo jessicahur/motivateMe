@@ -19,7 +19,7 @@ export default function(angularModule) {
               votes.downs = $scope.comment.votes.downs;
               $scope.ups = votes.ups.length;
               $scope.downs = votes.downs.length;
-
+              $scope.progOn = $scope.comment.progress;
               function updateVote(str) {
                 if (str === 'ups') {
                   var notStr = 'downs';
