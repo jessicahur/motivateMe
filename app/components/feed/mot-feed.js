@@ -21,6 +21,7 @@ export default function(angularModule) {
                         $scope.singleProjectView = project;
                         FeedService.query({'id':project._id}, res => {
                                   $scope.comments = res;
+                                  console.log($scope.comments);
                                  });
                         $scope.singleProjectView.time = project.time.substring(0,10);
                         //For milestone progress bar:
