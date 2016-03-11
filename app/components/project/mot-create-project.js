@@ -24,7 +24,6 @@ export default function(angularModule) {
 
                     return diff;
                 }
-
                 /////
 
 
@@ -32,7 +31,7 @@ export default function(angularModule) {
               $scope.post = function() {
 
                 $scope.project.author = $window.localStorage.getItem('userId');
-
+                
 
                 var promises = [];
 
