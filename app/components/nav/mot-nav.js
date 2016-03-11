@@ -10,7 +10,6 @@ export default function(angularModule) {
                     template: motNav,
                     controller: ['$scope', 'viewService', '$auth', function($scope, viewService, $auth) {
                           $scope.view = viewService;
-                          $scope.logout = $auth.isAuthenticated();
                         }]
                     }
             });
