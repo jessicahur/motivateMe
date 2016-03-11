@@ -18,13 +18,12 @@ export default function(angularModule) {
                 function( $scope, FeedService, ProgressService ){
                     $scope.projects = FeedService.query();
                     $scope.projectView = function(project){
-                        $scope.singleProjectView = project;
-                        FeedService.query({id: project._id})
-                                   .$promise
-                                   .then(res => {
-                                        $scope.comments = res;
-                                   });
-                        $scope.singleProjectView.time = project.time.substring(0,10);
+                      $scope.singleProjectView = project;
+                      FeedService.query({'id':project._id}, res => {
+                                  $scope.comments = res;
+                                  console.log('HEREEE', $scope.comments.length);
+                                 })
+                      $scope.singleProjectView.time = project.time.substring(0,10);
                     }
 
 

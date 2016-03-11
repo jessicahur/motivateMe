@@ -29,9 +29,7 @@ export default function(angularModule) {
 
                 var progresses = $scope.project.progress.split(', ');
 
-
-                  console.log($scope.project.completion, 'xxxxxx');
-                  var completion = $scope.project.completion;
+                var completion = $scope.project.completion;
 
                 Promise.all(
                   progresses.map( progress => {

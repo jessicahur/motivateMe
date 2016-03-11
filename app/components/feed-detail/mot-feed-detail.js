@@ -22,7 +22,6 @@ export default function(angularModule) {
                 $scope.commentOn = prog;
                 $scope.commentProgId = id;
               }
-              console.log($scope.singleProjectView);
               // $scope.comments = $scope.singleProjectView.query();
             }]
         }

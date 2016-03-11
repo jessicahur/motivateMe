@@ -20,14 +20,17 @@ export default function(angularModule) {
                 $scope.comment.votes.downs = [];
               }
               createComment();
-              $scope.post = function (prog) {
+              $scope.post = function () {
                 $scope.comment.votes.$save(savedVote => {
                   $scope.comment.progress = $scope.commentProgId;
+                  console.log('Progress',$scope.comment.progress);
                   $scope.comment.votes = savedVote._id;
-                  $scope.comment.project = $scope.projectId;
+                  $scope.comment.project = $scope.singleProjectView._id;
+                  console.log($scope.singleProjectView);
+                  console.log('project id', $scope.projectId);
                   $scope.comment.author = $window.localStorage.getItem('userId');
                   $scope.comment.$save(savedCmt => {
-                    console.log(savedCmt);
+                    console.log('saved commt',savedCmt);
                     $scope.comments.push(savedCmt);
                   });
                   createComment();
