@@ -9,10 +9,15 @@ export default function(angularModule) {
             restrict: 'E',
             template: commentsTemplate,
             controller: function($auth, $scope, $location, $window, CommentService, VoteService, ProgressService) {
-              // $scope.selectProg = function(prog, id) {
-              //   $scope.commentOn = prog;
-              //   $scope.commentProgId = id;
-              // }
+              function compare(A, B) {
+                  if (A.time > B.time) {
+                      return -1;
+                  }
+                  else if (A.time < B.time) {
+                      return 1;
+                  }
+                  return 0;
+              };
               function createComment() {
                 $scope.comment = new CommentService();
                 $scope.comment.votes = new VoteService();
@@ -28,6 +33,7 @@ export default function(angularModule) {
                   $scope.comment.author = $window.localStorage.getItem('userId');
                   $scope.comment.$save(savedCmt => {
                     $scope.comments.push(savedCmt);
+                    $scope.comments.sort(compare);
                   });
                   createComment();
                 });
