@@ -78,12 +78,22 @@
 /* Projects View
   ------------------------------ */
 .project-container {
-    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+ margin-left: 0 auto;
     width: 100%;
-    max-width: 760px;
+//  max-width: 760px;
+}
+.projectHack {
+  display: inline-block;
 }
 .projects {
-    margin: 1rem auto;
+max-width: 400px;
+    margin: 1px; // 1rem; // auto;
+padding:0;
+display:inline-block;
     border: 1px solid #ddd;
     border-radius: 1px;
 }
@@ -95,11 +105,14 @@
     margin-top: 2rem;
 }
 .img-wrap {
+max-width: 400px;
+margin:0;
     position: relative;
     height: 180px;
     overflow: hidden;
 }
 .project-img {
+ max-width: 400px;
     width: 100%;
     padding: 0 1rem;
     margin: 0 auto;

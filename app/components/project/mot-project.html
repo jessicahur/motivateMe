@@ -1,30 +1,30 @@
-<div class="projects-container">
-        <div class="projects"
-             ng-repeat="project in projects | orderBy: '-project.time': true">
-            <aside class="project-meta">
-                <img class="project-avatar" src={{userData.picture}}></img>
-                <div class="project-info">
-                    <p><a href="" class="author-name">{{userData.displayName}}</a></p>
-                    <p>Created on
-                        <strong>{{project.time}}</strong></p>
-                    <p>Completing on
-                        <strong>{{project.completion}}</strong></p>
-                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  Days remaining </p>
-
-                </p>
-                </div>
-            </aside>
-            <div class="img-wrap">
-            <img class="project-img" src="{{project.img}}"></img>
-            </div>
+<div class="project-container">
+    <div class="projects"
+         ng-repeat="project in projects | orderBy: '-project.time': true">
+        <aside class="project-meta">
+            <img class="project-avatar" src={{userData.picture}}></img>
             <div class="project-info">
-                <a ui-sref="project({id: project._id})" ng-click="edit(true)">
-                    <h3>{{project.name}}</h3>
-                </a>
-                  <p class="project-description">{{project.description}}</p>
-                  <p class="milestones">Milestones</p>
-                  <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
+                <p><a href="" class="author-name">{{userData.displayName}}</a></p>
+                <p>Created on
+                    <strong>{{project.time}}</strong></p>
+                <p>Completing on
+                    <strong>{{project.completion}}</strong></p>
+                <p><strong>{{ remaining(project.time, project.completion) }} </strong>  Days remaining </p>
+
+            </p>
             </div>
+        </aside>
+        <div class="img-wrap">
+        <img class="project-img" src="{{project.img}}"></img>
         </div>
+        <div class="project-info">
+            <a ui-sref="project({id: project._id})" ng-click="edit(true)">
+                <h3>{{project.name}}</h3>
+            </a>
+              <p class="project-description">{{project.description}}</p>
+              <p class="milestones">Milestones</p>
+              <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
+        </div>
+    </div>
     <div ui-view></div>
 </div>
