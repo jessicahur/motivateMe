@@ -1,44 +1,26 @@
 <div class="projects-container">
     <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
     <form>
-        <label>Project Name</label>
+        <label>Name</label>
         <input name="projectName" ng-model="project.name" required type="text"></input>
-        <br />
-        <br>
-        <label>Project Milestones (comma separated)</label>
-        <p> {{project.progress}} </p>
+        <label>Description</label>
+        <input name="projectDescription" ng-model="project.description" required type="text"></input>
+        <label>Milestones (comma separated)</label>
         <input name="projectMilestones" ng-model="project.progress" required type="text"></input>
-        <br/>
-        <br>
-        <label>I will finish this by:</label>
-        <pre>
-            <em>{{dt | date:'fullDate' }}</em>
-        </pre>
-        <br>
-        <label>which is
-            <span class="biglength"> {{ difference(dt) }} days </span> from now.</label>
-        <br>
-        <br>
-        <div style="display:inline-block; min-height:290px;">
+        <label>Project Header (img url)</label>
+        <input name="projectHeader" ng-model="project.img" required type="text"></input>
+        <div>
 
             <!-- <fieldset data-ng-repeat="item in progress track by $index">
-           <input type="text" ng-model="progress" placeholder="Milestone"></input>
+
            <button ng-show="$last" ng-click="removeMilestone()"><span class="glyphicon glyphicon-remove"><span></button>
         </fieldset>
         <button ng-click="addMilestone()">New</button> -->
-
-            <br>
-            <br>
-            <label>Select Your Completion Date</label>
-            <label>Description</label>
-            <input name="projectMilestones" ng-model="project.description" required type="text"></input>
             <div>Finishing by: {{dt | date:'fullDate' }}
-                <span class="biglength"> {{ difference(dt) }} days </span> from now.</div>
+            <span class="biglength"> {{ difference(dt) }} days </span> from now.</div>
             <label>Select Your Completion Date</label>
             <uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="inlineOptions" ng-click="difference(dt)"></uib-datepicker>
         </div>
-        <br>
-        <br>
         <button ng-click="post()" type='submit'>Start This Project</button>
     </form>
 </div>
