@@ -6,8 +6,12 @@
                 <div class="project-info">
                     <p><a href="" class="author-name">{{userData.displayName}}</a></p>
                     <p>Created on
-                        <strong>{{project.time}}</strong>
-                    </p>
+                        <strong>{{project.time}}</strong></p>
+                    <p>Completing on
+                        <strong>{{project.completion}}</strong></p>
+                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  Days Remaining Until Project Success </p>
+
+                </p>
                 </div>
             </aside>
             <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
@@ -18,7 +22,6 @@
                   <p class="project-description">{{project.description}}</p>
                   <p class="milestones">Milestones</p>
                   <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
-
                    <p>Days remaining {{ diff }} </p>
                    <p>Percent of Time Used {{percentTime}} </p>
             </div>

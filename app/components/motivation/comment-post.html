@@ -1,15 +1,15 @@
 <div ng-show="authed" class="comments">
     <div class="comment-wrap">
-        <!-- <img class="project-avatar" src="{{project.author.picture}}"></img> -->
+        <img class="project-avatar" src="{{project.author.picture}}"></img>
         <div class="comment-block">
-          <div ng-repeat="item in progress">
-            <button class="milestone-button" ng-click="selectProg(item.content, item._id)">{{item.content}}</button>
-          </div>
-          <div class="comment-motivation">Posting a motivation for: {{commentOn}}</div>
+          <!-- <div ng-repeat="item in progress"> -->
+            <!-- <button ng-click="selectProg(item.content, item._id)">{{item.content}}</button> -->
+       <!--    </div> -->
+          <div>Posting a motivation for: {{commentOn}}</div>
             <form>
                 <textarea ng-model="comment.content" name="" id="" cols="30" rows="3" placeholder="Add comment..."></textarea>
             </form>
-            <button ng-click="post(progress)" type='submit'>ADD</button>
+            <button ng-click="post()" type='submit'>ADD</button>
         </div>
     </div>
 </div>

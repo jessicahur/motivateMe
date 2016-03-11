@@ -13,7 +13,17 @@ export default function(angularModule) {
                     $scope.view = viewService;
                     $scope.project = new ProjectService();
 
-                    // 
+                    $scope.difference = function(datetime) {
+                        datetime = Date.parse(datetime);
+                        var now = new Date();
+                        var diff = Math.floor(1 + (datetime - now) / 86400000);
+
+                        $scope.project.completion = datetime;
+
+                        return diff;
+                    }
+
+                    //
                     // $scope.project.progress = [];
                     //
                     // $scope.addMilestone = function() {
@@ -25,30 +35,13 @@ export default function(angularModule) {
                     //     $scope.choices.splice(lastItem);
                     // };
 
-                    $scope.difference = function(datetime) {
-                            datetime = Date.parse(datetime);
-                            var now = new Date();
-                            var diff = Math.floor(1 + (datetime - now) / 86400000);
-
-                            $scope.project.completion = datetime;
-
-                            return diff;
-                        }
-                        /////
-
-
 
                     $scope.post = function() {
 
                             $scope.project.author = $window.localStorage.getItem('userId');
 
-
-                            var promises = [];
-
                             var progresses = $scope.project.progress.split(', ');
 
-
-                            console.log($scope.project.completion, 'xxxxxx');
                             var completion = $scope.project.completion;
 
                             Promise.all(
@@ -64,6 +57,8 @@ export default function(angularModule) {
                                     });
                                     $scope.project.$save(res => {
                                         $scope.savedProject = res;
+                                        $scope.projects.push(res);
+                                        $scope.project = new ProjectService();
                                     });
                                 })
                                 .catch(err => {
