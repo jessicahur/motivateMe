@@ -12,6 +12,25 @@ export default function(angularModule) {
             controller: ['$scope', 'ProjectService', '$window', 'viewService', 'ProgressService', function($scope, ProjectService, $window, viewService, ProgressService) {
               $scope.view = viewService;
               $scope.project = new ProjectService();
+
+                ////testing
+
+                $scope.difference = function(datetime){
+
+                    //$scope.datetime= datetime;
+                    //console.log (datetime, 'xxxxx');
+                    datetime = Date.parse(datetime);
+                    //console.log (datetime, 'zzzz');
+                    var now = new Date();
+                    var diff =  Math.floor( ( datetime - now ) / 86400000);
+                    //console.log ( datetime - now );
+                    //console.log ( diff );
+                    return diff;
+                }
+
+                /////
+
+
               $scope.post = function() {
 
                 $scope.project.author = $window.localStorage.getItem('userId');
