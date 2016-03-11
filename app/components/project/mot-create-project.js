@@ -27,14 +27,13 @@ export default function(angularModule) {
                     //console.log ( diff );
                     return diff;
                 }
-
                 /////
 
 
               $scope.post = function() {
 
                 $scope.project.author = $window.localStorage.getItem('userId');
-
+                
 
                 var promises = [];
 
