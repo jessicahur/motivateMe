@@ -13,6 +13,10 @@
               <h3>{{singleProjectView.name}}</h3>
           </a>
             <p class="project-description">{{project.description}}</p>
+            <div>
+              Progress
+              <uib-progressbar class="progress-striped active" max="max" value="value" type="danger"><i style="color:blue;">{{value}}/{{max}}</i></uib-progressbar>
+            </div>
             <p class="milestones">Milestones</p>
             <p class="project-progress" ng-repeat="progress in singleProjectView.progress">
               <span class="glyphicon glyphicon-flag"></span>
@@ -20,8 +24,8 @@
             </p>
       </div>
       <div class="project-comments">
-      <comments></comments>
       <comment-post ></comment-post>
+      <comments></comments>
       </div>
       <a ng-click="returnToFeed()"><span class="glyphicon glyphicon-arrow-left"></span>Feed</a>
   </div>
