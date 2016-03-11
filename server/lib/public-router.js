@@ -19,11 +19,12 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   Comments.find({'project': req.params.id})
           .populate('author votes')
-           .lean()
+          .lean()
           .exec((err, comments) => {
             if(err) {
               return res.status(500).send(err);
             }
+            console.log(comments);
             res.send(comments);
           });
 });

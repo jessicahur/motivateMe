@@ -7,10 +7,6 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: commentTemplate,
-            scope: {
-              'comment': '=',
-              'authed': '='
-            },
             controller: function($scope, $window, VoteService) {
               var userId = $window.localStorage.getItem('userId');
               var votes = new VoteService();

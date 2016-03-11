@@ -7,27 +7,23 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motFeedDetail,
-            scope: {
-              'singleProjectView': '=',
-              'comments': '='
-            },
-            controller: ['$scope', '$auth', 'ProgressService', function($scope, $auth, ProgressService) {
-
+            controller: ['$scope', '$auth', 'ProgressService', 'CommentService', function($scope, $auth, ProgressService, CommentService) {
               if ($auth.isAuthenticated()) {
                 $scope.authed = true;
               }
               else {
                 $scope.authed = false;
               };
-              $scope.progress = ProgressService.query();
               //To return to public feed
               $scope.returnToFeed = function(){
-                        $scope.singleProjectView = null;
+                $scope.singleProjectView = null;
               }
-
-
-
-
+              $scope.selectProg = function(prog, id) {
+                $scope.commentOn = prog;
+                $scope.commentProgId = id;
+              }
+              console.log($scope.singleProjectView);
+              // $scope.comments = $scope.singleProjectView.query();
             }]
         }
 

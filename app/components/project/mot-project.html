@@ -18,8 +18,8 @@
                   <p class="project-description">{{project.description}}</p>
                   <p class="milestones">Milestones</p>
                   <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
-
-                   <p>Days remaining {{ diff }}</p>
+                   <p>Days remaining {{ diff }} </p>
+                   <p>Percent of Time Used {{percentTime}} </p>
             </div>
         </div>
     <div ui-view></div>

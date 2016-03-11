@@ -8,17 +8,11 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: commentsTemplate,
-            scope: {
-              'authed': '=',
-              'projectId': '=',
-              'comments': '='
-            },
             controller: function($auth, $scope, $location, $window, CommentService, VoteService, ProgressService) {
-              $scope.progress = ProgressService.query();
-              $scope.selectProg = function(prog, id) {
-                $scope.commentOn = prog;
-                $scope.commentProgId = id;
-              }
+              // $scope.selectProg = function(prog, id) {
+              //   $scope.commentOn = prog;
+              //   $scope.commentProgId = id;
+              // }
               function createComment() {
                 $scope.comment = new CommentService();
                 $scope.comment.votes = new VoteService();

@@ -1,11 +1,9 @@
 <section>
   <banner></banner>
-    <feed-detail ng-show="singleProjectView"
-                 single-project-view="singleProjectView"
-                 comments="comments"></feed-detail>
+    <feed-detail ng-show="singleProjectView"></feed-detail>
 
     <div class="project-container" ng-hide="singleProjectView"
-         ng-repeat="project in projects | orderBy: '-project.time':true">
+         ng-repeat="project in projects">
 
         <div class="projects">
             <aside class="project-meta">
@@ -20,11 +18,6 @@
             <img class="project-img" src="http://dealjumbo.com/wp-content/uploads/p451.jpg"></img>
 
             <div class="project-info">
-
-
-                <!--{{singleProjectView.time}}singleProjectView.time-->
-
-
                 <a ng-click="projectView( project)">
                     <h3>{{project.name}}</h3>
                 </a>

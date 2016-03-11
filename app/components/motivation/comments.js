@@ -6,11 +6,7 @@ export default function(angularModule) {
         return {
             replace: true,
             restrict: 'E',
-            template: commentsTemplate,
-            scope: {
-              'comments': '=',
-              'authed': '='
-            }
+            template: commentsTemplate
         }
 
     });
