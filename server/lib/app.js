@@ -48,11 +48,11 @@ restify.serve(progressRouter, Progress, {name: 'progresses'});
 
 app.use('/projects', publicRouter);
 app.use('/auth', userAuthRouter);
-app.use( commentRouter);
-app.use( projectRouter);
-app.use( userRouter);
-app.use( voteRouter);
-app.use( progressRouter);
+app.use( ensureAuthenticated, commentRouter);
+app.use( ensureAuthenticated, projectRouter);
+app.use( ensureAuthenticated, userRouter);
+app.use( ensureAuthenticated, voteRouter);
+app.use( ensureAuthenticated, progressRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
