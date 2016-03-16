@@ -8,9 +8,9 @@ export default function(angularModule) {
                     replace: true,
                     restrict: 'E',
                     template: userTemplate,
-                    scope: {
-                      logout: '='
-                    }
+                    // scope: {
+                    //   logout: '='
+                    // }
                   }
             });
 }

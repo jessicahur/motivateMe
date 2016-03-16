@@ -5,12 +5,18 @@ export default function(angularModule) {
                   replace: true,
                   restrict: 'E',
                   template: motNav,
-                  scope: {
-                    logout: '='
-                  },
+                  // scope: {
+                  //   logout: '='
+                  // },
                   controller: ['$scope', 'viewService', '$auth', function($scope, viewService, $auth) {
                         $scope.view = viewService;
                         console.log('At Nav', $scope.logout);
+                          $scope.signIn = function() {
+                            $scope.needSignIn = true;
+                          };
+                          $scope.noSignIn = function() {
+                            $scope.needSignIn = false;
+                          }
                       }]
                   }
           });

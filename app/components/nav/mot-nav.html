@@ -16,10 +16,10 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="profile">Profile</a></li>
-                    <li><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="feed">Feed</a></li>
+                    <li><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="profile" ng-show="logout">Profile</a></li>
+                    <li><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="feed" ng-click="noSignIn()">Feed</a></li>
                     <!-- ng-show="view.name === 'banner'" -->
-                    <li ng-hide="logout"><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ui-sref="user">Signin / Signup</a></li>
+                    <li ng-show="!logout"><a data-toggle="collapse" data-target=".navbar-collapse" class="navLink" ng-click="signIn()">Signin / Signup</a></li>
                     <li ng-show="logout">
                         <logout data-toggle="collapse" data-target=".navbar-collapse" class="navLink"></logout>
                     </li>

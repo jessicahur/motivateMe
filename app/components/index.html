@@ -8,8 +8,9 @@
 </head>
 <body>
   <div ng-controller="AppController">
-      <mot-nav logout="logout"></mot-nav>
-      <div ui-view logout="logout"></div>
+      <mot-nav ></mot-nav>
+      <user ng-show="needSignIn"></user>
+      <div ui-view ng-show="!needSignIn"></div>
       <!-- <div ui-view="create" ng-show="user.active"></div>
       <div ui-view="login" ng-hide="view.name === 'signup'"></div>
       <div ui-view="signup" ng-show="view.name === 'signup'"></div> -->

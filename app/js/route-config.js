@@ -29,13 +29,13 @@ export default function(angularModule) {
                 data: {
                     requireAuth: true
                 }
-            })
-            .state('user', {
-                url: '/user',
-                template: '<user></user>',
-                data: {
-                    requireAuth: false
-                }
-            })
+            });
+            // .state('user', {
+            //     url: '/user',
+            //     template: '<user></user>',
+            //     data: {
+            //         requireAuth: false
+            //     }
+            // })
     }]);
 }

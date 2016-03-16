@@ -9,9 +9,9 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motSignup,
-            scope: {
-                logout: '='
-            },
+            // scope: {
+            //     logout: '='
+            // },
             controller: ['$scope','$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
                 console.log('At Signup', $scope.logout);
                 $scope.signupUser = function() {
@@ -21,6 +21,7 @@ export default function(angularModule) {
                             $auth.setToken(response);
                             toastr.info('You are now registered, thank!');
                             $scope.logout = $auth.isAuthenticated();
+                            $scope.needSignIn = false;
                             $location.path('/');
                         })
                         .catch(function(response) {
