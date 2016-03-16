@@ -8,6 +8,6 @@ export default function(angularModule) {
             restrict: 'E',
             template: commentsTemplate
         }
-
+//All comments are loaded in mot-feed since it's where we know what project the user selected
     });
 }

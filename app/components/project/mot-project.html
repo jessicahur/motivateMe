@@ -21,12 +21,14 @@
             <img class="project-img" src="{{project.img}}"></img>
             </div>
             <div class="project-info">
+                <h3>{{project.name}}</h3>
                 <a ui-sref="project({id: project._id})" ng-click="edit(true)">
-                    <h3>{{project.name}}</h3>
+                    Edit Project
                 </a>
-                  <p class="project-description">{{project.description}}</p>
-                  <p class="milestones">Milestones</p>
-                  <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag"></span> {{progress.content}}</p>
+                <h4>Description</h4>
+                <p class="project-description">{{project.description}}</p>
+                <h4 class="milestones">Milestones</h4>
+                <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag {{progress.done}}"></span> {{progress.content}}</p>
             </div>
         </div>
     <div ui-view></div>

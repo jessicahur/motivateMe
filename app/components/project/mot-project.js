@@ -16,21 +16,20 @@ export default function(angularModule) {
                     _id: userId
                 }).$promise.then((data) => {
                     $scope.projects = data;
-                    console.log ( $scope.projects );
-                })
+                    $scope.projects.map(project => {
+                        project.time = project.time.substring(0,10);
+                        project.completion = project.completion.substring(0,10);
+                    });
+                });
 
-                $scope.can = false;
+                // $scope.can = false;
 
-                $scope.edit = function(x) {
-                    $scope.can = x;
-                    $scope.time = project.time.substring(0,10);
-                    //$scope.time = project.time;
-                };
+                // $scope.edit = function(x) {
+                //     $scope.can = x;
+                // };
 
                 $scope.remaining = function(time, completion){
-                    console.log(Date.parse(time), Date.parse(completion) );
                     var remains = Math.floor((1+ Date.parse(completion) - Date.now()  )/86400000);
-                    console.log(remains, ' is remains');
                     return remains;
                 }
 
