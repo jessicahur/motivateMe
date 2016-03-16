@@ -19,15 +19,14 @@ export default function(angularModule) {
                     $scope.projects.map(project => {
                         project.time = project.time.substring(0,10);
                         project.completion = project.completion.substring(0,10);
-                    })
-                })
+                    });
+                });
 
-                $scope.can = false;
+                // $scope.can = false;
 
-                $scope.edit = function(x) {
-                    $scope.can = x;
-
-                };
+                // $scope.edit = function(x) {
+                //     $scope.can = x;
+                // };
 
                 $scope.remaining = function(time, completion){
                     var remains = Math.floor((1+ Date.parse(completion) - Date.now()  )/86400000);
