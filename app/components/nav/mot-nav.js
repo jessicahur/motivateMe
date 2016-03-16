@@ -10,7 +10,6 @@ export default function(angularModule) {
                   // },
                   controller: ['$scope', 'viewService', '$auth', function($scope, viewService, $auth) {
                         $scope.view = viewService;
-                        console.log('At Nav', $scope.logout);
                           $scope.signIn = function() {
                             $scope.needSignIn = true;
                           };

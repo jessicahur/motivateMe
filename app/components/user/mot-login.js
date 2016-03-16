@@ -13,14 +13,12 @@ export default function(angularModule) {
           //   logout: '='
           // },
           controller: ['$scope', '$rootScope', '$location', '$auth', 'toastr', function($scope, $rootScope, $location, $auth, toastr) {
-              console.log('At login', $scope.logout);
               $scope.login = function(user) {
                       $auth.login($scope.user)
                           .then(function(name) {
                               window.localStorage.setItem('userId', name.data.userId);
                               toastr.success('Your signed in!');
                               $scope.logout = $auth.isAuthenticated();
-                              console.log('after sign in', $scope.logout);
                               $scope.needSignIn = false;
                               $location.path('/');
                               // $location.path(`/${$rootScope.previousState}`);
@@ -36,9 +34,8 @@ export default function(angularModule) {
                           toastr.success(`You are now signed in with ${provider}, thanks!`);
                           $scope.logout = $auth.isAuthenticated();
                           $scope.needSignIn = false;
-                          $location.path('/');
-                          // $location.path(`/${$rootScope.previousState}`);
-                          console.log('At authenticare', $scope.logout);
+                          // $location.path('/');
+                          $location.path(`/${$rootScope.previousState}`);
                       })
                       .catch(function(error) {
                           if (error.error) {
