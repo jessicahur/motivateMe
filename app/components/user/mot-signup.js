@@ -9,6 +9,9 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motSignup,
+            // scope: {
+            //     logout: '='
+            // },
             controller: ['$scope','$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
                 $scope.signupUser = function() {
                     $auth.signup($scope.user)
@@ -16,7 +19,11 @@ export default function(angularModule) {
                             window.localStorage.setItem('userId', response.data.userId);
                             $auth.setToken(response);
                             toastr.info('You are now registered, thank!');
+                            $scope.logout = $auth.isAuthenticated();
+                            $scope.needSignIn = false;
+                            $scope.authed = true;
                             $location.path('/');
+                            // $location.path(`/${$rootScope.previousState}`);
                         })
                         .catch(function(response) {
                           toastr.error(response.data.message);

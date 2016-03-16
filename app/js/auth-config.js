@@ -18,7 +18,7 @@ function runAuth($rootScope, ngDialog, $state, $auth) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
         if (toState.data && toState.data.requireAuth && !$auth.isAuthenticated()) {
             event.preventDefault();
-            $state.transitionTo('user');
+            $state.transitionTo('feed');
         }
     });
 }

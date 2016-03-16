@@ -28,6 +28,10 @@ export default function(angularModule) {
                     FeedService.query( res => {
                         $scope.projects = res;
                         $scope.projects.sort(compare);
+                        $scope.projects.map(project => {
+                            project.time = project.time.substring(0,10);
+                            project.completion = project.completion.substring(0,10);
+                        })
                     });
                     $scope.projectView = function(project){
                         $scope.singleProjectView = project;

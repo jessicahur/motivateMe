@@ -5,6 +5,7 @@ import feedDetailDr from './feed-detail/mot-feed-detail.js';
 import loginDr from './user/mot-login';
 import logoutDr from './user/mot-logout';
 import signupDr from './user/mot-signup';
+import userDr from './user/user';
 import createProjectDr from './project/mot-create-project';
 import projectDr from './project/mot-project';
 import projectDetDr from './project/project-detail';
@@ -25,6 +26,7 @@ export default function(angularModule) {
 	loginDr(angularModule);
 	logoutDr(angularModule);
 	signupDr(angularModule);
+	userDr(angularModule);
 	//Public Feed Directives
 	feedDr(angularModule);
 	feedDetailDr( angularModule );
