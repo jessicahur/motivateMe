@@ -6,7 +6,8 @@ export default function(angularModule) {
             restrict: 'E',
             template: motLogout,
             controller: ['$scope', '$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
-                $scope.logout = function() {
+                console.log('At mot-logout', $scope.logout);
+                $scope.Userlogout = function() {
                     $auth.logout()
                         .then(function() {
                             toastr.info('You are logged out!');

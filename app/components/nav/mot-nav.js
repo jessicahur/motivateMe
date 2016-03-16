@@ -1,16 +1,17 @@
 import motNav from './mot-nav.html';
 export default function(angularModule) {
-    /**
-     * Controller:
-     */
-    angularModule.directive('motNav', function() {
-                return {
-                    replace: true,
-                    restrict: 'E',
-                    template: motNav,
-                    controller: ['$scope', 'viewService', '$auth', function($scope, viewService, $auth) {
-                          $scope.view = viewService;
-                        }]
-                    }
-            });
+  angularModule.directive('motNav', function() {
+              return {
+                  replace: true,
+                  restrict: 'E',
+                  template: motNav,
+                  scope: {
+                    logout: '='
+                  },
+                  controller: ['$scope', 'viewService', '$auth', function($scope, viewService, $auth) {
+                        $scope.view = viewService;
+                        console.log('At Nav', $scope.logout);
+                      }]
+                  }
+          });
 }

@@ -9,13 +9,20 @@ export default function(angularModule) {
           replace: true,
           restrict: 'E',
           template: motLogin,
+          scope: {
+            logout: '='
+          },
           controller: ['$scope', '$rootScope', '$location', '$auth', 'toastr', function($scope, $rootScope, $location, $auth, toastr) {
+              console.log('At login', $scope.logout);
               $scope.login = function(user) {
                       $auth.login($scope.user)
                           .then(function(name) {
                               window.localStorage.setItem('userId', name.data.userId);
                               toastr.success('Your signed in!');
-                              $location.path(`/${$rootScope.previousState}`);
+                              $scope.logout = $auth.isAuthenticated();
+                              console.log('after sign in', $scope.logout);
+                              $location.path('/');
+                              // $location.path(`/${$rootScope.previousState}`);
                           })
                           .catch(function(error) {
                               toastr.error(error.data.message, error.status);
@@ -26,7 +33,10 @@ export default function(angularModule) {
                       .then(function(name) {
                           window.localStorage.setItem('userId', name.data.userId);
                           toastr.success(`You are now signed in with ${provider}, thanks!`);
-                          $location.path(`/${$rootScope.previousState}`);
+                          $scope.logout = $auth.isAuthenticated();
+                          $location.path('/');
+                          // $location.path(`/${$rootScope.previousState}`);
+                          console.log('At authenticare', $scope.logout);
                       })
                       .catch(function(error) {
                           if (error.error) {

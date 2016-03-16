@@ -9,13 +9,18 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motSignup,
+            scope: {
+                logout: '='
+            },
             controller: ['$scope','$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
+                console.log('At Signup', $scope.logout);
                 $scope.signupUser = function() {
                     $auth.signup($scope.user)
                         .then(function(response) {
                             window.localStorage.setItem('userId', response.data.userId);
                             $auth.setToken(response);
                             toastr.info('You are now registered, thank!');
+                            $scope.logout = $auth.isAuthenticated();
                             $location.path('/');
                         })
                         .catch(function(response) {
