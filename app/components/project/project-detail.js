@@ -5,7 +5,7 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: projDetail,
-            controller: ['$scope', 'ProjectService', '$stateParams', 'ProgressService','$window', function($scope, ProjectService, $stateParams, ProgressService, $window) {
+            controller: ['$scope', 'ProjectService', '$stateParams', 'ProgressService','$window', '$location', function($scope, ProjectService, $stateParams, ProgressService, $window, $location) {
                 $scope.project = {};
                 var param = {
                       id: $stateParams.id
@@ -25,7 +25,9 @@ export default function(angularModule) {
                     ).then(savedProgress => {
                         project.$save(savedProject => {
                             // console.log(savedProject);
-                            $scope.message = `Changes saved!`;
+                            // $scope.message = `Changes saved!`;
+                            $location.path('/profile');
+
                         });
                     }).catch(err => {
                         $scope.message = `Changes failed to save. Please try again later.`;

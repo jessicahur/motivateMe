@@ -7,7 +7,7 @@
 
         <div class="projects">
             <aside class="project-meta">
-                <img class="project-avatar" src={{project.author.picture}}></img>
+                <!-- <img class="project-avatar" src={{project.author.picture}}></img> -->
                 <div class="project-info">
                     <p><a href="{{project.url}}" class="author-name">{{project.author.displayName}}</a></p>
 
@@ -39,7 +39,6 @@
                 <h4>Milestones</h4>
                 <p class="project-progress" ng-repeat="progress in project.progress">
                     <span class="glyphicon glyphicon-flag {{progress.done}}"></span>{{progress.content}}</p>
-                    <p><a href="{{project.url}}" class="author-name">View more...</a></p>
             </div>
         </div>
     </div>

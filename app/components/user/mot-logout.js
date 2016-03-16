@@ -5,13 +5,15 @@ export default function(angularModule) {
             replace: true,
             restrict: 'E',
             template: motLogout,
-            controller: ['$scope', '$location', '$auth', 'toastr', function($scope, $location, $auth, toastr) {
-                $scope.logout = function() {
+            controller: ['$scope', '$location', '$auth', 'toastr', '$window', function($scope, $location, $auth, toastr, $window) {
+                $scope.Userlogout = function() {
                     $auth.logout()
                         .then(function() {
-                            toastr.info('You are logged out!');
+                            // toastr.info('You are logged out!');
                             $scope.logout = $auth.isAuthenticated();
-                            $location.path('/');
+                            $scope.authed = false;
+                            // $location.path('/');
+                            $window.location = '/';
                         })
                         .catch(function(error) {
                             if (error.error) {

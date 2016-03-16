@@ -9,7 +9,7 @@ export default function(angularModule) {
                 replace: true,
                 restrict: 'E',
                 template: motCreateProject,
-                controller: ['$scope', 'ProjectService', '$window', 'viewService', 'ProgressService', function($scope, ProjectService, $window, viewService, ProgressService) {
+                controller: ['$scope', 'ProjectService', '$window', 'viewService', 'ProgressService', '$location', function($scope, ProjectService, $window, viewService, ProgressService, $location) {
 
                             $scope.progresses = [];
                             $scope.addNewChoice = function() {
