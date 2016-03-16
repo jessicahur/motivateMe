@@ -1,14 +1,12 @@
 export default function( angularModule ) {
 
-    ngModule.provider( projectsService', function (  ) {
-        var url = 'http://localhost:3000';
+    ngModule.provider( projectsService, function (  ) {
+            //var url = 'http://localhost:3000';
+            var url = BASE_URL;
 
         this.setUrl = function( setUrl ) {
             url = setUrl;
         };
-
-        //this.successCallback= function(){console.log('success');};
-        //this.errorCallback = function(){console.log('that did not work');};
 
         this.$get = function ( $http ) {
 
@@ -35,4 +33,3 @@ export default function( angularModule ) {
         };
     });
 }
-

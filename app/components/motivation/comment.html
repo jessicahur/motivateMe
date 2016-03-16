@@ -1,0 +1,22 @@
+<div ng-show="authed">
+    <div class="comment-wrap">
+        <div class="comment-block">
+            <div class="project-info">
+                <!-- <img class="project-avatar" src="{{comment.author.picture}}"></img> -->
+                <p><a href="" class="author-name">{{comment.author.displayName}}</a></p>
+                <div class="comment-date">posted this for the motivation: {{progOn.content}}</div>
+            </div>
+            <br>
+            <br>
+            <p class="comment-text">{{comment.content}}</p>
+            <button type="button" id="testBtn" data-loading-text=" ... " ng-show="authed" ng-click="vote('up')">
+                <span class="glyphicon glyphicon-thumbs-up">
+                  {{ups}}
+                </button>
+            <button type="button" id="testBtnDown" data-loading-text=" ... " ng-show="authed" ng-click="vote('down')">
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                {{downs}}
+              </button>
+        </div>
+    </div>
+</div>

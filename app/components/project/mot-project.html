@@ -1,8 +1,35 @@
-<div>
-<img heigh="100px" width="100px" src={{userData.picture}}></img>
-<h4>{{userData.displayName}}</h4>
-<h4>Projects:</h4>
-<div ng-repeat="project in projects">
-  <li ng-repeat="progress in project.progress">{{progress}}</li>
-</div>
+<div class="projects-container">
+        <div class="projects"
+             ng-repeat="project in projects | orderBy: '-project.time': true">
+            <aside class="project-meta">
+                <!-- <img class="project-avatar" src={{userData.picture}}></img> -->
+
+
+                <div class="project-info">
+                    <p><a href="" class="author-name">{{userData.displayName}}</a></p>
+                    <p>Created on
+                        <strong>{{project.time}}</strong></p>
+                    <p>Completing on
+                        <strong>{{project.completion}}</strong></p>
+                    <p><strong>{{ remaining(project.time, project.completion) }} </strong>  days remaining </p>
+                    <p>{{percentTimeUsed(project.time, project.completion) }} percent of available time used.</p>
+
+                </p>
+                </div>
+            </aside>
+            <div class="img-wrap">
+            <img class="project-img" src="{{project.img}}"></img>
+            </div>
+            <div class="project-info">
+                <h3>{{project.name}}</h3>
+                <a ui-sref="project({id: project._id})" ng-click="edit(true)">
+                    Edit Project
+                </a>
+                <h4>Description</h4>
+                <p class="project-description">{{project.description}}</p>
+                <h4 class="milestones">Milestones</h4>
+                <p class="project-progress" ng-repeat="progress in project.progress"><span class="glyphicon glyphicon-flag {{progress.done}}"></span> {{progress.content}}</p>
+            </div>
+        </div>
+    <div ui-view></div>
 </div>

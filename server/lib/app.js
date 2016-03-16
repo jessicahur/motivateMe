@@ -1,9 +1,11 @@
 //Mongoose
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
-const User    = require('../models/User');
+const User    = require('../models/user');
 const Comment = require('../models/Comment');
 const Project = require('../models/Project');
+const Vote    = require('../models/Vote');
+const Progress = require('../models/Progress');
 //Other middlewares
 const express       = require('express');
 const methodOverride = require('method-override');
@@ -20,40 +22,40 @@ const publicRouter  = require('./public-router');
 const userRouter    = express.Router();
 const commentRouter = express.Router();
 const projectRouter = express.Router();
-const public        = path.join( __dirname + '/public');
+const voteRouter    = express.Router();
+const progressRouter = express.Router();
+//const public        = path.join( __dirname + '/public');
 //const auth = require( './auth.js' ); //un-comment once we have auth router in place
-
+app.use(logger('dev'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use( bodyParser.urlencoded({ extended: false }) );
 
 app.use(methodOverride());
 
-app.use(logger('dev'));
-
-
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
-//restify.serve(userRouter, User);
 restify.serve(commentRouter, Comment, {name: 'comments'});
 restify.serve(projectRouter, Project, {name: 'projects'});
 restify.serve(userRouter, User, {name: 'users'});
+restify.serve(voteRouter, Vote, {name: 'votes'});
+restify.serve(progressRouter, Progress, {name: 'progresses'});
 
-//app.use(userRouter);
 app.use('/projects', publicRouter);
 app.use('/auth', userAuthRouter);
 app.use( commentRouter);
 app.use( projectRouter);
 app.use( userRouter);
+app.use( voteRouter);
+app.use( progressRouter);
 app.use(function(req, res, next) {
   res.status(404).send('404, no page found: ' + req.url);
 });
-
-app.use(express.static(public, {redirect : false}));
 module.exports = app;
 
 /*

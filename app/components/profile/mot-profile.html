@@ -1,7 +1,19 @@
 <div>
-  <h1>Profile</h1>
-  <a ui-sref="profile" ng-click="active(false)">Projects</a>
-  <a ui-sref="profile" ng-click="active(true)">Create</a>
-  <div ui-view="project" ng-show="!user.active"></div>
-  <div ui-view="create" ng-show="user.active"></div>
-<div>
+    <div class="user-profile">
+        <img class="avatar" src={{userData.picture}}></img>
+        <div class="username">{{userData.displayName}}</div>
+        <div class="description">
+            <span class="glyphicon glyphicon-heart"></span>
+        </div>
+    </div>
+    <div>
+        <uib-tabset active="active">
+            <uib-tab index="0" heading="{{userData.displayName}}'s Motivations">
+                <project></project>
+            </uib-tab>
+            <uib-tab index="1" heading="Create">
+                <create-project></create-project>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

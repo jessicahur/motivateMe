@@ -4,7 +4,7 @@ const router       = express.Router();
 const request      = require('request');
 const jwt          = require('jwt-simple');
 const qs           = require('querystring');
-const User         = require('../models/User');
+const User         = require('../models/user');
 const moment       = require('moment');
 
 /**

@@ -2,10 +2,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const DefinePlugin = require('webpack').DefinePlugin;
+const ProvidePlugin = webpack.ProvidePlugin;
 module.exports = {
-    entry: [path.resolve(__dirname, './app.js')],
+    entry: ['bootstrap-loader', path.resolve(__dirname, './app.js')],
     output: {
-        path: path.resolve(__dirname, '../server/public'),
+        path: path.resolve(__dirname, '../../motivateDeploy/public'),
         filename: 'bundle.js'
     },
     devtool: 'source-map',
@@ -16,6 +17,10 @@ module.exports = {
         new DefinePlugin({
             BASE_URL: JSON.stringify(process.env.BASE_URL || ''),
             CLIENT_ID: JSON.stringify(process.env.CLIENT_ID || '')
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: 'jquery'
         })
     ],
     module: {
@@ -33,22 +38,31 @@ module.exports = {
                     // cacheDirectory: true,
                     // plugins: [ 'transform-runtime' ]//https://www.npmjs.com/package/babel-plugin-transform-runtime
             }
-        },
-            {
+        }, {
             test: /\.css$/,
             loader: 'style!css'
-            },
-
-            {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                loader: 'style!css?sourceMap!sass?sourceMap'
-            },
-            {
+            }, {
+            test: /\.scss$/,
+            loaders: ['style', 'css', 'postcss', 'sass']
+        }, {
+            test: /\.less$/,
+            loader: "style!css!less"
+        }, {
+            test: /\.(woff|woff2)$/,
+            loader: "url-loader?limit=10000&mimetype=application/font-woff"
+        }, {
+            test: /\.ttf$/,
+            loader: "file-loader"
+        }, {
+            test: /\.eot$/,
+            loader: "file-loader"
+        }, {
+            test: /\.svg$/,
+            loader: "file-loader"
+        }, {
             test: /\.(png|jpg)$/,
             loader: 'file-loader?limit=8192'
-        },
-            {
+        }, {
             test: /\.html$/,
             loader: 'html'
         }]

@@ -1,0 +1,37 @@
+<div class="project-container">
+    <div class="projects">
+        <aside class="project-meta">
+            <!-- <img class="project-avatar" src="{{singleProjectView.author.picture}}"></img> -->
+            <div class="project-info">
+                <p><a href="" class="author-name">{{singleProjectView.author.displayName}}</a></p>
+                <p>Created on
+                    <strong>{{singleProjectView.time}}</strong>
+                </p>
+            </div>
+        </aside>
+        <div class="img-wrap">
+            <img class="project-img" src="{{singleProjectView.img}}"></img>
+        </div>
+        <div class="project-info">
+            <a>
+                <h2>{{singleProjectView.name}}</h2>
+            </a>
+            <p class="project-description">{{project.description}}</p>
+            <div>
+                Progress
+                <uib-progressbar class="progress-striped active" max="max" value="value" type="danger"><i style="color:black;">{{value}}/{{max}}</i></uib-progressbar>
+            </div>
+            <h3>Select a milestone and leave a motivation</h3>
+            <p ng-repeat="progress in singleProjectView.progress">
+                <button class="btn btn-default" ng-click="selectProg(progress.content, progress._id)">
+                    <span class="glyphicon glyphicon-plus-sign"></span>{{progress.content}}</button>
+            </p>
+        </div>
+        <div class="project-comments">
+            <comment-post></comment-post>
+            <comments></comments>
+        </div>
+        <a ng-click="returnToFeed()">
+            <span class="glyphicon glyphicon-arrow-left"></span>Feed</a>
+    </div>
+</div>

@@ -1,7 +1,3 @@
-@import '_fonts';
-@import '_mot-nav';
-
-body {
-	font-family: 'Open Sans', sans-serif;
-}
-
+@import '_global';
+@import '_modules';
+@import '_palette';

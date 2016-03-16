@@ -1,0 +1,14 @@
+<div ng-show="authed" class="comments">
+    <div class="comment-wrap">
+        <div class="comment-block">
+            <!-- <div ng-repeat="item in progress"> -->
+            <!-- <button ng-click="selectProg(item.content, item._id)">{{item.content}}</button> -->
+            <!--    </div> -->
+            <h4 class="selected-motivation">Posting a
+                <strong>motivation</strong> for:</h4>
+            <h4>{{commentOn}}</h4>
+            <textarea class="comment-area" ng-model="comment.content" name="" id="" cols="30" rows="3" placeholder="Add motivation..."></textarea>
+            <button class="btn btn-default" ng-click="post()" type='submit'>ADD</button>
+        </div>
+    </div>
+</div>

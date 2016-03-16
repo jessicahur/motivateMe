@@ -1,18 +1,29 @@
-<div>
-  <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
-  <form>
-    <label>Project Name</label>
-    <input name="projectName"
-           ng-model="project.name"
-           required
-           type="text"></input>
-    <br />
-    <label>Project Milestones</label>
-    <input name="projectMilestones"
-           ng-model="project.progress"
-           required
-           type="text"></input>
-    <br />
-    <button ng-click = "post()" type='submit'>ADD</button>
-  </form>
+<div class="projects-container">
+    <p ng-show="savedProject">The project named {{savedProject.name}} was successfully posted</p>
+    <form>
+        <h4>Name</h4>
+        <input name="projectName" ng-model="project.name" required type="text"></input>
+        <h4>Description</h4>
+        <input name="projectDescription" ng-model="project.description" required type="text"></input>
+        <h4>Project Header (img url)</h4>
+        <input name="projectHeader" ng-model="project.img" required type="text"></input>
+        <div>
+            <h4>Milestones</h4>
+            <fieldset data-ng-repeat="progress in progresses track by $index">
+                <input type="text" ng-model="progress.name" placeholder="Enter milestone">
+            </fieldset>
+            <div class="btn-group milestonebtn">
+              <button class="mile btn btn-default" ng-click="removeChoice($index)"><span class="glyphicon glyphicon-remove"></span></button>
+              <button class="mile btn btn-default" ng-click="addNewChoice()"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+
+            <div>
+                <h4 class="selected-motivation">Finishing by:</h4>
+                <h4>{{dt | date:'fullDate' }}</h4>
+                <span class="biglength"> {{ difference(dt) }} days </span> from now.</div>
+            <h5>Select Your Completion Date</h5>
+            <uib-datepicker ng-model="dt" class="well well-md" datepicker-options="inlineOptions" ng-click="difference(dt)"></uib-datepicker>
+        </div>
+        <button ng-click="post()" type='submit'>Start This Project</button>
+    </form>
 </div>
