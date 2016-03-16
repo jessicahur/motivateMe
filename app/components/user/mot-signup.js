@@ -21,6 +21,7 @@ export default function(angularModule) {
                             toastr.info('You are now registered, thank!');
                             $scope.logout = $auth.isAuthenticated();
                             $scope.needSignIn = false;
+                            $scope.authed = true;
                             $location.path('/');
                             // $location.path(`/${$rootScope.previousState}`);
                         })

@@ -11,6 +11,7 @@ export default function(angularModule) {
                         .then(function() {
                             // toastr.info('You are logged out!');
                             $scope.logout = $auth.isAuthenticated();
+                            $scope.authed = false;
                             // $location.path('/');
                             $window.location = '/';
                         })
