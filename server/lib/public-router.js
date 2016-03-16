@@ -23,7 +23,6 @@ router.get('/:id', (req, res, next) => {
             if(err) {
               return res.status(500).send(err);
             }
-            console.log(comments);
             res.send(comments);
           });
 });
