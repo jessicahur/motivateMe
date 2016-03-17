@@ -33,12 +33,5 @@ export default function(angularModule) {
                     requireAuth: true
                 }
             });
-            // .state('user', {
-            //     url: '/user',
-            //     template: '<user></user>',
-            //     data: {
-            //         requireAuth: false
-            //     }
-            // })
     }]);
 }
