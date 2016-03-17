@@ -1,47 +1,44 @@
 <section>
-  <banner></banner>
- <!--    <feed-detail ng-show="singleProjectView" ></feed-detail> -->
- <div ui-view singleProjectView="singleProjectView"></div>
+    <banner></banner>
+    <div class="project-container" ng-hide="singleProjectView"
+         ng-repeat="project in projects">
 
-<div class="project-container" ng-hide="singleProjectView"
-     ng-repeat="project in projects">
-
-    <div class="projects">
-        <aside class="project-meta">
-            <!-- <img class="project-avatar" src={{project.author.picture}}></img> -->
-            <div class="project-info">
-                <p><a href="{{project.url}}" class="author-name">{{project.author.displayName}}</a></p>
-
-
+        <div class="projects">
+            <aside class="project-meta">
+                <!-- <img class="project-avatar" src={{project.author.picture}}></img> -->
                 <div class="project-info">
-                     <p>Created on
-                        <strong>{{project.time}}</strong></p>
-                    <p>Completing on
-                        <strong>{{project.completion}}</strong></p>
-                    <p><strong>{{ remaining( project.time, project.completion) }} </strong>  days remaining </p>
+                    <p><a href="{{project.url}}" class="author-name">{{project.author.displayName}}</a></p>
 
-                    <p>{{ percentTimeUsed(project.time, project.completion) }} percent of available time used</p>
 
-                    </p>
+                    <div class="project-info">
+                         <p>Created on
+                            <strong>{{project.time}}</strong></p>
+                        <p>Completing on
+                            <strong>{{project.completion}}</strong></p>
+                        <p><strong>{{ remaining( project.time, project.completion) }} </strong>  days remaining </p>
+
+                        <p>{{ percentTimeUsed(project.time, project.completion) }} percent of available time used</p>
+
+                        </p>
+                    </div>
+
+
+
                 </div>
-
-
-
+            </aside>
+            <div class="img-wrap">
+            <img class="project-img" src="{{project.img}}"></img>
             </div>
-        </aside>
-        <div class="img-wrap">
-        <img class="project-img" src="{{project.img}}"></img>
-        </div>
-        <div class="project-info">
-            <!-- ng-click="projectView( project)" -->
-            <a  ui-sref='feed.detail({ projectId: project._id })' ng-click="projectView( project)">
-                <h3>{{project.name}}</h3>
-            </a>
-            <p class="project-description">{{project.description}}</p>
-            <h4>Milestones</h4>
-            <p class="project-progress" ng-repeat="progress in project.progress">
-                <span class="glyphicon glyphicon-flag {{progress.done}}"></span>{{progress.content}}</p>
+            <div class="project-info">
+                <!-- ng-click="projectView( project)" -->
+                <a  ui-sref='detail({ projectId: project._id })' ng-click="projectView( project)">
+                    <h3>{{project.name}}</h3>
+                </a>
+                <p class="project-description">{{project.description}}</p>
+                <h4>Milestones</h4>
+                <p class="project-progress" ng-repeat="progress in project.progress">
+                    <span class="glyphicon glyphicon-flag {{progress.done}}"></span>{{progress.content}}</p>
+            </div>
         </div>
     </div>
-</div>
 </section>

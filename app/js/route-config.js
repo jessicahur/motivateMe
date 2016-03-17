@@ -11,8 +11,8 @@ export default function(angularModule) {
                     requireAuth: false
                 }
             })
-            .state('feed.detail', {
-                url: 'detail/:projectId',
+            .state('detail', {
+                url: '/detail/:projectId',
                 template: '<feed-detail></feed-detail>',
                 data: {
                     requireAuth: false
