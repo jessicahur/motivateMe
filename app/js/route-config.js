@@ -1,3 +1,5 @@
+import FeedDetailCtrl from './FeedDetailCtrl';
+
 export default function(angularModule) {
     angularModule.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
         $urlRouterProvider.otherwise("/");
@@ -15,22 +17,7 @@ export default function(angularModule) {
                 data: {
                     requireAuth: false
                 },
-                controller: function($scope, $stateParams, $auth, ProgressService, CommentService) {
-                    Object.keys($stateParams).forEach(key => {
-                        $scope[key] = $stateParams[key];
-                    });
-                    console.log($stateParams);
-                    if ($auth.isAuthenticated()) {
-                        $scope.authed = true;
-                    }
-                    else {
-                        $scope.authed = false;
-                    }
-                    $scope.selectProg = function(prog, id) {
-                        $scope.commentOn = prog;
-                        $scope.commentProgId = id;
-                    }
-                }
+                controller: FeedDetailCtrl
             })
             .state('profile', {
               url: '/profile',
