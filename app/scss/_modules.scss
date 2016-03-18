@@ -102,11 +102,15 @@
 }
 .img-wrap {
     position: relative;
-    height: 180px;
+    display: flex;
+    justify-content: center;
+align-items: center;
     overflow: hidden;
 }
 .project-img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 400px;
+    position: center;
     padding: 0 1rem;
     margin: 0 auto;
 }

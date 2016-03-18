@@ -22,6 +22,7 @@ export default function(angularModule) {
                             $scope.needSignIn = false;
                             $scope.authed = true;
                             $location.path('/');
+
                             // in order to use previousState, we need:
                             /*
                               $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
